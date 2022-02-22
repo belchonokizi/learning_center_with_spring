@@ -1,0 +1,23 @@
+[ {
+  "id" : 1,
+  "firstName" : "Alisa",
+  "lastName" : "Grey",
+  "programId" : 1,
+  "marksMap" : {
+    "firstModuleJava" : 75,
+    "secondModuleJava" : 80
+  }
+},
+  {
+    "id": 3,
+    "firstName": "Bob",
+    "lastName": "Singer",
+    "programId": 3,
+    "marksMap": {
+      "firstModuleNote": 60,
+      "secondModuleNote": 80,
+      "thirdModuleNote": 80,
+      "fourthModuleNote": 40
+    }
+  }
+]

@@ -1,0 +1,27 @@
+[ {
+  "firstName" : "Elena",
+  "lastName" : "Grushina",
+  "programId" : 3,
+  "marksMap" : {
+    "first" : 70,
+    "second" : 80,
+    "third" : 90
+  },
+  "id" : 3
+}, {
+  "firstName" : "Alisa",
+  "lastName" : "Shmel",
+  "programId" : 1,
+  "marksMap" : {
+    "first" : 100,
+    "second" : 100,
+    "third" : 100
+  },
+  "id" : 2
+}, {
+  "firstName" : "Boris",
+  "lastName" : "Sidorov",
+  "programId" : 2,
+  "marksMap" : { },
+  "id" : 1
+} ]

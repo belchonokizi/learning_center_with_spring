@@ -1,0 +1,54 @@
+---
+id: 1
+name: Java
+modules:
+  - id: 1
+    programId: 1
+    name: firstModuleJava
+    durationInHours: 72
+  - id: 2
+    programId: 1
+    name: secondModuleJava
+    durationInHours: 48
+  - id: 3
+    programId: 1
+    name: thirdModuleJava
+    durationInHours: 32
+
+---
+id: 2
+name: JavaScript
+modules:
+  - id: 1
+    programId: 2
+    name: firstModuleJavaScript
+    durationInHours: 32
+  - id: 2
+    programId: 2
+    name: secondModuleJavaScript
+    durationInHours: 56
+  - id: 3
+    programId: 2
+    name: thirdModuleJavaScript
+    durationInHours: 32
+
+---
+id: 3
+name: .Net
+modules:
+  - id: 1
+    programId: 3
+    name: firstModuleNote
+    durationInHours: 24
+  - id: 2
+    programId: 3
+    name: secondModuleNote
+    durationInHours: 48
+  - id: 3
+    programId: 3
+    name: thirdModuleNote
+    durationInHours: 32
+  - id: 4
+    programId: 3
+    name: fourthModuleNote
+    durationInHours: 48

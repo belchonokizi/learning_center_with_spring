@@ -1,0 +1,33 @@
+---
+id: 1
+name: Java
+modules:
+  - id: 1
+    programId: 1
+    name: firstModule
+    durationInHours: 72
+  - id: 2
+    programId: 1
+    name: secondModule
+    durationInHours: 48
+  - id: 3
+    programId: 1
+    name: thirdModule
+    durationInHours: 32
+
+---
+id: 2
+name: JavaScript
+modules:
+  - id: 1
+    programId: 2
+    name: firstModule
+    durationInHours: 32
+  - id: 2
+    programId: 2
+    name: secondModule
+    durationInHours: 56
+  - id: 3
+    programId: 2
+    name: thirdModule
+    durationInHours: 32
