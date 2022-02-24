@@ -1,10 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Objects;
 
-@Component
 public class Module {
     private int id;
     private int programId;

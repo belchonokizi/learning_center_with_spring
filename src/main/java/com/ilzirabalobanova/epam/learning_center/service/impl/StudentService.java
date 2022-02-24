@@ -2,7 +2,6 @@ package com.ilzirabalobanova.epam.learning_center.service.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
-import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
@@ -10,6 +9,7 @@ import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService implements IStudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
-
     private final IStudentRepository studentRepository;
     private final IProgramService programService;
 
     @Autowired
-    public StudentService(IStudentRepository studentRepository, IProgramRepository programRepository) {
+    @Lazy
+    public StudentService(IStudentRepository studentRepository, IProgramService programService) {
         this.studentRepository = studentRepository;
-        this.programService = new ProgramService(programRepository);
+        this.programService = programService;
     }
 
     @Override
@@ -38,11 +38,18 @@ public class StudentService implements IStudentService {
     @Override
     public void addStudent(Student student) {
         studentRepository.addStudent(student);
+        logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
     }
 
     @Override
-    public void deleteStudent(int id) throws IllegalInitialDataException {
-        studentRepository.deleteStudent(id);
+    public void deleteStudent(int id) {
+        try {
+            studentRepository.deleteStudent(id);
+            logger.info("Студент с id = {} удален", id);
+        } catch (IllegalInitialDataException e) {
+            logger.error("Студент с id = {} не найден", id);
+        }
+
     }
 
     @Override

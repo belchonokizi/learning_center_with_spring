@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.Map;
 
 @Service
 public class ProgramService implements IProgramService {
-    private final IProgramRepository programRepository;
+    private IProgramRepository programRepository;
 
     @Autowired
+    @Lazy
     public ProgramService(IProgramRepository programRepository) {
         this.programRepository = programRepository;
     }

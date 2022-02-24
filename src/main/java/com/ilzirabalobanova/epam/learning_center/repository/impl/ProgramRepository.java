@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.parser.YamlParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +20,7 @@ public class ProgramRepository implements IProgramRepository {
     private List<Program> programDatabase;
 
     @Autowired
+    @Lazy
     public ProgramRepository(YamlParser parser) {
         this.parser = parser;
     }
@@ -33,11 +35,5 @@ public class ProgramRepository implements IProgramRepository {
         return programDatabase;
     }
 
-    private String getPath() throws IOException {
-        Properties properties = new Properties();
-        InputStream is = ProgramRepository.class.getClassLoader().getResourceAsStream("path.properties");
-        properties.load(is);
-        return properties.getProperty("PATH_YAML_FILE");
-    }
 }
 

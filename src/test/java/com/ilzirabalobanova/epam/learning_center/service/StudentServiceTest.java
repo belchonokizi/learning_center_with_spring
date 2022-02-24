@@ -37,7 +37,7 @@ public class StudentServiceTest {
     private IStudentRepository studentRepository;
 
     @Mock
-    private IProgramRepository programRepository;
+    private IProgramService programService;
 
     private IStudentService studentService;
 
@@ -53,7 +53,7 @@ public class StudentServiceTest {
         addStudentsToList();
         MockitoAnnotations.openMocks(this);
         Mockito.when(studentRepository.findStudentById(1)).thenReturn(student);
-        this.studentService = new StudentService(studentRepository, programRepository);
+        this.studentService = new StudentService(studentRepository, programService);
     }
 
     @AfterEach

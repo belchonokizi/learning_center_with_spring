@@ -13,7 +13,7 @@ public interface IStudentService {
 
     void addStudent(Student student);
 
-    void deleteStudent(int id) throws IllegalInitialDataException;
+    void deleteStudent(int id);
 
     void showAllStudents(List<Student> studentList);
 

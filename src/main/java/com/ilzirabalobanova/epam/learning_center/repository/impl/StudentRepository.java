@@ -6,6 +6,7 @@ import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ public class StudentRepository implements IStudentRepository {
     private List<Student> studentDatabase;
 
     @Autowired
+    @Lazy
     public StudentRepository(StudentFileParser parser) {
         this.parser = parser;
     }
