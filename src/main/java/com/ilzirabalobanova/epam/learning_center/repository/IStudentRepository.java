@@ -10,7 +10,7 @@ public interface IStudentRepository {
 
     void addStudent(Student student);
 
-    void deleteStudent(int id);
+    Student deleteStudent(int id);
 
     Student findStudentById(int id);
 

@@ -35,12 +35,11 @@ public class StudentService implements IStudentService {
     @Override
     public void addStudent(Student student) {
         studentRepository.addStudent(student);
-        logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
     }
 
     @Override
-    public void deleteStudent(int id) {
-        studentRepository.deleteStudent(id);
+    public Student deleteStudent(int id) {
+         return studentRepository.deleteStudent(id);
     }
 
     @Override
