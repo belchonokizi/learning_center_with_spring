@@ -19,6 +19,4 @@ public class LearningCenterConfig {
     public StudentFileParser studentFileParser() {
         return new StudentFileParser();
     }
-
-
 }

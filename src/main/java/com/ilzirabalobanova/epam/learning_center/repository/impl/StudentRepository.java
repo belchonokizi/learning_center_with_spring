@@ -5,8 +5,8 @@ import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataExc
 import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -14,11 +14,10 @@ import java.util.List;
 
 @Repository
 public class StudentRepository implements IStudentRepository {
+    private static final Logger logger = LoggerFactory.getLogger(StudentRepository.class);
     private final StudentFileParser parser;
     private List<Student> studentDatabase;
 
-    @Autowired
-    @Lazy
     public StudentRepository(StudentFileParser parser) {
         this.parser = parser;
     }
@@ -38,24 +37,33 @@ public class StudentRepository implements IStudentRepository {
     }
 
     @Override
-    public void deleteStudent(int id) throws IllegalInitialDataException {
+    public void deleteStudent(int id) {
         Student student = findStudentById(id);
-        studentDatabase.remove(student);
+        if (student != null) {
+            studentDatabase.remove(student);
+            logger.info("Студент с id = {} удален", id);
+        }
     }
 
     @Override
-    public Student findStudentById(int id) throws IllegalInitialDataException {
+    public Student findStudentById(int id) {
         String s = "Студент с id = " + id + " не найден";
-        return studentDatabase.stream().filter(st -> st.getId() == id)
-                .findFirst().orElseThrow(() -> new IllegalInitialDataException(s));
+        Student student = null;
+        try {
+            student = studentDatabase.stream().filter(st -> st.getId() == id)
+                    .findFirst().orElseThrow(() -> new IllegalInitialDataException(s));
+        } catch (IllegalInitialDataException e) {
+            logger.error("Студент с id {} не найден", id);
+        }
+        return student;
     }
 
     @Override
     public Student updateStudent(int studentId, Student student) {
-        Student oldStudent = studentDatabase.stream().filter(s -> s.getId() == studentId).findFirst()
-                .orElseThrow(() -> new NullPointerException("Студент не найден"));
-        studentDatabase.set(studentDatabase.indexOf(oldStudent), student);
+        Student oldStudent = findStudentById(studentId);
+        if (student != null) {
+            studentDatabase.set(studentDatabase.indexOf(oldStudent), student);
+        }
         return student;
-
     }
 }

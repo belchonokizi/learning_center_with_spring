@@ -3,7 +3,6 @@ package com.ilzirabalobanova.epam.learning_center.shell;
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
-import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.Comparators;
@@ -16,6 +15,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @ShellComponent
@@ -38,7 +38,7 @@ public class Commands {
                     @ShellOption({"-ln", "--lastName"}) String lastName,
                     @ShellOption({"-pi", "-programId"}) int programId) {
         if (!validator.isNameNonValid(firstName) && !validator.isNameNonValid(lastName) && validator.isIntValid(programId)) {
-            studentService.addStudent(new Student(firstName, lastName, programId, Map.of()));
+            studentService.addStudent(new Student(firstName, lastName, programId, new HashMap<>()));
         }
     }
 
@@ -66,12 +66,7 @@ public class Commands {
     public void put(@ShellOption({"-si", "--studentId"}) int studentId,
                     @ShellOption({"-mi", "--moduleId"}) int moduleId,
                     @ShellOption({"-m", "--mark"}) int mark) {
-        Student student = null;
-        try {
-            student = studentService.findStudentById(studentId);
-        } catch (IllegalInitialDataException e) {
-            logger.error("Студент с id = {} не найден", studentId);
-        }
+        Student student = studentService.findStudentById(studentId);
         if (student != null) {
             Program program = programService.findProgramById(student.getProgramId());
             Module module = program.getModules().stream().filter(m -> m.getId() == moduleId)
@@ -85,12 +80,7 @@ public class Commands {
 
     @ShellMethod("count -si 1")
     public void count(@ShellOption({"-si", "--studentId"}) int studentId) {
-        Student student = null;
-        try {
-            student = studentService.findStudentById(studentId);
-        } catch (IllegalInitialDataException e) {
-            logger.error("Студент с id = {} не найден", studentId);
-        }
+        Student student = studentService.findStudentById(studentId);
         if (student != null) {
             Program program = programService.findProgramById(student.getProgramId());
             long wholeDuration = program.getModules().stream().map(Module::getDurationInHours).mapToLong(m -> m).sum();
@@ -113,15 +103,10 @@ public class Commands {
 
     @ShellMethod("score -si 1")
     public void score(@ShellOption({"-si", "--studentId"}) int studentId) {
-        Student student = null;
-        try {
-            student = studentService.findStudentById(studentId);
-        } catch (IllegalInitialDataException e) {
-            logger.error("Студент с id = {} не найден", studentId);
-        }
+        Student student = studentService.findStudentById(studentId);
         if (student != null) {
             double avgGrade = programService.getAvgGrade(student);
-            System.out.printf("Успеваемость %s %s :", student.getFirstName(), student.getLastName());
+            System.out.printf("Успеваемость %s %s %n:", student.getFirstName(), student.getLastName());
             Map<String, Integer> marksMap = student.getMarksMap();
             marksMap.entrySet().forEach(System.out::println);
             System.out.printf("Средний балл = %.2f%n", avgGrade);
@@ -136,12 +121,7 @@ public class Commands {
 
     @ShellMethod("notify -si 1")
     public void notify(@ShellOption({"-si", "--studentId"}) int studentId) {
-        Student student = null;
-        try {
-            student = studentService.findStudentById(studentId);
-        } catch (IllegalInitialDataException e) {
-            logger.error("Студент с id = {} не найден", studentId);
-        }
+        Student student = studentService.findStudentById(studentId);
         if (student != null) {
             double avgGrade = programService.getAvgGrade(student);
 

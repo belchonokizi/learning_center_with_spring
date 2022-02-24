@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.service.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
-import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
@@ -9,7 +8,6 @@ import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,7 +22,6 @@ public class StudentService implements IStudentService {
     private final IProgramService programService;
 
     @Autowired
-    @Lazy
     public StudentService(IStudentRepository studentRepository, IProgramService programService) {
         this.studentRepository = studentRepository;
         this.programService = programService;
@@ -43,13 +40,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void deleteStudent(int id) {
-        try {
-            studentRepository.deleteStudent(id);
-            logger.info("Студент с id = {} удален", id);
-        } catch (IllegalInitialDataException e) {
-            logger.error("Студент с id = {} не найден", id);
-        }
-
+        studentRepository.deleteStudent(id);
     }
 
     @Override
@@ -66,7 +57,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Student findStudentById(int id) throws IllegalInitialDataException {
+    public Student findStudentById(int id) {
         return studentRepository.findStudentById(id);
     }
 

@@ -19,10 +19,9 @@ public class Student {
     private String firstName;
     private String lastName;
     private int programId;
-    private Map<String, Integer> marksMap;
 
-    public Student() {
-    }
+    @InjectRandomMark
+    private Map<String, Integer> marksMap;
 
     @JsonCreator
     public Student(@JsonProperty("firstName") String firstName,
@@ -79,7 +78,6 @@ public class Student {
         return marksMap;
     }
 
-    @InjectRandomMark()
     public void setMarksMap(Map<String, Integer> marksMap) {
         this.marksMap = marksMap;
     }

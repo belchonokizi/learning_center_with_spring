@@ -4,7 +4,6 @@ import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +13,6 @@ public class Validator {
     private final IProgramService programService;
 
     @Autowired
-    @Lazy
     public Validator(IProgramService programService) {
         this.programService = programService;
     }
