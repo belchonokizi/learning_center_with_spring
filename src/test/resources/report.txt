@@ -3,9 +3,9 @@
   "lastName" : "Grushina",
   "programId" : 3,
   "marksMap" : {
-    "first" : 70,
+    "third" : 90,
     "second" : 80,
-    "third" : 90
+    "first" : 70
   },
   "id" : 3
 }, {
@@ -13,9 +13,9 @@
   "lastName" : "Shmel",
   "programId" : 1,
   "marksMap" : {
-    "first" : 100,
+    "third" : 100,
     "second" : 100,
-    "third" : 100
+    "first" : 100
   },
   "id" : 2
 }, {

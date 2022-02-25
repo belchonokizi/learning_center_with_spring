@@ -1,2 +1,4 @@
 rootProject.name = 'learning-center'
+include 'spring-boot-starter-learningcenter'
+include 'spring-boot-starter-logging'
 
