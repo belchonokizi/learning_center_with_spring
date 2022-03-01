@@ -1,6 +1,0 @@
-logging:
-  loggable.packages:
-    -com.ilzirabalobanova.epam.learning_center.repository.impl
-    -com.ilzirabalobanova.epam.learning_center.service.impl
-  loggable.methods:
-    -com.ilzirabalobanova.epam.learning_center.service.impl.StudentService.deleteStudent
