@@ -5,13 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-@Component
 public class StudentFileParser {
     private static final Logger logger = LoggerFactory.getLogger(StudentFileParser.class);
 

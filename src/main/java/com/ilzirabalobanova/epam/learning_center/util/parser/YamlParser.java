@@ -3,7 +3,6 @@ package com.ilzirabalobanova.epam.learning_center.util.parser;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -14,7 +13,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class YamlParser {
     private static final Logger logger = LoggerFactory.getLogger(YamlParser.class);
 

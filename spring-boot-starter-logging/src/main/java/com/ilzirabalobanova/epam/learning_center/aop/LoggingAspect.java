@@ -1,18 +1,20 @@
 package com.ilzirabalobanova.epam.learning_center.aop;
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Slf4j
 @Aspect
 public class LoggingAspect {
+
+    private Logger log = LoggerFactory.getLogger(LoggingAspect.class);
 
     @Pointcut(value = "execution(public void com.ilzirabalobanova.epam.learning_center.service.impl.StudentService.addStudent(*))")
     public void addMethodPointcut() {

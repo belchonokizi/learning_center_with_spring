@@ -39,6 +39,7 @@ public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProc
                     int newMark = ThreadLocalRandom.current().nextInt(minMark, maxMark + 1);
                     newMarks.put(module.getName(), newMark);
                 }
+                field.setAccessible(true);
                 ReflectionUtils.setField(field, bean, newMarks);
             }
         }
