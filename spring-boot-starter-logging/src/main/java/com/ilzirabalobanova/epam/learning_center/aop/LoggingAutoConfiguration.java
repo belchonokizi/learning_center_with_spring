@@ -6,14 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(prefix = "logging.enable", value = "ON")
+@ConditionalOnProperty(prefix = "logging", name = "enable")
 @EnableConfigurationProperties(LoggingProperties.class)
 public class LoggingAutoConfiguration {
-
-    @Bean
-    public LoggingProperties loggingProperties() {
-        return new LoggingProperties();
-    }
 
     @Bean
     public LoggingAspect loggingAspect() {

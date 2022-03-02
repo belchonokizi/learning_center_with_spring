@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "logging.loggable")
 public class LoggingProperties {
     private List<String> packages;
     private List<String> methods;
