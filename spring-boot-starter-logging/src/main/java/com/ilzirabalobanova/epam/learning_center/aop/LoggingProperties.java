@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 
-@ConfigurationProperties(prefix = "logging.enable", value = "ON")
+@ConfigurationProperties
 public class LoggingProperties {
     private List<String> packages;
     private List<String> methods;
