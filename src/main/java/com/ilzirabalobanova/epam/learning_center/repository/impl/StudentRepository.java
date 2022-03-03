@@ -34,6 +34,7 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public void addStudent(Student student) {
         studentDatabase.add(student);
+        logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
     }
 
     @Override
@@ -41,6 +42,7 @@ public class StudentRepository implements IStudentRepository {
         Student student = findStudentById(id);
         if (student != null) {
             studentDatabase.remove(student);
+            logger.info("Студент {} {} удален", student.getFirstName(), student.getLastName());
         }
         return student;
     }

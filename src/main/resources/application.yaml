@@ -2,7 +2,9 @@ logging:
   enable: true
   loggable:
     packages:
-#      - com.ilzirabalobanova.epam.learning_center.repository.impl
       - com.ilzirabalobanova.epam.learning_center.service.impl
     methods:
-      - com.ilzirabalobanova.epam.learning_center.service.impl.StudentService.deleteStudent
+      - deleteStudent
+      - addStudent
+      - sortAndShowStudents
+      - updateStudent

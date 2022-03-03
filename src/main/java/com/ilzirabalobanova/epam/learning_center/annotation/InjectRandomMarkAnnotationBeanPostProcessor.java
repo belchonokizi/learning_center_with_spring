@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.annotation;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Module;
-import com.ilzirabalobanova.epam.learning_center.entity.Student;
+import com.ilzirabalobanova.epam.learning_center.bean.StudentBean;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +9,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProcessor {
-    private final IProgramService programService;
-
-    @Autowired
-    public InjectRandomMarkAnnotationBeanPostProcessor(IProgramService programService) {
-        this.programService = programService;
-    }
-
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
@@ -32,15 +23,15 @@ public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProc
             if (annotation != null) {
                 int minMark = annotation.minValue();
                 int maxMark = annotation.maxValue();
-                Map<String, Integer> newMarks = new HashMap<>();
-                Student student = (Student) bean;
-                List<Module> modules = programService.findProgramById(student.getProgramId()).getModules();
-                for (Module module : modules) {
+                List<Integer> newList = new ArrayList<>();
+                StudentBean student = (StudentBean) bean;
+                student.setModuleCount(ThreadLocalRandom.current().nextInt(2, 6));
+                for (int i = 1; i < student.getModuleCount(); i++) {
                     int newMark = ThreadLocalRandom.current().nextInt(minMark, maxMark + 1);
-                    newMarks.put(module.getName(), newMark);
+                    newList.add(newMark);
                 }
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, bean, newMarks);
+                ReflectionUtils.setField(field, bean, newList);
             }
         }
         return bean;

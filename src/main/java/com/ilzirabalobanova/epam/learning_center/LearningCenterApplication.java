@@ -1,5 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center;
 
+import com.ilzirabalobanova.epam.learning_center.bean.StudentBean;
 import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.command.CommandExecutor;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
@@ -21,7 +22,8 @@ public class LearningCenterApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(LearningCenterApplication.class, args);
-
+        StudentBean studentBean = context.getBean("studentBean", StudentBean.class);
+        System.out.println("Оценки студента: " + studentBean.getMarksList());
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         Operation operation;
