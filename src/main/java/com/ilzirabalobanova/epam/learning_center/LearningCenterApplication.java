@@ -16,7 +16,6 @@ import org.springframework.context.ApplicationContext;
 import java.util.Map;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class LearningCenterApplication {
     private static final Logger logger = LoggerFactory.getLogger(LearningCenterApplication.class);
 
