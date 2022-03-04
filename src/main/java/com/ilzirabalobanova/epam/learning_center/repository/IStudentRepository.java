@@ -8,7 +8,7 @@ public interface IStudentRepository {
 
     List<Student> getAllStudents();
 
-    void addStudent(Student student);
+    boolean addStudent(Student student);
 
     Student deleteStudent(int id);
 

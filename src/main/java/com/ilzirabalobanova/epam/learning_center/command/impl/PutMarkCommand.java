@@ -4,7 +4,6 @@ import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
-import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;

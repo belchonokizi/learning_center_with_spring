@@ -7,11 +7,15 @@ import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
 import com.ilzirabalobanova.epam.learning_center.util.Validator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
 public class AddCommand implements Command {
+    private static final Logger logger = LoggerFactory.getLogger(AddCommand.class);
+
     private IStudentService studentService;
     private IProgramService programService;
 
@@ -53,7 +57,9 @@ public class AddCommand implements Command {
         } while (!validator.isIntValid(programId));
 
         Student student = new Student(name, lastName, programId, Map.of());
-        studentService.addStudent(student);
+        if (studentService.addStudent(student)) {
+            logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
+        }
     }
 }
 

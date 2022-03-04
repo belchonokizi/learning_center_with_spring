@@ -33,8 +33,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void addStudent(Student student) {
-        studentRepository.addStudent(student);
+    public boolean addStudent(Student student) {
+        return studentRepository.addStudent(student);
     }
 
     @Override
