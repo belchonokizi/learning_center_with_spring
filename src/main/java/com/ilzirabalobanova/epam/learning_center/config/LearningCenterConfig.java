@@ -1,8 +1,11 @@
 package com.ilzirabalobanova.epam.learning_center.config;
 
+import com.ilzirabalobanova.epam.learning_center.aop.CustomPointcut;
+import com.ilzirabalobanova.epam.learning_center.aop.LearningCenterLoggingAspect;
 import com.ilzirabalobanova.epam.learning_center.command.impl.*;
 import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
 import com.ilzirabalobanova.epam.learning_center.util.parser.YamlParser;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.context.annotation.*;
 
 @Configuration
@@ -63,5 +66,20 @@ public class LearningCenterConfig {
     @Bean
     public RemoveCommand removeCommand() {
         return new RemoveCommand();
+    }
+
+    @Bean
+    public CustomPointcut customPointcut() {
+        return new CustomPointcut(yamlParser());
+    }
+
+    @Bean
+    public LearningCenterLoggingAspect learningCenterLoggingAspect() {
+        return new LearningCenterLoggingAspect();
+    }
+
+    @Bean
+    public DefaultPointcutAdvisor defaultPointcutAdvisor() {
+        return new DefaultPointcutAdvisor(customPointcut(), learningCenterLoggingAspect());
     }
 }
