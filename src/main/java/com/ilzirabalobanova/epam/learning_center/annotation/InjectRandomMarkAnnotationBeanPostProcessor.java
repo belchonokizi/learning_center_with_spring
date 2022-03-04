@@ -1,5 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.annotation;
 
+import com.ilzirabalobanova.epam.learning_center.bean.StudentBean;
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
@@ -33,12 +34,12 @@ public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProc
                 int minMark = annotation.minValue();
                 int maxMark = annotation.maxValue();
                 Map<String, Integer> newMarks = new HashMap<>();
-                Student student = (Student) bean;
-                List<Module> modules = programService.findProgramById(student.getProgramId()).getModules();
-                for (Module module : modules) {
-                    int newMark = ThreadLocalRandom.current().nextInt(minMark, maxMark + 1);
-                    newMarks.put(module.getName(), newMark);
-                }
+                StudentBean student = (StudentBean) bean;
+//                List<Module> modules = programService.findProgramById(student.getProgramId()).getModules();
+//                for (Module module : modules) {
+//                    int newMark = ThreadLocalRandom.current().nextInt(minMark, maxMark + 1);
+//                    newMarks.put(module.getName(), newMark);
+//                }
                 field.setAccessible(true);
                 ReflectionUtils.setField(field, bean, newMarks);
             }
