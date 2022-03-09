@@ -55,5 +55,10 @@ public class AddCommand implements Command {
         Student student = new Student(name, lastName, programId, Map.of());
         studentService.addStudent(student);
     }
+
+    @Override
+    public String toString() {
+        return "addCommand";
+    }
 }
 

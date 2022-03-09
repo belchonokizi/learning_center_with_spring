@@ -1,9 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.annotation;
 
 import com.ilzirabalobanova.epam.learning_center.bean.StudentBean;
-import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
@@ -34,11 +32,6 @@ public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProc
                 ReflectionUtils.setField(field, bean, newList);
             }
         }
-        return bean;
-    }
-
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return bean;
     }
 }

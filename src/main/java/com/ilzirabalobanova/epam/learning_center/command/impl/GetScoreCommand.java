@@ -30,10 +30,17 @@ public class GetScoreCommand implements Command {
         int id = helper.askStudentId();
         Student student = studentService.findStudentById(id);
 
-        double avgGrade = programService.getAvgGrade(student);
-        System.out.printf("Успеваемость %s %s :", student.getFirstName(), student.getLastName());
-        Map<String, Integer> marksMap = student.getMarksMap();
-        marksMap.entrySet().forEach(System.out::println);
-        System.out.printf("Средний балл = %.2f", avgGrade);
+        if (student != null) {
+            double avgGrade = programService.getAvgGrade(student);
+            System.out.printf("Успеваемость %s %s :", student.getFirstName(), student.getLastName());
+            Map<String, Integer> marksMap = student.getMarksMap();
+            marksMap.entrySet().forEach(System.out::println);
+            System.out.printf("Средний балл = %.2f", avgGrade);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "getScoreCommand";
     }
 }

@@ -17,4 +17,9 @@ public class FilterCommand implements Command {
         System.out.println("Есть вероятность, что не будут отчислены:");
         studentService.filterAndShowStudents(studentService.getAllStudents());
     }
+
+    @Override
+    public String toString() {
+        return "filterCommand";
+    }
 }

@@ -13,7 +13,7 @@ public enum Operation {
     NOTIFY_ABOUT_EXCLUSION("Рассчитать возможность отчисления студента",
             "notifyCommand"),
     SHOW_ALL_STUDENTS("Просмотреть список всех студентов",
-            "showAllStudentsCommand"),
+            "showAllStudentCommand"),
     FILTER("Фильтровать список студентов по условию \"Есть вероятность, что не будет отчислен\"",
             "filterCommand"),
     CREATE_REPORT("Cформировать общий отчет о студентах",

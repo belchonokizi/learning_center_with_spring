@@ -5,7 +5,7 @@ import org.springframework.aop.support.DynamicMethodMatcherPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Set;
 
 public class CustomPointcut extends DynamicMethodMatcherPointcut {
     private final LoggingProperties properties;
@@ -17,7 +17,8 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut {
 
     @Override
     public boolean matches(Method method, Class<?> targetClass, Object... args) {
-        List<String> methodsToLog = properties.getMethods();
+        //stream
+        Set<String> methodsToLog = properties.getMethods();
         for (String methodName : methodsToLog) {
             if (method.getName().equals(methodName)) {
                 return true;
@@ -28,10 +29,8 @@ public class CustomPointcut extends DynamicMethodMatcherPointcut {
 
     @Override
     public ClassFilter getClassFilter() {
-        List<String> packagesToLog = properties.getPackages();
-
         return clazz -> {
-            for (String packageName : packagesToLog) {
+            for (String packageName : properties.getPackages()) {
                 if (clazz.getPackage().getName().contains(packageName)) {
                     return true;
                 }
