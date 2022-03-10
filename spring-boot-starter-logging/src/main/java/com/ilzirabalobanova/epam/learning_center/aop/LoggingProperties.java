@@ -2,16 +2,12 @@ package com.ilzirabalobanova.epam.learning_center.aop;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Set;
 
 @ConfigurationProperties(prefix = "logging.loggable")
 public class LoggingProperties {
-    @NotEmpty
     private List<String> packages;
-
-    @NotEmpty
     private Set<String> methods;
 
     public List<String> getPackages() {

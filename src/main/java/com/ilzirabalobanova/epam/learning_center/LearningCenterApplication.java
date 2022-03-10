@@ -10,12 +10,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
+@Controller
 @SpringBootApplication
-public class LearningCenterApplication {
+public class LearningCenterApplication extends SpringBootServletInitializer {
     private static final Logger logger = LoggerFactory.getLogger(LearningCenterApplication.class);
 
     public static void main(String[] args) {
@@ -41,5 +45,10 @@ public class LearningCenterApplication {
             }
             System.out.println("\nЕсли хотите продолжить, наберите 'y'");
         } while (helper.readString().equalsIgnoreCase("y"));
+    }
+
+    @RequestMapping("/")
+    public String home() {
+        return "home";
     }
 }
