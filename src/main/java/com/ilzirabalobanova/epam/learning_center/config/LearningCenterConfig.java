@@ -67,19 +67,4 @@ public class LearningCenterConfig {
     public RemoveCommand removeCommand() {
         return new RemoveCommand();
     }
-
-    @Bean
-    public CustomPointcut customPointcut() {
-        return new CustomPointcut(yamlParser());
-    }
-
-    @Bean
-    public LearningCenterLoggingAspect learningCenterLoggingAspect() {
-        return new LearningCenterLoggingAspect();
-    }
-
-    @Bean
-    public DefaultPointcutAdvisor defaultPointcutAdvisor() {
-        return new DefaultPointcutAdvisor(customPointcut(), learningCenterLoggingAspect());
-    }
 }

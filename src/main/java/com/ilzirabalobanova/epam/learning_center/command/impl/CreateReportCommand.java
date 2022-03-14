@@ -17,4 +17,9 @@ public class CreateReportCommand implements Command {
     public void execute() {
         studentService.createReport(Constants.PATH_REPORT, studentService.getAllStudents());
     }
+
+    @Override
+    public String toString() {
+        return "createReportCommand";
+    }
 }

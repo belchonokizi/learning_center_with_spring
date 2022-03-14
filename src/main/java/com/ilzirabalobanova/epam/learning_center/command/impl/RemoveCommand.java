@@ -19,4 +19,9 @@ public class RemoveCommand implements Command {
         int id = helper.askStudentId();
         studentService.deleteStudent(id);
     }
+
+    @Override
+    public String toString() {
+        return "removeCommand";
+    }
 }

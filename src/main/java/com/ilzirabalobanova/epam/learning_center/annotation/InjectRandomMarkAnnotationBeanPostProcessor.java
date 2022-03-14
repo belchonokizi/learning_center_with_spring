@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Component
 public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field : fields) {
             InjectRandomMark annotation = field.getAnnotation(InjectRandomMark.class);
@@ -28,15 +28,10 @@ public class InjectRandomMarkAnnotationBeanPostProcessor implements BeanPostProc
                     int newMark = ThreadLocalRandom.current().nextInt(minMark, maxMark + 1);
                     newList.add(newMark);
                 }
-                field.setAccessible(true);
+                ReflectionUtils.makeAccessible(field);
                 ReflectionUtils.setField(field, bean, newList);
             }
         }
-        return bean;
-    }
-
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         return bean;
     }
 }

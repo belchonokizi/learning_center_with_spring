@@ -61,5 +61,10 @@ public class AddCommand implements Command {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         }
     }
+
+    @Override
+    public String toString() {
+        return "addCommand";
+    }
 }
 

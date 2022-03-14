@@ -1,6 +1,5 @@
 package com.ilzirabalobanova.epam.learning_center.util.parser;
 
-import com.ilzirabalobanova.epam.learning_center.aop.LoggingProperties;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,17 +30,6 @@ public class YamlParser {
             logger.error("Ошибка чтения файла properties.yaml");
         }
         return programList;
-    }
-
-    public LoggingProperties getContent(String path) {
-        LoggingProperties properties = null;
-        try (InputStream inputStream = new FileInputStream(path)) {
-            Yaml yaml = new Yaml(new Constructor(LoggingProperties.class));
-            properties = yaml.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
     }
 }
 

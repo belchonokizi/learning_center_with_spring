@@ -48,4 +48,9 @@ public class CountDaysCommand implements Command {
             System.out.printf("%d - количество дней до окончания программы", countDays);
         }
     }
+
+    @Override
+    public String toString() {
+        return "countDaysCommand";
+    }
 }

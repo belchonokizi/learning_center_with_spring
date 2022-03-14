@@ -37,4 +37,9 @@ public class ShowAllStudentCommand implements Command {
                 logger.error("Вы выбрали неверную комманду");
         }
     }
+
+    @Override
+    public String toString() {
+        return "showAllStudentCommand";
+    }
 }

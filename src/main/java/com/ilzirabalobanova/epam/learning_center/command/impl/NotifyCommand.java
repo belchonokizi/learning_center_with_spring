@@ -27,14 +27,20 @@ public class NotifyCommand implements Command {
         ConsoleHelper helper = new ConsoleHelper();
         int id = helper.askStudentId();
         Student student = studentService.findStudentById(id);
-        double avgGrade = programService.getAvgGrade(student);
-
-        if (avgGrade < Constants.PASSING_SCORE) {
-            System.out.printf("Студент %s %s со средним баллом = %.2f должен/на быть отчислен",
-                    student.getFirstName(), student.getLastName(), avgGrade);
-        } else {
-            System.out.printf("Студент %s %s со средним баллом = %.2f должен/на получить приглашение на работу",
-                    student.getFirstName(), student.getLastName(), avgGrade);
+        if (student != null) {
+            double avgGrade = programService.getAvgGrade(student);
+            if (avgGrade < Constants.PASSING_SCORE) {
+                System.out.printf("Студент %s %s со средним баллом = %.2f должен/на быть отчислен",
+                        student.getFirstName(), student.getLastName(), avgGrade);
+            } else {
+                System.out.printf("Студент %s %s со средним баллом = %.2f должен/на получить предложение о работе",
+                        student.getFirstName(), student.getLastName(), avgGrade);
+            }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "notifyCommand";
     }
 }

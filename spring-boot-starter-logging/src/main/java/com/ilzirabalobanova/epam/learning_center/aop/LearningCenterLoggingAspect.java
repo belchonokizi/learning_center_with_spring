@@ -16,8 +16,7 @@ public class LearningCenterLoggingAspect implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Object retObject = invocation.proceed();
         List<Object> arguments = Arrays.asList(invocation.getArguments());
-        log.info("Возвращаемый объект - {}", retObject);
-        log.info("Аргументы метода - {}", arguments);
+        log.info("Возвращаемый объект - {}. Аргументы метода - {}. Стартер", retObject, arguments);
         return retObject;
     }
 }

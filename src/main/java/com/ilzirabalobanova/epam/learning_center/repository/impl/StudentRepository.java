@@ -39,7 +39,8 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public Student deleteStudent(int id) {
         Student student = findStudentById(id);
-        if (student != null && studentDatabase.remove(student)) {
+        if (student != null) {
+            studentDatabase.remove(student);
             logger.info("Студент {} {} удален", student.getFirstName(), student.getLastName());
         }
         return student;

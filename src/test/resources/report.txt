@@ -3,8 +3,8 @@
   "lastName" : "Grushina",
   "programId" : 3,
   "marksMap" : {
-    "second" : 80,
     "first" : 70,
+    "second" : 80,
     "third" : 90
   },
   "id" : 3
@@ -13,8 +13,8 @@
   "lastName" : "Shmel",
   "programId" : 1,
   "marksMap" : {
-    "second" : 100,
     "first" : 100,
+    "second" : 100,
     "third" : 100
   },
   "id" : 2
