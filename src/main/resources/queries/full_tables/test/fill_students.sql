@@ -8,7 +8,7 @@ INSERT INTO students (first_name, last_name, program_id)
 VALUES ("Elena", "Sovina", 3);
 
 INSERT INTO students (first_name, last_name, program_id)
-VALUES ("Igor", "Balin", 4);
+VALUES ("Igor", "Balin", 1);
 
 INSERT INTO students (first_name, last_name, program_id)
-VALUES ("Aleksandr", "Tutin", 5);
+VALUES ("Aleksandr", "Tutin", 2);
