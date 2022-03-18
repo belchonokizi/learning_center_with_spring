@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository
+//@Repository
 public class StudentRepository implements IStudentRepository {
     private static final Logger logger = LoggerFactory.getLogger(StudentRepository.class);
     private final StudentFileParser parser;
@@ -24,10 +24,10 @@ public class StudentRepository implements IStudentRepository {
         this.parser = parser;
     }
 
-    @PostConstruct
-    public void init() {
-        studentDatabase = parser.getStudents(Constants.PATH_STUDENT_FILE);
-    }
+//    @PostConstruct
+//    public void init() {
+//        studentDatabase = parser.getStudents(Constants.PATH_STUDENT_FILE);
+//    }
 
     public List<Student> getAllStudents() {
         return studentDatabase;

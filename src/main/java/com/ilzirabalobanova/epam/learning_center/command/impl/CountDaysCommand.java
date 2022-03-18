@@ -31,13 +31,11 @@ public class CountDaysCommand implements Command {
         ConsoleHelper helper = new ConsoleHelper();
         int studentId = helper.askStudentId();
         Student student = studentService.findStudentById(studentId);
-        Program program = programService.findProgramById(student.getProgramId());
+        Program program = programService.findProgramById(student.getProgram().getId());
         long wholeDuration = program.getModules().stream().map(Module::getDurationInHours).mapToLong(m -> m).sum();
         long currentDuration = 0;
 
-        for (Map.Entry<String, Integer> pair : student.getMarksMap().entrySet()) {
-            Module module = program.getModules().stream().filter(m -> m.getName().equals(pair.getKey())).findFirst()
-                    .orElseThrow(() -> new NullPointerException("Модуль не найден"));
+        for (Module module : student.getProgram().getModules()) {
             currentDuration += module.getDurationInHours();
         }
 

@@ -1,13 +1,17 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.Objects;
 
-
+@Data
 public class Program {
     private int id;
     private String name;
     private List<Module> modules;
+
 
     public Program() {
     }
@@ -40,6 +44,10 @@ public class Program {
 
     public void setModules(List<Module> modules) {
         this.modules = modules;
+    }
+
+    public void addModule(Module module) {
+        modules.add(module);
     }
 
     @Override

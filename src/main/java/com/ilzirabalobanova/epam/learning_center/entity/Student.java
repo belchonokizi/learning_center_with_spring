@@ -2,44 +2,36 @@ package com.ilzirabalobanova.epam.learning_center.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ilzirabalobanova.epam.learning_center.annotation.InjectRandomMark;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+@Data
+@AllArgsConstructor
 public class Student {
-    private static Integer currentId = 68;
-
-    private static Integer generateId() {
-        currentId += 1;
-        return currentId;
-    }
-
     private int id;
     private String firstName;
     private String lastName;
-    private int programId;
+    private String phone_number;
+    private String email;
+    private LocalDate startDay;
+    private boolean isFinishedProgram;
+    private Program program;
+    private List<Mark> marksList;
 
-    @InjectRandomMark
-    private Map<String, Integer> marksMap;
+    public Student() {
+    }
 
     @JsonCreator
     public Student(@JsonProperty("firstName") String firstName,
                    @JsonProperty("lastName") String lastName, @JsonProperty("programId") int programId,
                    @JsonProperty("marksMap") Map<String, Integer> marksMap) {
-        this.id = generateId();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.programId = programId;
-        this.marksMap = marksMap;
-    }
-
-    public Student(int id, String firstName, String lastName, int programId, Map<String, Integer> marksMap) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.programId = programId;
-        this.marksMap = marksMap;
     }
 
     public int getId() {
@@ -66,20 +58,56 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public int getProgramId() {
-        return programId;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setProgramId(int programId) {
-        this.programId = programId;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public Map<String, Integer> getMarksMap() {
-        return marksMap;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMarksMap(Map<String, Integer> marksMap) {
-        this.marksMap = marksMap;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getStartDay() {
+        return startDay;
+    }
+
+    public void setStartDay(LocalDate startDay) {
+        this.startDay = startDay;
+    }
+
+    public boolean isFinishedProgram() {
+        return isFinishedProgram;
+    }
+
+    public void setFinishedProgram(boolean finishedProgram) {
+        isFinishedProgram = finishedProgram;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    public List<Mark> getMarksList() {
+        return marksList;
+    }
+
+    public void setMarksList(List<Mark> marksList) {
+        this.marksList = marksList;
+    }
+
+    public void addMark(Mark mark) {
+        marksList.add(mark);
     }
 
     @Override
@@ -88,8 +116,12 @@ public class Student {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", programId=" + programId +
-                ", marksMap=" + marksMap +
+                ", phone_number='" + phone_number + '\'' +
+                ", email='" + email + '\'' +
+                ", startDay=" + startDay +
+                ", isFinishedProgram=" + isFinishedProgram +
+                ", program=" + program +
+                ", marksList=" + marksList +
                 '}';
     }
 
@@ -99,15 +131,19 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return id == student.id &&
-                programId == student.programId &&
+                isFinishedProgram == student.isFinishedProgram &&
                 Objects.equals(firstName, student.firstName) &&
                 Objects.equals(lastName, student.lastName) &&
-                Objects.equals(marksMap, student.marksMap);
+                Objects.equals(phone_number, student.phone_number) &&
+                Objects.equals(email, student.email) &&
+                Objects.equals(startDay, student.startDay) &&
+                Objects.equals(program, student.program) &&
+                Objects.equals(marksList, student.marksList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, programId, marksMap);
+        return Objects.hash(id, firstName, lastName, phone_number, email, startDay, isFinishedProgram, program, marksList);
     }
 }
 

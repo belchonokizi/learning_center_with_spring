@@ -18,10 +18,10 @@ public class ProgramRepository implements IProgramRepository {
         this.parser = parser;
     }
 
-    @PostConstruct
-    public void init() {
-        programDatabase = parser.getPrograms(Constants.PATH_YAML_FILE);
-    }
+//    @PostConstruct
+//    public void init() {
+//        programDatabase = parser.getPrograms(Constants.PATH_YAML_FILE);
+//    }
 
     @Override
     public List<Program> getAllPrograms() {

@@ -7,6 +7,7 @@ public class Constants {
     public static final int PASSING_SCORE = 75;
     public static final double HOURS_IN_DAY = 24.0;
     public static final String REGEX_NON_DIGITS_AND_PUNCT = "(\\d?+\\p{Punct}?)+";
+    public static final String GET_ALL_STUDENTS_QUERY_PATH = "src/main/resources/queries/crud/student/find_all_info_about_students.sql";
 
     private Constants() {
     }

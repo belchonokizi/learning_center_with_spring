@@ -40,10 +40,10 @@ public class PutMarkCommand implements Command {
             System.out.println("Введите оценку");
             int mark = helper.readInt();
 
-            Program program = programService.findProgramById(student.getProgramId());
-            Module module = program.getModules().stream().filter(m -> m.getId() == moduleId)
-                    .findFirst().orElseThrow(() -> new NullPointerException("Модуль не найден"));
-            student.getMarksMap().put(module.getName(), mark);
+//            Program program = programService.findProgramById(student.getProgramId());
+//            Module module = program.getModules().stream().filter(m -> m.getId() == moduleId)
+//                    .findFirst().orElseThrow(() -> new NullPointerException("Модуль не найден"));
+//            student.getMarksMap().put(module.getName(), mark);
 
             studentService.updateStudent(studentId, student);
             logger.info("Оценка студенту {} {} поставлена", student.getFirstName(), student.getLastName());

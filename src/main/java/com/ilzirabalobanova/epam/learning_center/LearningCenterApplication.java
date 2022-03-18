@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.command.CommandExecutor;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.operation.Operation;
+import com.ilzirabalobanova.epam.learning_center.repository.impl.JDBCStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,8 @@ public class LearningCenterApplication {
         ApplicationContext context = SpringApplication.run(LearningCenterApplication.class, args);
         StudentBean studentBean = context.getBean("studentBean", StudentBean.class);
         System.out.println("Оценки студента: " + studentBean.getMarksList());
+        JDBCStudentRepository jdbcStudentRepository = context.getBean("jdbcStudentRepository", JDBCStudentRepository.class);
+        jdbcStudentRepository.getAllStudents().forEach(System.out::println);
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         Operation operation;
