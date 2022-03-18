@@ -5,6 +5,8 @@ import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.StudentDataExtractor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +22,8 @@ import java.util.Objects;
 @Repository("jdbcStudentRepository")
 @ConditionalOnClass(DataSource.class)
 public class JDBCStudentRepository implements IStudentRepository {
+    private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
+
     private final JdbcTemplate jdbcTemplate;
     private final StudentDataExtractor extractor;
     private final SqlQueriesReader reader;
@@ -69,7 +73,15 @@ public class JDBCStudentRepository implements IStudentRepository {
 
     @Override
     public Student findStudentById(int id) {
-        return null;
+        String query = reader.readSqlQueries(Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
+        List<Student> students = jdbcTemplate.query(query, extractor, id);
+        Student student = null;
+        if (students.isEmpty()) {
+            logger.error("Студент не найден");
+        } else {
+            student = students.get(0);
+        }
+        return student;
     }
 
     @Override
