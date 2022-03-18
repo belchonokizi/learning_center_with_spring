@@ -1,22 +1,14 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-@Data
-@AllArgsConstructor
 public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private String phone_number;
+    private String phoneNumber;
     private String email;
     private LocalDate startDay;
     private boolean isFinishedProgram;
@@ -26,12 +18,15 @@ public class Student {
     public Student() {
     }
 
-    @JsonCreator
-    public Student(@JsonProperty("firstName") String firstName,
-                   @JsonProperty("lastName") String lastName, @JsonProperty("programId") int programId,
-                   @JsonProperty("marksMap") Map<String, Integer> marksMap) {
+    public Student(String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, Program program, List<Mark> marksList) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.startDay = startDay;
+        this.isFinishedProgram = isFinishedProgram;
+        this.program = program;
+        this.marksList = marksList;
     }
 
     public int getId() {
@@ -58,12 +53,12 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -116,7 +111,7 @@ public class Student {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", startDay=" + startDay +
                 ", isFinishedProgram=" + isFinishedProgram +
@@ -134,7 +129,7 @@ public class Student {
                 isFinishedProgram == student.isFinishedProgram &&
                 Objects.equals(firstName, student.firstName) &&
                 Objects.equals(lastName, student.lastName) &&
-                Objects.equals(phone_number, student.phone_number) &&
+                Objects.equals(phoneNumber, student.phoneNumber) &&
                 Objects.equals(email, student.email) &&
                 Objects.equals(startDay, student.startDay) &&
                 Objects.equals(program, student.program) &&
@@ -143,7 +138,7 @@ public class Student {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, phone_number, email, startDay, isFinishedProgram, program, marksList);
+        return Objects.hash(id, firstName, lastName, phoneNumber, email, startDay, isFinishedProgram, program, marksList);
     }
 }
 

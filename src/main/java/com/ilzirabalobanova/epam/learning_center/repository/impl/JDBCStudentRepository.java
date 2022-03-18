@@ -8,10 +8,14 @@ import com.ilzirabalobanova.epam.learning_center.util.extractors.StudentDataExtr
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.Objects;
 
 @Repository("jdbcStudentRepository")
 @ConditionalOnClass(DataSource.class)
@@ -19,12 +23,14 @@ public class JDBCStudentRepository implements IStudentRepository {
     private final JdbcTemplate jdbcTemplate;
     private final StudentDataExtractor extractor;
     private final SqlQueriesReader reader;
+    private final GeneratedKeyHolder keyHolder;
 
     @Autowired
-    public JDBCStudentRepository(JdbcTemplate jdbcTemplate, StudentDataExtractor extractor, SqlQueriesReader reader) {
+    public JDBCStudentRepository(JdbcTemplate jdbcTemplate, StudentDataExtractor extractor, SqlQueriesReader reader, GeneratedKeyHolder keyHolder) {
         this.jdbcTemplate = jdbcTemplate;
         this.extractor = extractor;
         this.reader = reader;
+        this.keyHolder = keyHolder;
     }
 
     @Override
@@ -35,7 +41,20 @@ public class JDBCStudentRepository implements IStudentRepository {
 
     @Override
     public boolean addStudent(Student student) {
-        return false;
+        String query = reader.readSqlQueries(Constants.ADD_STUDENT_QUERY_PATH);
+        int rowCount = jdbcTemplate.update(connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setString(3, student.getPhoneNumber());
+            preparedStatement.setString(4, student.getEmail());
+            preparedStatement.setDate(5, Date.valueOf(student.getStartDay()));
+            preparedStatement.setInt(6, student.getProgram().getId());
+            preparedStatement.setInt(7, 0);
+            return preparedStatement;
+        }, keyHolder);
+        student.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
+        return rowCount == 1;
     }
 
     @Override

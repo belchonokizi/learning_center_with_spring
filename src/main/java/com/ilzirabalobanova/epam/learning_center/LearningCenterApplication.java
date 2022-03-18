@@ -23,8 +23,6 @@ public class LearningCenterApplication {
         ApplicationContext context = SpringApplication.run(LearningCenterApplication.class, args);
         StudentBean studentBean = context.getBean("studentBean", StudentBean.class);
         System.out.println("Оценки студента: " + studentBean.getMarksList());
-        JDBCStudentRepository jdbcStudentRepository = context.getBean("jdbcStudentRepository", JDBCStudentRepository.class);
-        jdbcStudentRepository.getAllStudents().forEach(System.out::println);
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         Operation operation;

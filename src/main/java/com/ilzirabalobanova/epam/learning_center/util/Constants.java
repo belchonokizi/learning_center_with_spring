@@ -8,6 +8,7 @@ public class Constants {
     public static final double HOURS_IN_DAY = 24.0;
     public static final String REGEX_NON_DIGITS_AND_PUNCT = "(\\d?+\\p{Punct}?)+";
     public static final String GET_ALL_STUDENTS_QUERY_PATH = "src/main/resources/queries/crud/student/find_all_info_about_students.sql";
+    public static final String ADD_STUDENT_QUERY_PATH = "src/main/resources/queries/crud/student/add_student.sql";
 
     private Constants() {
     }

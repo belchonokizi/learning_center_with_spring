@@ -1,8 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +12,10 @@ public class Program {
 
 
     public Program() {
+    }
+
+    public Program(int id) {
+        this.id = id;
     }
 
     public Program(int id, String name, List<Module> modules) {

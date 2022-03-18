@@ -11,7 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.List;
 
 public class AddCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(AddCommand.class);
@@ -45,18 +46,30 @@ public class AddCommand implements Command {
             lastName = helper.readString();
         } while (validator.isNameNonValid(lastName));
 
+        String phoneNumber;
+        do {
+            System.out.println("Введите номер телефона:");
+            phoneNumber = helper.readString();
+        } while (phoneNumber.equals(""));
+
+        String email;
+        do {
+            System.out.println("Введите email:");
+            email = helper.readString();
+        } while (email.equals(""));
+
         int programId;
         do {
             System.out.println("Введите номер программы:");
-            int count = 1;
-            for (Program program : programService.getAllPrograms()) {
-                System.out.printf("%d - %s%n", count, program.getName());
-                count++;
-            }
+//            int count = 1;
+//            for (Program program : programService.getAllPrograms()) {
+//                System.out.printf("%d - %s%n", count, program.getName());
+//                count++;
+//            }
             programId = helper.readInt();
         } while (!validator.isIntValid(programId));
 
-        Student student = new Student(name, lastName, programId, Map.of());
+        Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, new Program(1), List.of());
         if (studentService.addStudent(student)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         }

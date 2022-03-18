@@ -1,12 +1,13 @@
 package com.ilzirabalobanova.epam.learning_center.config;
 
-import com.ilzirabalobanova.epam.learning_center.aop.CustomPointcut;
-import com.ilzirabalobanova.epam.learning_center.aop.LearningCenterLoggingAspect;
 import com.ilzirabalobanova.epam.learning_center.command.impl.*;
 import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
 import com.ilzirabalobanova.epam.learning_center.util.parser.YamlParser;
-import org.springframework.aop.support.DefaultPointcutAdvisor;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 @Configuration
 @ComponentScan("com.ilzirabalobanova.epam.learning_center")
@@ -66,5 +67,10 @@ public class LearningCenterConfig {
     @Bean
     public RemoveCommand removeCommand() {
         return new RemoveCommand();
+    }
+
+    @Bean
+    public GeneratedKeyHolder createBeanKeyHolder(){
+        return new GeneratedKeyHolder();
     }
 }
