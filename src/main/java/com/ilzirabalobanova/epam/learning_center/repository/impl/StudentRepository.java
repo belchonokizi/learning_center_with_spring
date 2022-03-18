@@ -3,15 +3,10 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
-import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 import java.util.List;
 
 //@Repository
@@ -39,13 +34,13 @@ public class StudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Student deleteStudent(int id) {
+    public boolean deleteStudent(int id) {
         Student student = findStudentById(id);
         if (student != null) {
             studentDatabase.remove(student);
             logger.info("Студент {} {} удален", student.getFirstName(), student.getLastName());
         }
-        return student;
+        return student != null;
     }
 
     @Override

@@ -58,8 +58,13 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Student deleteStudent(int id) {
-        return null;
+    public boolean deleteStudent(int id) {
+        String query = reader.readSqlQueries(Constants.DELETE_STUDENT_BY_ID_SQL_QUERY_PATH);
+        return jdbcTemplate.update(con -> {
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            return preparedStatement;
+        }) == 1;
     }
 
     @Override

@@ -1,3 +1,1 @@
-DELETE
-FROM students
-WHERE id = ?
+DELETE FROM students WHERE id = ?

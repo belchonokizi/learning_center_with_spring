@@ -12,7 +12,7 @@ public interface IStudentService {
 
     boolean addStudent(Student student);
 
-    Student deleteStudent(int id);
+    boolean deleteStudent(int id);
 
     void showAllStudents(List<Student> studentList);
 
