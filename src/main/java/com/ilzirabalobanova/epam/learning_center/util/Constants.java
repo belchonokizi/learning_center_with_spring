@@ -11,6 +11,8 @@ public class Constants {
     public static final String ADD_STUDENT_QUERY_PATH = "src/main/resources/queries/crud/student/add_student.sql";
     public static final String DELETE_STUDENT_BY_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/student/delete_student.sql";
     public static final String GET_STUDENT_BY_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/student/find_student_by_id.sql";
+    public static final String UPDATE_STUDENT_SQL_QUERY_PATH = "src/main/resources/queries/crud/student/update_student.sql";
+
 
     private Constants() {
     }

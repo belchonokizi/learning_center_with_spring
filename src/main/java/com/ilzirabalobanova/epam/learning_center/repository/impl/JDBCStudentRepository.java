@@ -86,6 +86,8 @@ public class JDBCStudentRepository implements IStudentRepository {
 
     @Override
     public Student updateStudent(int studentId, Student student) {
-        return null;
+        String query = reader.readSqlQueries(Constants.UPDATE_STUDENT_SQL_QUERY_PATH);
+        int rowCount = jdbcTemplate.update(query, student.getFirstName(), studentId);
+        return rowCount == 1 ? student : null;
     }
 }

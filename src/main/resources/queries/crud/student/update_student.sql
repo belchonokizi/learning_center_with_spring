@@ -1,0 +1,1 @@
+UPDATE students SET first_name = ? WHERE id = ?
