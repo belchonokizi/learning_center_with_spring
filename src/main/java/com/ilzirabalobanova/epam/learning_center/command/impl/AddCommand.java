@@ -61,11 +61,11 @@ public class AddCommand implements Command {
         int programId;
         do {
             System.out.println("Введите номер программы:");
-//            int count = 1;
-//            for (Program program : programService.getAllPrograms()) {
-//                System.out.printf("%d - %s%n", count, program.getName());
-//                count++;
-//            }
+            int count = 1;
+            for (Program program : programService.getAllPrograms()) {
+                System.out.printf("%d - %s%n", count, program.getName());
+                count++;
+            }
             programId = helper.readInt();
         } while (!validator.isIntValid(programId));
 

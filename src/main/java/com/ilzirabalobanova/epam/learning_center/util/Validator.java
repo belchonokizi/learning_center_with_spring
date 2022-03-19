@@ -26,10 +26,10 @@ public class Validator {
     }
 
     public boolean isIntValid(int id) {
-//        boolean isPresent = programService.getAllPrograms().stream().anyMatch(p -> p.getId() == id);
-//        if (!isPresent) {
-//            logger.error("Некорректный номер программы");
-//        }
-        return true;
+        boolean isPresent = programService.getAllPrograms().stream().anyMatch(p -> p.getId() == id);
+        if (!isPresent) {
+            logger.error("Некорректный номер программы");
+        }
+        return isPresent;
     }
 }
