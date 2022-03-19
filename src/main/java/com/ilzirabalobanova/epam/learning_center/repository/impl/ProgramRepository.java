@@ -25,5 +25,20 @@ public class ProgramRepository implements IProgramRepository {
         return programDatabase;
     }
 
+    @Override
+    public boolean addProgram(Program program) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteProgram(int id) {
+        return false;
+    }
+
+    @Override
+    public Program findProgramById(int id) {
+        return null;
+    }
+
 }
 

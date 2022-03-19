@@ -10,12 +10,15 @@ public class Program {
     private String name;
     private List<Module> modules;
 
-
     public Program() {
     }
 
     public Program(int id) {
         this.id = id;
+    }
+
+    public Program(String name) {
+        this.name = name;
     }
 
     public Program(int id, String name, List<Module> modules) {
