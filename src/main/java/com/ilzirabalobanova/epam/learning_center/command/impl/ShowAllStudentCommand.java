@@ -4,6 +4,7 @@ import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.Comparators;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
+import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class ShowAllStudentCommand implements Command {
         int choice = helper.readInt();
         switch (choice) {
             case 1:
-                studentService.sortAndShowStudents(comparators.getSortById(), studentService.getAllStudents());
+                studentService.sortAndShowStudents(comparators.getSortById(), studentService.getAllStudents(Constants.GET_ALL_STUDENTS_QUERY_PATH));
                 break;
             case 2:
-                studentService.sortAndShowStudents(comparators.getSortByLastName(), studentService.getAllStudents());
+                studentService.sortAndShowStudents(comparators.getSortByLastName(), studentService.getAllStudents(Constants.GET_ALL_STUDENTS_QUERY_PATH));
                 break;
             default:
                 logger.error("Вы выбрали неверную комманду");

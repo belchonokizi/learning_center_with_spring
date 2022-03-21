@@ -28,8 +28,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentRepository.getAllStudents();
+    public List<Student> getAllStudents(String path) {
+        return studentRepository.getAllStudents(path);
     }
 
     @Override

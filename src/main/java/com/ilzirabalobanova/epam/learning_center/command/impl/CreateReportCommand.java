@@ -15,7 +15,7 @@ public class CreateReportCommand implements Command {
 
     @Override
     public void execute() {
-        studentService.createReport(Constants.PATH_REPORT, studentService.getAllStudents());
+        studentService.createReport(Constants.PATH_REPORT, studentService.getAllStudents(Constants.GET_ALL_STUDENTS_QUERY_PATH));
     }
 
     @Override

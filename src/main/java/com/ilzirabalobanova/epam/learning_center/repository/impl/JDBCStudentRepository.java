@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository("jdbcStudentRepository")
+@Repository()
 @ConditionalOnClass(DataSource.class)
 public class JDBCStudentRepository implements IStudentRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
@@ -38,8 +38,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        String query = reader.readSqlQueries(Constants.GET_ALL_STUDENTS_QUERY_PATH);
+    public List<Student> getAllStudents(String path) {
+        String query = reader.readSqlQueries(path);
         return jdbcTemplate.query(query, extractor);
     }
 

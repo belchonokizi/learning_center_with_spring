@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IStudentRepository {
 
-    List<Student> getAllStudents();
+    List<Student> getAllStudents(String path);
 
     boolean addStudent(Student student);
 

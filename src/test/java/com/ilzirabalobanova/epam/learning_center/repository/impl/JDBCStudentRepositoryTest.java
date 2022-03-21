@@ -1,45 +1,33 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
-import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
-import com.ilzirabalobanova.epam.learning_center.util.extractors.StudentDataExtractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@JdbcTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @Sql({"/students-schema.sql", "/students-test-data.sql"})
 class JDBCStudentRepositoryTest {
-    private JDBCStudentRepository studentRepository;
-
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Mock
-    private StudentDataExtractor extractor;
-
-    @Mock
-    private SqlQueriesReader reader;
-
-    @Mock
-    private GeneratedKeyHolder keyHolder;
+    private JDBCStudentRepository studentRepository;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        this.studentRepository = new JDBCStudentRepository(jdbcTemplate, extractor, reader, keyHolder);
     }
 
-    @Test
-    void getAllStudents() {
-        assertEquals(5, studentRepository.getAllStudents().size());
+    @ParameterizedTest
+    @ValueSource(strings = {"src/test/resources/get-students.sql"})
+    void getAllStudents(String path) {
+        assertEquals(5, studentRepository.getAllStudents(path).size());
     }
 
     @Test

@@ -40,38 +40,38 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
                 student.setMarksList(new ArrayList<>());
             }
             int programId = rs.getInt("program_id");
-            Program program = programMap.get(programId);
-            if (program == null) {
-                program = new Program();
-                program.setId(rs.getInt("program_id"));
-                program.setName(rs.getString("program_name"));
-                program.setModules(new ArrayList<>());
-                programMap.put(programId, program);
-            }
-
-            int moduleId = rs.getInt("module_id");
-            Module module = moduleMap.get(moduleId);
-            if (module == null) {
-                module = new Module();
-                module.setId(moduleId);
-                module.setProgramId(programId);
-                module.setName(rs.getString("module_name"));
-                module.setDurationInHours(rs.getLong("module_duration"));
-                moduleMap.put(moduleId, module);
-                program.addModule(module);
-            }
-
-            int markId = rs.getInt("mark_id");
-            Mark mark = markMap.get(markId);
-            if (mark == null) {
-                mark = new Mark();
-                mark.setId(markId);
-                mark.setModule(module);
-                mark.setValue(rs.getInt("mark_value"));
-                markMap.put(markId, mark);
-                student.addMark(mark);
-            }
-            student.setProgram(program);
+//            Program program = programMap.get(programId);
+//            if (program == null) {
+//                program = new Program();
+//                program.setId(rs.getInt("program_id"));
+//                program.setName(rs.getString("program_name"));
+//                program.setModules(new ArrayList<>());
+//                programMap.put(programId, program);
+//            }
+//
+//            int moduleId = rs.getInt("module_id");
+//            Module module = moduleMap.get(moduleId);
+//            if (module == null) {
+//                module = new Module();
+//                module.setId(moduleId);
+//                module.setProgramId(programId);
+//                module.setName(rs.getString("module_name"));
+//                module.setDurationInHours(rs.getLong("module_duration"));
+//                moduleMap.put(moduleId, module);
+//                program.addModule(module);
+//            }
+//
+//            int markId = rs.getInt("mark_id");
+//            Mark mark = markMap.get(markId);
+//            if (mark == null) {
+//                mark = new Mark();
+//                mark.setId(markId);
+//                mark.setModule(module);
+//                mark.setValue(rs.getInt("mark_value"));
+//                markMap.put(markId, mark);
+//                student.addMark(mark);
+//            }
+            student.setProgram(new Program(programId));
             studentsMap.put(studentId, student);
         }
         return new ArrayList<>(studentsMap.values());
