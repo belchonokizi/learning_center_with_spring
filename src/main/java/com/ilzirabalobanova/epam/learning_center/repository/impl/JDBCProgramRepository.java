@@ -49,7 +49,12 @@ public class JDBCProgramRepository implements IProgramRepository {
 
     @Override
     public boolean deleteProgram(int id) {
-        return false;
+        String query = reader.readSqlQueries(Constants.DELETE_PROGRAM_SQL_QUERY_PATH);
+        return jdbcTemplate.update(con -> {
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            return preparedStatement;
+        }) == 1;
     }
 
     @Override

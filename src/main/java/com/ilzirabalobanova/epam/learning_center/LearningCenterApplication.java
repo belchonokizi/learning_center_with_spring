@@ -3,7 +3,6 @@ package com.ilzirabalobanova.epam.learning_center;
 import com.ilzirabalobanova.epam.learning_center.bean.StudentBean;
 import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.command.CommandExecutor;
-import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.operation.Operation;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.JDBCProgramRepository;
@@ -25,7 +24,7 @@ public class LearningCenterApplication {
         StudentBean studentBean = context.getBean("studentBean", StudentBean.class);
         System.out.println("Оценки студента: " + studentBean.getMarksList());
         JDBCProgramRepository jdbcProgramRepository = context.getBean(JDBCProgramRepository.class);
-        jdbcProgramRepository.addProgram(new Program("DevOps"));
+        jdbcProgramRepository.deleteProgram(6);
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         Operation operation;
