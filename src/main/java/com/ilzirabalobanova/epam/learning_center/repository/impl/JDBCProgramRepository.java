@@ -1,10 +1,13 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
+import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.ProgramDataExtractor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,6 +19,8 @@ import java.util.Objects;
 
 @Repository
 public class JDBCProgramRepository implements IProgramRepository {
+    private final Logger logger = LoggerFactory.getLogger(JDBCProgramRepository.class);
+
     private final JdbcTemplate jdbcTemplate;
     private final ProgramDataExtractor extractor;
     private final SqlQueriesReader reader;
@@ -59,6 +64,14 @@ public class JDBCProgramRepository implements IProgramRepository {
 
     @Override
     public Program findProgramById(int id) {
-        return null;
+        String query = reader.readSqlQueries(Constants.FIND_PROGRAM_BY_ID_SQL_QUERY_PATH);
+        List<Program> programs = jdbcTemplate.query(query, extractor, id);
+        Program program = null;
+        if (programs.isEmpty()) {
+            logger.error("Студент не найден");
+        } else {
+            program = programs.get(0);
+        }
+        return program;
     }
 }

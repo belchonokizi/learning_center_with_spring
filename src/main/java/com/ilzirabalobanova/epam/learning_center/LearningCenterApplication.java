@@ -24,7 +24,7 @@ public class LearningCenterApplication {
         StudentBean studentBean = context.getBean("studentBean", StudentBean.class);
         System.out.println("Оценки студента: " + studentBean.getMarksList());
         JDBCProgramRepository jdbcProgramRepository = context.getBean(JDBCProgramRepository.class);
-        jdbcProgramRepository.deleteProgram(6);
+        System.out.println(jdbcProgramRepository.findProgramById(1));
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         Operation operation;
