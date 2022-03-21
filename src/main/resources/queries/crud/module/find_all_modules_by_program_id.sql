@@ -1,0 +1,1 @@
+SELECT id as module_id, name as module_name, duration as module_duration FROM modules WHERE program_id = ?

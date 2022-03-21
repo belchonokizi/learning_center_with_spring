@@ -1,19 +1,19 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Module {
     private int id;
+    private int programId;
     private String name;
     private long durationInHours;
 
     public Module() {
     }
 
-    public Module(int id, int programId, String name, long durationInHours) {
-        this.id = id;
+    public Module(int programId, String name, long durationInHours) {
+        this.programId = programId;
         this.name = name;
         this.durationInHours = durationInHours;
     }
@@ -24,6 +24,14 @@ public class Module {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(int programId) {
+        this.programId = programId;
     }
 
     public String getName() {
@@ -46,6 +54,7 @@ public class Module {
     public String toString() {
         return "Module{" +
                 "id=" + id +
+                ", programId=" + programId +
                 ", name='" + name + '\'' +
                 ", durationInHours=" + durationInHours +
                 '}';

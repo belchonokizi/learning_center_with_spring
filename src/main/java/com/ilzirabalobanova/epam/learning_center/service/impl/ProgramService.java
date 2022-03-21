@@ -8,9 +8,7 @@ import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProgramService implements IProgramService {
@@ -41,6 +39,16 @@ public class ProgramService implements IProgramService {
             sum += mark.getValue();
         }
         return sum / marksList.size();
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return programRepository.addProgram(program);
+    }
+
+    @Override
+    public boolean deleteProgram(int id) {
+        return programRepository.deleteProgram(id);
     }
 }
 

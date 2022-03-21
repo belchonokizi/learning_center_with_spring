@@ -16,6 +16,9 @@ public class Constants {
     public static final String ADD_PROGRAM_SQL_QUERY_PATH = "src/main/resources/queries/crud/program/add_program.sql";
     public static final String DELETE_PROGRAM_SQL_QUERY_PATH = "src/main/resources/queries/crud/program/delete_program.sql";
     public static final String FIND_PROGRAM_BY_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/program/find_program_by_id.sql";
+    public static final String FIND_ALL_MODULES_BY_PROGRAM_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/find_all_modules_by_program_id.sql";
+    public static final String ADD_MODULE_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/add_module.sql";
+    public static final String DELETE_MODULE_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/delete_module.sql";
 
 
     private Constants() {

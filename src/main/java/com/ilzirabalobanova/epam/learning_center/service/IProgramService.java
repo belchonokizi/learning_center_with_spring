@@ -10,4 +10,8 @@ public interface IProgramService {
     List<Program> getAllPrograms();
 
     double getAvgGrade(Student student);
+
+    boolean addProgram(Program program);
+
+    boolean deleteProgram(int id);
 }
