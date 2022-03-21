@@ -18,6 +18,18 @@ public class Student {
     public Student() {
     }
 
+    public Student(int id, String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, Program program, List<Mark> marksList) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.startDay = startDay;
+        this.isFinishedProgram = isFinishedProgram;
+        this.program = program;
+        this.marksList = marksList;
+    }
+
     public Student(String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, Program program, List<Mark> marksList) {
         this.firstName = firstName;
         this.lastName = lastName;
