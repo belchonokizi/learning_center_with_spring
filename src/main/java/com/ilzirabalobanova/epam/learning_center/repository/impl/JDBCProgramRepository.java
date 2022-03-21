@@ -67,7 +67,7 @@ public class JDBCProgramRepository implements IProgramRepository {
         List<Program> programs = jdbcTemplate.query(query, extractor, id);
         Program program = null;
         if (programs.isEmpty()) {
-            logger.error("Студент не найден");
+            logger.error("Программа не найден");
         } else {
             program = programs.get(0);
         }

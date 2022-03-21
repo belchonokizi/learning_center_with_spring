@@ -1,8 +1,5 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
-import lombok.Data;
-
-@Data
 public class Module {
     private int id;
     private int programId;

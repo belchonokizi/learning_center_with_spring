@@ -1,6 +1,7 @@
-package com.ilzirabalobanova.epam.learning_center.repository;
+package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
+import com.ilzirabalobanova.epam.learning_center.repository.IModuleRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.ModuleDataExtractor;

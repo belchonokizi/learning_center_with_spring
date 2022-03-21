@@ -23,6 +23,7 @@ public class ModuleDataExtractor implements ResultSetExtractor<List<Module>> {
             if (module == null) {
                 module = new Module();
                 module.setId(moduleId);
+                module.setProgramId(rs.getInt("program_id"));
                 module.setName(rs.getString("module_name"));
                 module.setDurationInHours(rs.getLong("module_duration"));
                 moduleMap.put(moduleId, module);

@@ -1,10 +1,8 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
-import lombok.Data;
 import java.util.List;
 import java.util.Objects;
 
-@Data
 public class Program {
     private int id;
     private String name;

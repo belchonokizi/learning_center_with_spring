@@ -19,8 +19,12 @@ public class Constants {
     public static final String FIND_ALL_MODULES_BY_PROGRAM_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/find_all_modules_by_program_id.sql";
     public static final String ADD_MODULE_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/add_module.sql";
     public static final String DELETE_MODULE_SQL_QUERY_PATH = "src/main/resources/queries/crud/module/delete_module.sql";
-
-
+    public static final String UPDATE_MARK_SQL_QUERY_PATH = "src/main/resources/queries/crud/mark/update_mark.sql";
+    public static final String GET_ALL_TEACHERS_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/get_all_teachers.sql";
+    public static final String ADD_TEACHER_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/add_teacher.sql";
+    public static final String DELETE_TEACHER_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/delete_teacher.sql";
+    public static final String FIND_TEACHER_BY_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/find_teacher_by_id.sql";
+    public static final String LINK_TEACHER_AND_PROGRAM_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/link_teacher_and_program.sql";
     private Constants() {
     }
 }

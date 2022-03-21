@@ -54,6 +54,7 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
             if (module == null) {
                 module = new Module();
                 module.setId(moduleId);
+                module.setProgramId(programId);
                 module.setName(rs.getString("module_name"));
                 module.setDurationInHours(rs.getLong("module_duration"));
                 moduleMap.put(moduleId, module);
