@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql({"/students-schema.sql", "/students-test-data.sql"})
+@Sql({"/students/students-schema.sql", "/students/students-test-data.sql"})
 class JDBCStudentRepositoryTest {
     @Autowired
     private JDBCStudentRepository studentRepository;

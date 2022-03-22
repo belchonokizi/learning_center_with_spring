@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql({"/modules-schema.sql", "/modules-test-data.sql"})
+@Sql({"/modules/modules-schema.sql", "/modules/modules-test-data.sql"})
 class JDBCModuleRepositoryTest {
     @Autowired
     private JDBCModuleRepository moduleRepository;

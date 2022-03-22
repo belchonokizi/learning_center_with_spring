@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Sql({"/programs-schema.sql", "/programs-test-data.sql"})
+@Sql({"/programs/programs-schema.sql", "/programs/programs-test-data.sql"})
 class JDBCProgramRepositoryTest {
     @Autowired
     JDBCProgramRepository programRepository;
