@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Teacher {
     private int id;
@@ -23,6 +24,13 @@ public class Teacher {
         this.lastName = lastName;
         this.workLevel = workLevel;
         this.programNames = programName;
+    }
+
+    public Teacher(int id, String firstName, String lastName, String workLevel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.workLevel = workLevel;
     }
 
     public int getId() {
@@ -78,5 +86,22 @@ public class Teacher {
                 ", workLevel='" + workLevel + '\'' +
                 ", programNames=" + programNames +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Teacher teacher = (Teacher) o;
+        return id == teacher.id &&
+                Objects.equals(firstName, teacher.firstName) &&
+                Objects.equals(lastName, teacher.lastName) &&
+                Objects.equals(workLevel, teacher.workLevel) &&
+                Objects.equals(programNames, teacher.programNames);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, workLevel, programNames);
     }
 }

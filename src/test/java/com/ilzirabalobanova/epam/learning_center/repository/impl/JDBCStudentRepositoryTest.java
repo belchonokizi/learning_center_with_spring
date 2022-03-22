@@ -2,7 +2,6 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,13 +25,13 @@ class JDBCStudentRepositoryTest {
     @Autowired
     private JDBCStudentRepository studentRepository;
 
-    private final Student student1 = new Student(1, "Ivan", "Gorin", "89120253064","sdfghjk", LocalDate.of(2022, 12, 3), false, new Program(1, null, null), List.of());
-    private final Student student2 = new Student(2, "Anna", "Grushina","89240266064", "f",  LocalDate.of(2022, 10, 3),false, new Program(2, null,null),List.of());
-    private final Student student3 = new Student(3, "Elena", "Sovina","89360253048", "fff", LocalDate.of(2022,11,3),false, new Program(3, null, null), List.of());
-    private final Student student4 = new Student(4, "Igor", "Balin", "89500250064", "sd", LocalDate.of(2022,9,3), false, new Program(4, null, null), List.of());
-    private final Student student5 = new Student(5, "Aleksandr", "Tutin", "89990253784", "dd", LocalDate.of(2022,8,3), false, new Program(5, null,null), List.of());
-    private final Student student6 = new Student("Boris", "Sidorov", "89120183064","boris",LocalDate.of(2021,12,3), false, new Program(6, null,null), List.of());
-    
+    private final Student student1 = new Student(1, "Ivan", "Gorin", "89120253064", "sdfghjk", LocalDate.of(2022, 12, 3), false, new Program(1, null, null), List.of());
+    private final Student student2 = new Student(2, "Anna", "Grushina", "89240266064", "f", LocalDate.of(2022, 10, 3), false, new Program(2, null, null), List.of());
+    private final Student student3 = new Student(3, "Elena", "Sovina", "89360253048", "fff", LocalDate.of(2022, 11, 3), false, new Program(3, null, null), List.of());
+    private final Student student4 = new Student(4, "Igor", "Balin", "89500250064", "sd", LocalDate.of(2022, 9, 3), false, new Program(4, null, null), List.of());
+    private final Student student5 = new Student(5, "Aleksandr", "Tutin", "89990253784", "dd", LocalDate.of(2022, 8, 3), false, new Program(5, null, null), List.of());
+    private final Student student6 = new Student("Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, new Program(6, null, null), List.of());
+
     @ParameterizedTest
     @ValueSource(strings = {"src/test/resources/students/get-students.sql"})
     void getAllStudents(String path) {

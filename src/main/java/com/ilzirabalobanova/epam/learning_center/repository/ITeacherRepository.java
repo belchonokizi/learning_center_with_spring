@@ -5,11 +5,11 @@ import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
 import java.util.List;
 
 public interface ITeacherRepository {
-    List<Teacher> getAllTeachers();
+    List<Teacher> getAllTeachers(String path);
 
-    boolean addTeacher(Teacher teacher, int programId);
+    boolean addTeacher(Teacher teacher, String path);
 
-    boolean deleteTeacher(int id);
+    boolean deleteTeacher(int id, String path);
 
-    Teacher findTeacherById(int id);
+    Teacher findTeacherById(int id, String path);
 }

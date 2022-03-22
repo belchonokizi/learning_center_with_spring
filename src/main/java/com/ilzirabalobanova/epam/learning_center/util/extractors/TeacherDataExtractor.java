@@ -17,7 +17,6 @@ public class TeacherDataExtractor implements ResultSetExtractor<List<Teacher>> {
     @Override
     public List<Teacher> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<Integer, Teacher> teacherMap = new HashMap<>();
-        Map<Integer, String> programNames = new HashMap<>();
         while (rs.next()) {
             int teacherId = rs.getInt("teacher_id");
             Teacher teacher = teacherMap.get(teacherId);
@@ -27,14 +26,7 @@ public class TeacherDataExtractor implements ResultSetExtractor<List<Teacher>> {
                 teacher.setFirstName(rs.getString("teacher_first_name"));
                 teacher.setLastName(rs.getString("teacher_last_name"));
                 teacher.setWorkLevel(rs.getString("teacher_level"));
-                teacher.setProgramNames(new ArrayList<>());
                 teacherMap.put(teacherId, teacher);
-            }
-            int pairId = rs.getInt("pair_id");
-            String programName = programNames.get(pairId);
-            if (programName == null) {
-                programName = rs.getString("program_name");
-                teacher.addProgramName(programName);
             }
         }
         return new ArrayList<>(teacherMap.values());
