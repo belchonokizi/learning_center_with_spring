@@ -8,12 +8,12 @@ public interface IStudentRepository {
 
     List<Student> getAllStudents(String path);
 
-    boolean addStudent(Student student);
+    boolean addStudent(Student student, String path);
 
-    boolean deleteStudent(int id);
+    boolean deleteStudent(int id, String path);
 
-    Student findStudentById(int id);
+    Student findStudentById(int id, String path);
 
-    Student updateStudent(int studentId, Student student);
+    Student updateStudent(int studentId, Student student, String path);
 
 }

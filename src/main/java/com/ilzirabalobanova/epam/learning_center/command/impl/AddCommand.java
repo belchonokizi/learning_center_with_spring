@@ -6,6 +6,7 @@ import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
+import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,7 +71,7 @@ public class AddCommand implements Command {
         } while (!validator.isIntValid(programId));
 
         Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, new Program(1), List.of());
-        if (studentService.addStudent(student)) {
+        if (studentService.addStudent(student, Constants.ADD_STUDENT_QUERY_PATH)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         }
     }

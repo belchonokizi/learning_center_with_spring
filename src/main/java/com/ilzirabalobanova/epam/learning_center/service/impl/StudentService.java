@@ -33,13 +33,13 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public boolean addStudent(Student student) {
-        return studentRepository.addStudent(student);
+    public boolean addStudent(Student student, String path) {
+        return studentRepository.addStudent(student, path);
     }
 
     @Override
-    public boolean deleteStudent(int id) {
-         return studentRepository.deleteStudent(id);
+    public boolean deleteStudent(int id, String path) {
+         return studentRepository.deleteStudent(id, path);
     }
 
     @Override
@@ -56,13 +56,13 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Student findStudentById(int id) {
-        return studentRepository.findStudentById(id);
+    public Student findStudentById(int id, String path) {
+        return studentRepository.findStudentById(id, path);
     }
 
     @Override
-    public Student updateStudent(int index, Student student) {
-        return studentRepository.updateStudent(index, student);
+    public Student updateStudent(int index, Student student, String path) {
+        return studentRepository.updateStudent(index, student, path);
     }
 
     @Override

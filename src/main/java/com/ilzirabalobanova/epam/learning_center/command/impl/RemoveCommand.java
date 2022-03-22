@@ -3,6 +3,7 @@ package com.ilzirabalobanova.epam.learning_center.command.impl;
 import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
+import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class RemoveCommand implements Command {
     public void execute() {
         ConsoleHelper helper = new ConsoleHelper();
         int id = helper.askStudentId();
-        if (studentService.deleteStudent(id)) {
+        if (studentService.deleteStudent(id, Constants.DELETE_STUDENT_BY_ID_SQL_QUERY_PATH)) {
             logger.info("Студент удален");
         }
     }

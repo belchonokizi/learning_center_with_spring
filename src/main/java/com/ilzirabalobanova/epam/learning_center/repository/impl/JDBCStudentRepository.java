@@ -44,8 +44,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public boolean addStudent(Student student) {
-        String query = reader.readSqlQueries(Constants.ADD_STUDENT_QUERY_PATH);
+    public boolean addStudent(Student student, String path) {
+        String query = reader.readSqlQueries(path);
         int rowCount = jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
             preparedStatement.setString(1, student.getFirstName());
@@ -62,8 +62,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public boolean deleteStudent(int id) {
-        String query = reader.readSqlQueries(Constants.DELETE_STUDENT_BY_ID_SQL_QUERY_PATH);
+    public boolean deleteStudent(int id, String path) {
+        String query = reader.readSqlQueries(path);
         return jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, id);
@@ -72,8 +72,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Student findStudentById(int id) {
-        String query = reader.readSqlQueries(Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
+    public Student findStudentById(int id, String path) {
+        String query = reader.readSqlQueries(path);
         List<Student> students = jdbcTemplate.query(query, extractor, id);
         Student student = null;
         if (students.isEmpty()) {
@@ -85,8 +85,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Student updateStudent(int studentId, Student student) {
-        String query = reader.readSqlQueries(Constants.UPDATE_STUDENT_SQL_QUERY_PATH);
+    public Student updateStudent(int studentId, Student student, String path) {
+        String query = reader.readSqlQueries(path);
         int rowCount = jdbcTemplate.update(query, student.getFirstName(), studentId);
         return rowCount == 1 ? student : null;
     }
