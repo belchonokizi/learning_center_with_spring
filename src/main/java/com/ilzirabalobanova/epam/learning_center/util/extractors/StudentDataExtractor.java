@@ -1,7 +1,5 @@
 package com.ilzirabalobanova.epam.learning_center.util.extractors;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Mark;
-import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import org.springframework.dao.DataAccessException;
