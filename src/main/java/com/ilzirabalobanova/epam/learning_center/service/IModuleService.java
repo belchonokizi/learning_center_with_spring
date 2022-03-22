@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IModuleService {
 
-    List<Module> findAllModulesByProgramId(int programId);
+    List<Module> findAllModulesByProgramId(int programId, String path);
 
-    boolean addModule(Module module);
+    boolean addModule(Module module, String path);
 
-    boolean deleteModule(int moduleId);
+    boolean deleteModule(int moduleId, String path);
 }

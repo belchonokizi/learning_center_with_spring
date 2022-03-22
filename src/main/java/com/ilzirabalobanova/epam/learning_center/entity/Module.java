@@ -17,6 +17,13 @@ public class Module {
         this.durationInHours = durationInHours;
     }
 
+    public Module(int id, int programId, String name, long durationInHours) {
+        this.id = id;
+        this.programId = programId;
+        this.name = name;
+        this.durationInHours = durationInHours;
+    }
+
     public int getId() {
         return id;
     }

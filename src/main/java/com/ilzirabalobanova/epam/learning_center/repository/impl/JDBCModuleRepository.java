@@ -30,14 +30,14 @@ public class JDBCModuleRepository implements IModuleRepository {
     }
 
     @Override
-    public List<Module> findAllModulesByProgramId(int programId) {
-        String query = reader.readSqlQueries(Constants.FIND_ALL_MODULES_BY_PROGRAM_ID_SQL_QUERY_PATH);
+    public List<Module> findAllModulesByProgramId(int programId, String path) {
+        String query = reader.readSqlQueries(path);
         return jdbcTemplate.query(query, extractor, programId);
     }
 
     @Override
-    public boolean addModule(Module module) {
-        String query = reader.readSqlQueries(Constants.ADD_MODULE_SQL_QUERY_PATH);
+    public boolean addModule(Module module, String path) {
+        String query = reader.readSqlQueries(path);
         int rowCount = jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
             preparedStatement.setInt(1, module.getProgramId());
@@ -50,8 +50,8 @@ public class JDBCModuleRepository implements IModuleRepository {
     }
 
     @Override
-    public boolean deleteModule(int moduleId) {
-        String query = reader.readSqlQueries(Constants.DELETE_MODULE_SQL_QUERY_PATH);
+    public boolean deleteModule(int moduleId, String path) {
+        String query = reader.readSqlQueries(path);
         return jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, moduleId);

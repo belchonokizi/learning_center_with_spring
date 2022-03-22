@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS modules;
+
+CREATE TABLE modules (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ program_id INT NOT NULL,
+ name VARCHAR(255) NOT NULL,
+ duration INT NOT NULL
+)
