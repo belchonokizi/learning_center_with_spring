@@ -20,14 +20,14 @@ public class ProgramService implements IProgramService {
     }
 
     @Override
-    public Program findProgramById(int id) {
-        return getAllPrograms().stream().filter(pr -> pr.getId() == id).findFirst()
+    public Program findProgramById(int id, String path) {
+        return getAllPrograms(path).stream().filter(pr -> pr.getId() == id).findFirst()
                 .orElseThrow(() -> new NullPointerException("Программа не найдена"));
     }
 
     @Override
-    public List<Program> getAllPrograms() {
-        return programRepository.getAllPrograms();
+    public List<Program> getAllPrograms(String path) {
+        return programRepository.getAllPrograms(path);
     }
 
 
@@ -42,13 +42,13 @@ public class ProgramService implements IProgramService {
     }
 
     @Override
-    public boolean addProgram(Program program) {
-        return programRepository.addProgram(program);
+    public boolean addProgram(Program program, String path) {
+        return programRepository.addProgram(program, path);
     }
 
     @Override
-    public boolean deleteProgram(int id) {
-        return programRepository.deleteProgram(id);
+    public boolean deleteProgram(int id, String path) {
+        return programRepository.deleteProgram(id, path);
     }
 }
 

@@ -1,5 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import java.util.Objects;
+
 public class Mark {
     private int id;
     private Module module;
@@ -44,5 +46,20 @@ public class Mark {
                 ", module=" + module +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mark mark = (Mark) o;
+        return id == mark.id &&
+                value == mark.value &&
+                Objects.equals(module, mark.module);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, module, value);
     }
 }

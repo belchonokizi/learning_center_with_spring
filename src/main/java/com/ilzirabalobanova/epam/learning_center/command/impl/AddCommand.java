@@ -63,7 +63,7 @@ public class AddCommand implements Command {
         do {
             System.out.println("Введите номер программы:");
             int count = 1;
-            for (Program program : programService.getAllPrograms()) {
+            for (Program program : programService.getAllPrograms(Constants.GET_ALL_PROGRAMS_SQL_QUERY_PATH)) {
                 System.out.printf("%d - %s%n", count, program.getName());
                 count++;
             }

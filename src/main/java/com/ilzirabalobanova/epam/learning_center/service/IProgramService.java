@@ -5,13 +5,13 @@ import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import java.util.List;
 
 public interface IProgramService {
-    Program findProgramById(int id);
+    Program findProgramById(int id, String path);
 
-    List<Program> getAllPrograms();
+    List<Program> getAllPrograms(String path);
 
     double getAvgGrade(Student student);
 
-    boolean addProgram(Program program);
+    boolean addProgram(Program program, String path);
 
-    boolean deleteProgram(int id);
+    boolean deleteProgram(int id, String path);
 }

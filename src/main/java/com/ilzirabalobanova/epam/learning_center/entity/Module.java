@@ -1,5 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import java.util.Objects;
+
 public class Module {
     private int id;
     private int programId;
@@ -55,5 +57,21 @@ public class Module {
                 ", name='" + name + '\'' +
                 ", durationInHours=" + durationInHours +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Module module = (Module) o;
+        return id == module.id &&
+                programId == module.programId &&
+                durationInHours == module.durationInHours &&
+                Objects.equals(name, module.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, programId, name, durationInHours);
     }
 }

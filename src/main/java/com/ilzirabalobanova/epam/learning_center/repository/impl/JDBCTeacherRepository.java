@@ -2,7 +2,6 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
 import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
-import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.TeacherDataExtractor;
 import org.slf4j.Logger;
