@@ -72,6 +72,8 @@ public class AddCommand implements Command {
         Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, new Program(1), List.of());
         if (studentService.addStudent(student)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
+        } else {
+            logger.error("Ошибка добавления студента");
         }
     }
 

@@ -23,6 +23,8 @@ public class RemoveCommand implements Command {
         int id = helper.askStudentId();
         if (studentService.deleteStudent(id)) {
             logger.info("Студент удален");
+        } else {
+            logger.error("Студент не найден");
         }
     }
 
