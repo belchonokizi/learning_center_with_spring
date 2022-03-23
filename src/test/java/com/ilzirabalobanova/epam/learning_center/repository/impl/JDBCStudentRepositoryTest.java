@@ -33,6 +33,15 @@ class JDBCStudentRepositoryTest {
     private final Student student6 = new Student("Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, new Program(6, null, null), List.of());
 
     @ParameterizedTest
+    @CsvSource({"src/test/resources/students/add-student.sql," +
+            "src/test/resources/students/get-student-by-id.sql"})
+    void addStudent(String path1, String path2) {
+        assertTrue(studentRepository.addStudent(student6, path1));
+        Student result = studentRepository.findStudentById(6, path2);
+        assertEquals(student6, result);
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"src/test/resources/students/get-students.sql"})
     void getAllStudents(String path) {
         List<Student> allStudents = studentRepository.getAllStudents(path);
@@ -42,15 +51,6 @@ class JDBCStudentRepositoryTest {
         assertThat(allStudents, hasItem(student3));
         assertThat(allStudents, hasItem(student4));
         assertThat(allStudents, hasItem(student5));
-    }
-
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/students/add-student.sql," +
-            "src/test/resources/students/get-student-by-id.sql"})
-    void addStudent(String path1, String path2) {
-        assertTrue(studentRepository.addStudent(student6, path1));
-        Student result = studentRepository.findStudentById(6, path2);
-        assertEquals(student6, result);
     }
 
     @ParameterizedTest
