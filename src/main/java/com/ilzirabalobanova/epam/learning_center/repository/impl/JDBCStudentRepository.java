@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -72,7 +73,7 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public Student findStudentById(int id) {
+    public @Nullable Student findStudentById(int id) {
         String query = reader.readSqlQueries(Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
         List<Student> students = jdbcTemplate.query(query, extractor, id);
         Student student = null;
