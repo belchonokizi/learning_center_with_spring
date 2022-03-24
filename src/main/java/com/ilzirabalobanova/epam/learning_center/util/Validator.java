@@ -26,7 +26,7 @@ public class Validator {
     }
 
     public boolean isIntValid(int id) {
-        boolean isPresent = programService.getAllPrograms(Constants.GET_ALL_PROGRAMS_SQL_QUERY_PATH).stream().anyMatch(p -> p.getId() == id);
+        boolean isPresent = programService.getAllPrograms().stream().anyMatch(p -> p.getId() == id);
         if (!isPresent) {
             logger.error("Некорректный номер программы");
         }

@@ -92,14 +92,4 @@ public class JDBCStudentRepository implements IStudentRepository {
         int rowCount = jdbcTemplate.update(query, student.getFirstName(), studentId);
         return rowCount == 1 ? student : null;
     }
-
-//    private boolean addStudentInMarksTable(Student student) {
-//        String query = reader.readSqlQueries(Constants.LINK_STUDENT_AND_PROGRAM_SQL_QUERY_PATH);
-//        int rowCount = jdbcTemplate.update(connection -> {
-//            PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
-//            preparedStatement.setInt(1, student.getId());
-//            return preparedStatement;
-//        }, keyHolder);
-//        return rowCount == 1;
-//    }
 }

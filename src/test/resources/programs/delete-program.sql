@@ -1,1 +1,0 @@
-DELETE FROM programs WHERE id = ?

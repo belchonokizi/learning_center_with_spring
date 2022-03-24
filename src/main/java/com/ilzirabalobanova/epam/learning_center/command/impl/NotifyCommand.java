@@ -26,7 +26,7 @@ public class NotifyCommand implements Command {
     public void execute() {
         ConsoleHelper helper = new ConsoleHelper();
         int id = helper.askStudentId();
-        Student student = studentService.findStudentById(id, Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
+        Student student = studentService.findStudentById(id);
         if (student != null) {
             double avgGrade = programService.getAvgGrade(student);
             if (avgGrade < Constants.PASSING_SCORE) {

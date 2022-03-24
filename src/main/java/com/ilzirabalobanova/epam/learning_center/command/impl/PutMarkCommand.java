@@ -1,14 +1,10 @@
 package com.ilzirabalobanova.epam.learning_center.command.impl;
 
 import com.ilzirabalobanova.epam.learning_center.command.Command;
-import com.ilzirabalobanova.epam.learning_center.entity.Module;
-import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IMarkService;
-import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
-import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +29,7 @@ public class PutMarkCommand implements Command {
     public void execute() {
         ConsoleHelper helper = new ConsoleHelper();
         int studentId = helper.askStudentId();
-        Student student = studentService.findStudentById(studentId, Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
+        Student student = studentService.findStudentById(studentId);
 
         if (student != null) {
             System.out.println("Введите номер темы");
@@ -44,7 +40,7 @@ public class PutMarkCommand implements Command {
 
             markService.updateMark(studentId, moduleId, mark);
 
-            studentService.updateStudent(studentId, student, Constants.UPDATE_STUDENT_SQL_QUERY_PATH);
+            studentService.updateStudent(studentId, student);
             logger.info("Оценка студенту {} {} поставлена", student.getFirstName(), student.getLastName());
         }
     }

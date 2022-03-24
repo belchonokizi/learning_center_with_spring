@@ -29,7 +29,7 @@ class JDBCProgramRepositoryTest {
     private final Program program3 = new Program(3, ".Net", null);
 
     @Test
-    void getAllPrograms(String path) {
+    void getAllPrograms() {
         List<Program> programs = programRepository.getAllPrograms();
         assertEquals(2, programs.size());
         assertThat(programs, hasItem(program1));
@@ -44,7 +44,7 @@ class JDBCProgramRepositoryTest {
     }
 
     @Test
-    void deleteProgram(String path1, String path2) {
+    void deleteProgram() {
         assertTrue(programRepository.deleteProgram(1));
         assertNull(programRepository.findProgramById(1));
     }

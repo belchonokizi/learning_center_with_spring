@@ -10,8 +10,6 @@ import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Map;
-
 public class CountDaysCommand implements Command {
     private IStudentService studentService;
     private IProgramService programService;
