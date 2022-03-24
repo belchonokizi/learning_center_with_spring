@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
+import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
@@ -27,7 +28,7 @@ public class GetScoreCommand implements Command {
     public void execute() {
         ConsoleHelper helper = new ConsoleHelper();
         int id = helper.askStudentId();
-        Student student = studentService.findStudentById(id);
+        Student student = studentService.findStudentById(id, Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
 
         if (student != null) {
             double avgGrade = programService.getAvgGrade(student);

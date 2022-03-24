@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository("jdbcStudentRepository")
+@Repository()
 @ConditionalOnClass(DataSource.class)
 public class JDBCStudentRepository implements IStudentRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
@@ -73,7 +73,8 @@ public class JDBCStudentRepository implements IStudentRepository {
     }
 
     @Override
-    public @Nullable Student findStudentById(int id) {
+    public @Nullable
+    Student findStudentById(int id) {
         String query = reader.readSqlQueries(Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
         List<Student> students = jdbcTemplate.query(query, extractor, id);
         Student student = null;
@@ -92,13 +93,13 @@ public class JDBCStudentRepository implements IStudentRepository {
         return rowCount == 1 ? student : null;
     }
 
-    private boolean addStudentInMarksTable(Student student) {
-        String query = reader.readSqlQueries(Constants.LINK_STUDENT_AND_PROGRAM_SQL_QUERY_PATH);
-        int rowCount = jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
-            preparedStatement.setInt(1, student.getId());
-            return preparedStatement;
-        }, keyHolder);
-        return rowCount == 1;
-    }
+//    private boolean addStudentInMarksTable(Student student) {
+//        String query = reader.readSqlQueries(Constants.LINK_STUDENT_AND_PROGRAM_SQL_QUERY_PATH);
+//        int rowCount = jdbcTemplate.update(connection -> {
+//            PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
+//            preparedStatement.setInt(1, student.getId());
+//            return preparedStatement;
+//        }, keyHolder);
+//        return rowCount == 1;
+//    }
 }

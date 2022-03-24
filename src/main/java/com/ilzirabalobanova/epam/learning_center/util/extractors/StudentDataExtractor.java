@@ -1,7 +1,5 @@
 package com.ilzirabalobanova.epam.learning_center.util.extractors;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Mark;
-import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import org.springframework.dao.DataAccessException;
@@ -22,9 +20,6 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
     @Override
     public List<Student> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<Integer, Student> studentsMap = new HashMap<>();
-        Map<Integer, Program> programMap = new HashMap<>();
-        Map<Integer, Module> moduleMap = new HashMap<>();
-        Map<Integer, Mark> markMap = new HashMap<>();
         while (rs.next()) {
             int studentId = rs.getInt("student_id");
             Student student = studentsMap.get(studentId);
@@ -40,38 +35,7 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
                 student.setMarksList(new ArrayList<>());
             }
             int programId = rs.getInt("program_id");
-            Program program = programMap.get(programId);
-            if (program == null) {
-                program = new Program();
-                program.setId(rs.getInt("program_id"));
-                program.setName(rs.getString("program_name"));
-                program.setModules(new ArrayList<>());
-                programMap.put(programId, program);
-            }
-
-            int moduleId = rs.getInt("module_id");
-            Module module = moduleMap.get(moduleId);
-            if (module == null) {
-                module = new Module();
-                module.setId(moduleId);
-                module.setProgramId(programId);
-                module.setName(rs.getString("module_name"));
-                module.setDurationInHours(rs.getLong("module_duration"));
-                moduleMap.put(moduleId, module);
-                program.addModule(module);
-            }
-
-            int markId = rs.getInt("mark_id");
-            Mark mark = markMap.get(markId);
-            if (mark == null) {
-                mark = new Mark();
-                mark.setId(markId);
-                mark.setModule(module);
-                mark.setValue(rs.getInt("mark_value"));
-                markMap.put(markId, mark);
-                student.addMark(mark);
-            }
-            student.setProgram(program);
+            student.setProgram(new Program(programId));
             studentsMap.put(studentId, student);
         }
         return new ArrayList<>(studentsMap.values());

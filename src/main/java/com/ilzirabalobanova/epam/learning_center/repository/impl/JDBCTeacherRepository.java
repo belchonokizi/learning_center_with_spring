@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
@@ -51,7 +50,6 @@ public class JDBCTeacherRepository implements ITeacherRepository {
             return preparedStatement;
         }, keyHolder);
         teacher.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
-        linkTeacherAndProgram(teacher.getId(), programId);
         return rowCount == 1;
     }
 
