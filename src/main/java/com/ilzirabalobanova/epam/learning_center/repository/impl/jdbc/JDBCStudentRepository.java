@@ -1,4 +1,4 @@
-package com.ilzirabalobanova.epam.learning_center.repository.impl;
+package com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository()
+//@Repository()
 @ConditionalOnClass(DataSource.class)
 public class JDBCStudentRepository implements IStudentRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
@@ -53,8 +53,8 @@ public class JDBCStudentRepository implements IStudentRepository {
             preparedStatement.setString(2, student.getLastName());
             preparedStatement.setString(3, student.getPhoneNumber());
             preparedStatement.setString(4, student.getEmail());
-            preparedStatement.setDate(5, Date.valueOf(student.getStartDay()));
-            preparedStatement.setInt(6, student.getProgram().getId());
+            preparedStatement.setDate(5, Date.valueOf(student.getStartDate()));
+            preparedStatement.setInt(6, student.getProgramId());
             preparedStatement.setInt(7, 0);
             return preparedStatement;
         }, keyHolder);

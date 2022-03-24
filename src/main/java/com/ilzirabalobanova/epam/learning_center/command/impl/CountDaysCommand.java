@@ -30,13 +30,13 @@ public class CountDaysCommand implements Command {
         int studentId = helper.askStudentId();
         Student student = studentService.findStudentById(studentId);
         if (student != null) {
-            Program program = programService.findProgramById(student.getProgram().getId());
+            Program program = programService.findProgramById(student.getProgramId());
             long wholeDuration = program.getModules().stream().map(Module::getDurationInHours).mapToLong(m -> m).sum();
             long currentDuration = 0;
 
-            for (Module module : student.getProgram().getModules()) {
-                currentDuration += module.getDurationInHours();
-            }
+//            for (Module module : student.getProgram().getModules()) {
+//                currentDuration += module.getDurationInHours();
+//            }
 
             int countDays = (int) Math.ceil((wholeDuration - currentDuration) / Constants.HOURS_IN_DAY);
             if (countDays == 0) {

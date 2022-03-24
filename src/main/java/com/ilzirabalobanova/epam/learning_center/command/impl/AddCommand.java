@@ -69,7 +69,7 @@ public class AddCommand implements Command {
             programId = helper.readInt();
         } while (!validator.isIntValid(programId));
 
-        Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, new Program(1), List.of());
+        Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, 1);
         if (studentService.addStudent(student)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         } else {

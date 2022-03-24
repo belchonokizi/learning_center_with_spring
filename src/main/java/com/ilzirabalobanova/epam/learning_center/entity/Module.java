@@ -1,28 +1,17 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Module {
     private int id;
     private int programId;
     private String name;
     private long durationInHours;
-
-    public Module() {
-    }
-
-    public Module(int programId, String name, long durationInHours) {
-        this.programId = programId;
-        this.name = name;
-        this.durationInHours = durationInHours;
-    }
-
-    public Module(int id, int programId, String name, long durationInHours) {
-        this.id = id;
-        this.programId = programId;
-        this.name = name;
-        this.durationInHours = durationInHours;
-    }
 
     public int getId() {
         return id;

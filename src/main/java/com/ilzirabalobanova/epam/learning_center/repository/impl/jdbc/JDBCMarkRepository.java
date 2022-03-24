@@ -1,4 +1,4 @@
-package com.ilzirabalobanova.epam.learning_center.repository.impl;
+package com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc;
 
 import com.ilzirabalobanova.epam.learning_center.repository.IMarkRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;

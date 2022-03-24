@@ -1,15 +1,17 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Program {
     private int id;
     private String name;
     private List<Module> modules;
-
-    public Program() {
-    }
 
     public Program(int id) {
         this.id = id;
@@ -17,12 +19,6 @@ public class Program {
 
     public Program(String name) {
         this.name = name;
-    }
-
-    public Program(int id, String name, List<Module> modules) {
-        this.id = id;
-        this.name = name;
-        this.modules = modules;
     }
 
     public int getId() {

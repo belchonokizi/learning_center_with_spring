@@ -1,44 +1,51 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "students")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "email")
     private String email;
-    private LocalDate startDay;
+
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @Column(name = "is_finished_program")
     private boolean isFinishedProgram;
-    private Program program;
-    private List<Mark> marksList;
 
-    public Student() {
-    }
+    @Column(name = "program_id")
+    private int programId;
 
-    public Student(int id, String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, Program program, List<Mark> marksList) {
-        this.id = id;
+    public Student(String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, int programId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.startDay = startDay;
+        this.startDate = startDay;
         this.isFinishedProgram = isFinishedProgram;
-        this.program = program;
-        this.marksList = marksList;
-    }
-
-    public Student(String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, Program program, List<Mark> marksList) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.startDay = startDay;
-        this.isFinishedProgram = isFinishedProgram;
-        this.program = program;
-        this.marksList = marksList;
+        this.programId = programId;
     }
 
     public int getId() {
@@ -81,40 +88,24 @@ public class Student {
         this.email = email;
     }
 
-    public LocalDate getStartDay() {
-        return startDay;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStartDay(LocalDate startDay) {
-        this.startDay = startDay;
-    }
-
-    public boolean isFinishedProgram() {
-        return isFinishedProgram;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public void setFinishedProgram(boolean finishedProgram) {
         isFinishedProgram = finishedProgram;
     }
 
-    public Program getProgram() {
-        return program;
+    public int getProgramId() {
+        return programId;
     }
 
-    public void setProgram(Program program) {
-        this.program = program;
-    }
-
-    public List<Mark> getMarksList() {
-        return marksList;
-    }
-
-    public void setMarksList(List<Mark> marksList) {
-        this.marksList = marksList;
-    }
-
-    public void addMark(Mark mark) {
-        marksList.add(mark);
+    public void setProgramId(int programId) {
+        this.programId = programId;
     }
 
     @Override
@@ -123,12 +114,11 @@ public class Student {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone_number='" + phoneNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", startDay=" + startDay +
+                ", startDate=" + startDate +
                 ", isFinishedProgram=" + isFinishedProgram +
-                ", program=" + program +
-                ", marksList=" + marksList +
+                ", programId=" + programId +
                 '}';
     }
 
@@ -139,18 +129,17 @@ public class Student {
         Student student = (Student) o;
         return id == student.id &&
                 isFinishedProgram == student.isFinishedProgram &&
+                programId == student.programId &&
                 Objects.equals(firstName, student.firstName) &&
                 Objects.equals(lastName, student.lastName) &&
                 Objects.equals(phoneNumber, student.phoneNumber) &&
                 Objects.equals(email, student.email) &&
-                Objects.equals(startDay, student.startDay) &&
-                Objects.equals(program, student.program) &&
-                Objects.equals(marksList, student.marksList);
+                Objects.equals(startDate, student.startDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, phoneNumber, email, startDay, isFinishedProgram, program, marksList);
+        return Objects.hash(id, firstName, lastName, phoneNumber, email, startDate, isFinishedProgram, programId);
     }
 }
 

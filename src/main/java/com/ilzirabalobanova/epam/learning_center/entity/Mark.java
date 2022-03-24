@@ -1,14 +1,16 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Mark {
     private int id;
     private Module module;
     private int value;
-
-    public Mark() {
-    }
 
     public Mark(Module module, int value) {
         this.module = module;

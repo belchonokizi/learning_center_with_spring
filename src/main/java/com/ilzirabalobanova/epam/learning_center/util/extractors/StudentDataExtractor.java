@@ -30,12 +30,10 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
                 student.setLastName(rs.getString("last_name"));
                 student.setPhoneNumber(rs.getString("phone_number"));
                 student.setEmail(rs.getString("email"));
-                student.setStartDay(LocalDate.parse(rs.getString("start_date")));
+                student.setStartDate(LocalDate.parse(rs.getString("start_date")));
                 student.setFinishedProgram((rs.getInt("is_finished_program") == 1));
-                student.setMarksList(new ArrayList<>());
+                student.setProgramId(rs.getInt("program_id"));
             }
-            int programId = rs.getInt("program_id");
-            student.setProgram(new Program(programId));
             studentsMap.put(studentId, student);
         }
         return new ArrayList<>(studentsMap.values());

@@ -1,30 +1,19 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
     private int id;
     private String firstName;
     private String lastName;
     private String workLevel;
     private List<String> programNames;
-
-    public Teacher() {
-    }
-
-    public Teacher(String firstName, String lastName, String workLevel) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.workLevel = workLevel;
-    }
-
-    public Teacher(String firstName, String lastName, String workLevel, List<String> programName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.workLevel = workLevel;
-        this.programNames = programName;
-    }
 
     public Teacher(int id, String firstName, String lastName, String workLevel) {
         this.id = id;

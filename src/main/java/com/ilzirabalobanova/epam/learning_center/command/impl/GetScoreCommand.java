@@ -30,7 +30,7 @@ public class GetScoreCommand implements Command {
         if (student != null) {
             double avgGrade = programService.getAvgGrade(student);
             System.out.printf("Успеваемость %s %s :", student.getFirstName(), student.getLastName());
-            student.getMarksList().forEach(System.out::println);
+//            student.getMarksList().forEach(System.out::println);
             System.out.printf("Средний балл = %.2f", avgGrade);
         }
     }
