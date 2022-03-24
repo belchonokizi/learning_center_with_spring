@@ -21,13 +21,13 @@ public class ModuleService implements IModuleService {
     }
 
     @Override
-    public List<Module> findAllModulesByProgramId(int programId, String path) {
-        return moduleRepository.findAllModulesByProgramId(programId, path);
+    public List<Module> findAllModulesByProgramId(int programId) {
+        return moduleRepository.findAllModulesByProgramId(programId);
     }
 
     @Override
-    public boolean addModule(Module module, String path) {
-        boolean result = moduleRepository.addModule(module, path);
+    public boolean addModule(Module module) {
+        boolean result = moduleRepository.addModule(module);
         if (!result) {
             logger.error("Ошибка в добавлении модуля");
         }
@@ -35,8 +35,8 @@ public class ModuleService implements IModuleService {
     }
 
     @Override
-    public boolean deleteModule(int moduleId, String path) {
-        boolean result = moduleRepository.deleteModule(moduleId, path);
+    public boolean deleteModule(int moduleId) {
+        boolean result = moduleRepository.deleteModule(moduleId);
         if (!result) {
             logger.error("Ошибка в удалении модуля");
         }

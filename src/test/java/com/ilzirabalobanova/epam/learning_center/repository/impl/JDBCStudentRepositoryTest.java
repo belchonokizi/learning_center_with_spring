@@ -2,6 +2,7 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -32,19 +34,16 @@ class JDBCStudentRepositoryTest {
     private final Student student5 = new Student(5, "Aleksandr", "Tutin", "89990253784", "dd", LocalDate.of(2022, 8, 3), false, new Program(5, null, null), List.of());
     private final Student student6 = new Student("Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, new Program(6, null, null), List.of());
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/students/add-student.sql," +
-            "src/test/resources/students/get-student-by-id.sql"})
-    void addStudent(String path1, String path2) {
-        assertTrue(studentRepository.addStudent(student6, path1));
-        Student result = studentRepository.findStudentById(6, path2);
+    @Test
+    void addStudent() {
+        assertTrue(studentRepository.addStudent(student6));
+        Student result = studentRepository.findStudentById(6);
         assertEquals(student6, result);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/students/get-students.sql"})
-    void getAllStudents(String path) {
-        List<Student> allStudents = studentRepository.getAllStudents(path);
+    @Test
+    void getAllStudents() {
+        List<Student> allStudents = studentRepository.getAllStudents();
         assertEquals(5, allStudents.size());
         assertThat(allStudents, hasItem(student1));
         assertThat(allStudents, hasItem(student2));
@@ -53,29 +52,24 @@ class JDBCStudentRepositoryTest {
         assertThat(allStudents, hasItem(student5));
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/students/delete-student.sql," +
-            "src/test/resources/students/get-student-by-id.sql"})
-    void deleteStudent(String path1, String path2) {
-        assertTrue(studentRepository.deleteStudent(1, path1));
-        Student result = studentRepository.findStudentById(1, path2);
+    @Test
+    void deleteStudent() {
+        assertTrue(studentRepository.deleteStudent(1));
+        Student result = studentRepository.findStudentById(1);
         assertNull(result);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/students/get-student-by-id.sql"})
-    void findStudentById(String path) {
-        Student result = studentRepository.findStudentById(1, path);
+    @Test
+    void findStudentById() {
+        Student result = studentRepository.findStudentById(1);
         assertEquals(student1, result);
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/students/update-student.sql," +
-            "src/test/resources/students/get-student-by-id.sql"})
-    void updateStudent(String path1, String path2) {
-        Student newStudent = studentRepository.updateStudent(1, student6, path1);
-        Student updatedStudent = studentRepository.findStudentById(1, path2);
-        assertEquals(newStudent.getFirstName(), updatedStudent.getFirstName());
+    @Test
+    void updateStudent() {
+        Student newStudent = studentRepository.updateStudent(1, student6);
+        Student updatedStudent = studentRepository.findStudentById(1);
+        assertEquals(newStudent.getFirstName(), Objects.requireNonNull(updatedStudent).getFirstName());
         assertEquals(student1.getLastName(), updatedStudent.getLastName());
     }
 }

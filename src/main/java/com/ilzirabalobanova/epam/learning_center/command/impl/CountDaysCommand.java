@@ -30,9 +30,9 @@ public class CountDaysCommand implements Command {
     public void execute() {
         ConsoleHelper helper = new ConsoleHelper();
         int studentId = helper.askStudentId();
-        Student student = studentService.findStudentById(studentId, Constants.GET_STUDENT_BY_ID_SQL_QUERY_PATH);
+        Student student = studentService.findStudentById(studentId);
         if (student != null) {
-            Program program = programService.findProgramById(student.getProgram().getId(), Constants.FIND_PROGRAM_BY_ID_SQL_QUERY_PATH);
+            Program program = programService.findProgramById(student.getProgram().getId());
             long wholeDuration = program.getModules().stream().map(Module::getDurationInHours).mapToLong(m -> m).sum();
             long currentDuration = 0;
 

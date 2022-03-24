@@ -18,22 +18,22 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public List<Teacher> getAllTeachers(String path) {
-        return teacherRepository.getAllTeachers(path);
+    public List<Teacher> getAllTeachers() {
+        return teacherRepository.getAllTeachers();
     }
 
     @Override
-    public boolean addTeacher(Teacher teacher, String path) {
-        return teacherRepository.addTeacher(teacher, path);
+    public boolean addTeacher(Teacher teacher, int programId) {
+        return teacherRepository.addTeacher(teacher, programId);
     }
 
     @Override
-    public boolean deleteTeacher(int id, String path) {
-        return teacherRepository.deleteTeacher(id, path);
+    public boolean deleteTeacher(int id) {
+        return teacherRepository.deleteTeacher(id);
     }
 
     @Override
-    public Teacher findTeacherById(int id, String path) {
-        return teacherRepository.findTeacherById(id, path);
+    public Teacher findTeacherById(int id) {
+        return teacherRepository.findTeacherById(id);
     }
 }

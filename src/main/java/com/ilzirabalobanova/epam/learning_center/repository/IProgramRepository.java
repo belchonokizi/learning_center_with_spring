@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IProgramRepository {
 
-    List<Program> getAllPrograms(String path);
+    List<Program> getAllPrograms();
 
-    boolean addProgram(Program program, String path);
+    boolean addProgram(Program program);
 
-    boolean deleteProgram(int id, String path);
+    boolean deleteProgram(int id);
 
-    Program findProgramById(int id, String path);
+    Program findProgramById(int id);
 }

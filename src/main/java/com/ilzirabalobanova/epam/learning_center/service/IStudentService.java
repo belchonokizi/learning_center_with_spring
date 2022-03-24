@@ -8,19 +8,19 @@ import java.util.List;
 
 public interface IStudentService {
 
-    List<Student> getAllStudents(String path);
+    List<Student> getAllStudents();
 
-    boolean addStudent(Student student, String path);
+    boolean addStudent(Student student);
 
-    boolean deleteStudent(int id, String path);
+    boolean deleteStudent(int id);
 
     void showAllStudents(List<Student> studentList);
 
     List<Student> sortAndShowStudents(Comparator<Student> comparator, List<Student> list);
 
-    Student findStudentById(int id, String path);
+    Student findStudentById(int id);
 
-    Student updateStudent(int studentId, Student student, String path);
+    Student updateStudent(int studentId, Student student);
 
     List<Student> filterAndShowStudents(List<Student> studentList);
 

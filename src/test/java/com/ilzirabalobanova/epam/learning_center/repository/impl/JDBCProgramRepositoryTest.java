@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,36 +28,30 @@ class JDBCProgramRepositoryTest {
     private final Program program2 = new Program(2, "JavaScript", null);
     private final Program program3 = new Program(3, ".Net", null);
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/programs/find-all-programs.sql"})
+    @Test
     void getAllPrograms(String path) {
-        List<Program> programs = programRepository.getAllPrograms(path);
+        List<Program> programs = programRepository.getAllPrograms();
         assertEquals(2, programs.size());
         assertThat(programs, hasItem(program1));
         assertThat(programs, hasItem(program2));
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/programs/add-program.sql," +
-            "src/test/resources/programs/find-program-by-id.sql"})
-    void addProgram(String path1, String path2) {
-        assertTrue(programRepository.addProgram(program3, path1));
-        Program result = programRepository.findProgramById(3, path2);
+    @Test
+    void addProgram() {
+        assertTrue(programRepository.addProgram(program3));
+        Program result = programRepository.findProgramById(3);
         assertEquals(program3, result);
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/programs/delete-program.sql," +
-            "src/test/resources/programs/find-program-by-id.sql"})
+    @Test
     void deleteProgram(String path1, String path2) {
-        assertTrue(programRepository.deleteProgram(1, path1));
-        assertNull(programRepository.findProgramById(1, path2));
+        assertTrue(programRepository.deleteProgram(1));
+        assertNull(programRepository.findProgramById(1));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/programs/find-program-by-id.sql"})
-    void findProgramById(String path) {
-        Program result = programRepository.findProgramById(1, path);
+    @Test
+    void findProgramById() {
+        Program result = programRepository.findProgramById(1);
         assertEquals(program1, result);
     }
 }

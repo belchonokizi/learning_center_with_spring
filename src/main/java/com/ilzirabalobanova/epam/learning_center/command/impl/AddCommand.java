@@ -63,7 +63,7 @@ public class AddCommand implements Command {
         do {
             System.out.println("Введите номер программы:");
             int count = 1;
-            for (Program program : programService.getAllPrograms(Constants.GET_ALL_PROGRAMS_SQL_QUERY_PATH)) {
+            for (Program program : programService.getAllPrograms()) {
                 System.out.printf("%d - %s%n", count, program.getName());
                 count++;
             }
@@ -71,7 +71,7 @@ public class AddCommand implements Command {
         } while (!validator.isIntValid(programId));
 
         Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, new Program(1), List.of());
-        if (studentService.addStudent(student, Constants.ADD_STUDENT_QUERY_PATH)) {
+        if (studentService.addStudent(student)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         }
     }

@@ -34,14 +34,14 @@ public class JDBCProgramRepository implements IProgramRepository {
     }
 
     @Override
-    public List<Program> getAllPrograms(String path) {
-        String query = reader.readSqlQueries(path);
+    public List<Program> getAllPrograms() {
+        String query = reader.readSqlQueries(Constants.GET_ALL_PROGRAMS_SQL_QUERY_PATH);
         return jdbcTemplate.query(query, extractor);
     }
 
     @Override
-    public boolean addProgram(Program program, String path) {
-        String query = reader.readSqlQueries(path);
+    public boolean addProgram(Program program) {
+        String query = reader.readSqlQueries(Constants.ADD_PROGRAM_SQL_QUERY_PATH);
         int rowCount = jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
             preparedStatement.setString(1, program.getName());
@@ -52,8 +52,8 @@ public class JDBCProgramRepository implements IProgramRepository {
     }
 
     @Override
-    public boolean deleteProgram(int id, String path) {
-        String query = reader.readSqlQueries(path);
+    public boolean deleteProgram(int id) {
+        String query = reader.readSqlQueries(Constants.DELETE_PROGRAM_SQL_QUERY_PATH);
         return jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, id);
@@ -62,8 +62,8 @@ public class JDBCProgramRepository implements IProgramRepository {
     }
 
     @Override
-    public Program findProgramById(int id, String path) {
-        String query = reader.readSqlQueries(path);
+    public Program findProgramById(int id) {
+        String query = reader.readSqlQueries(Constants.FIND_PROGRAM_BY_ID_SQL_QUERY_PATH);
         List<Program> programs = jdbcTemplate.query(query, extractor, id);
         Program program = null;
         if (programs.isEmpty()) {

@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface IStudentRepository {
 
-    List<Student> getAllStudents(String path);
+    List<Student> getAllStudents();
 
-    boolean addStudent(Student student, String path);
+    boolean addStudent(Student student);
 
-    boolean deleteStudent(int id, String path);
+    boolean deleteStudent(int id);
 
-    Student findStudentById(int id, String path);
+    Student findStudentById(int id);
 
-    Student updateStudent(int studentId, Student student, String path);
+    Student updateStudent(int studentId, Student student);
 
 }

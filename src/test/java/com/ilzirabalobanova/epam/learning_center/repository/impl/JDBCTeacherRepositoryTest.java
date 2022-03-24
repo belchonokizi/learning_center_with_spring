@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -28,37 +29,31 @@ class JDBCTeacherRepositoryTest {
     private final Teacher teacher2 = new Teacher(2, "Irina", "Shubina", "senior");
     private final Teacher teacher3 = new Teacher(3, "Petr", "Sokolov", "senior");
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/teachers/get-all-teachers.sql"})
-    void getAllTeachers(String path) {
-        List<Teacher> teacherList = teacherRepository.getAllTeachers(path);
+    @Test
+    void getAllTeachers() {
+        List<Teacher> teacherList = teacherRepository.getAllTeachers();
         assertThat(teacherList, hasSize(2));
         assertThat(teacherList, hasItem(teacher1));
         assertThat(teacherList, hasItem(teacher2));
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/teachers/add-teacher.sql," +
-            "src/test/resources/teachers/find-teacher-by-id.sql"})
-    void addTeacher(String path1, String path2) {
-        assertTrue(teacherRepository.addTeacher(teacher3, path1));
-        Teacher result = teacherRepository.findTeacherById(3, path2);
+    @Test
+    void addTeacher() {
+        assertTrue(teacherRepository.addTeacher(teacher3, 1));
+        Teacher result = teacherRepository.findTeacherById(3);
         assertEquals(teacher3, result);
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/teachers/delete-teacher.sql," +
-            "src/test/resources/teachers/find-teacher-by-id.sql"})
-    void deleteTeacher(String path1, String path2) {
-        assertTrue(teacherRepository.deleteTeacher(1, path1));
-        Teacher result = teacherRepository.findTeacherById(1, path2);
+    @Test
+    void deleteTeacher() {
+        assertTrue(teacherRepository.deleteTeacher(1));
+        Teacher result = teacherRepository.findTeacherById(1);
         assertNull(result);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/teachers/find-teacher-by-id.sql"})
-    void findTeacherById(String path) {
-        Teacher teacher = teacherRepository.findTeacherById(1, path);
+    @Test
+    void findTeacherById() {
+        Teacher teacher = teacherRepository.findTeacherById(1);
         assertEquals(teacher1, teacher);
     }
 }

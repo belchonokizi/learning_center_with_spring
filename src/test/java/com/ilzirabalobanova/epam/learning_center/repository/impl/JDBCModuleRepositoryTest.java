@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,31 +30,26 @@ class JDBCModuleRepositoryTest {
     private final Module module2 = new Module(2, 1, "first_module_java", 24);
     private final Module module3 = new Module(3, 2, "first_module_javascript", 24);
 
-    @ParameterizedTest
-    @ValueSource(strings = {"src/test/resources/modules/find-all-modules-by-program-id.sql"})
-    void findAllModulesByProgramId(String path) {
-        List<Module> result = moduleRepository.findAllModulesByProgramId(1, path);
+    @Test
+    void findAllModulesByProgramId() {
+        List<Module> result = moduleRepository.findAllModulesByProgramId(1);
         assertThat(result, hasSize(2));
         assertThat(result, hasItem(module1));
         assertThat(result, hasItem(module2));
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/test/resources/modules/add-module.sql," +
-            "src/test/resources/modules/find-all-modules-by-program-id.sql"})
-    void addModule(String path1, String path2) {
-        assertTrue(moduleRepository.addModule(module3, path1));
-        List<Module> result = moduleRepository.findAllModulesByProgramId(2, path2);
+    @Test
+    void addModule() {
+        assertTrue(moduleRepository.addModule(module3));
+        List<Module> result = moduleRepository.findAllModulesByProgramId(2);
         assertThat(result, hasSize(1));
         assertThat(result, hasItem(module3));
     }
 
-    @ParameterizedTest
-    @CsvSource({"src/main/resources/queries/crud/module/delete_module.sql," +
-            "src/test/resources/modules/find-all-modules-by-program-id.sql"})
-    void deleteModule(String path1, String path2) {
-        assertTrue(moduleRepository.deleteModule(1, path1));
-        List<Module> result = moduleRepository.findAllModulesByProgramId(1, path2);
+    @Test
+    void deleteModule() {
+        assertTrue(moduleRepository.deleteModule(1));
+        List<Module> result = moduleRepository.findAllModulesByProgramId(1);
         assertThat(result, hasSize(1));
         assertFalse(result.contains(module1));
     }

@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IModuleRepository {
 
-    List<Module> findAllModulesByProgramId(int programId, String path);
+    List<Module> findAllModulesByProgramId(int programId);
 
-    boolean addModule(Module module, String path);
+    boolean addModule(Module module);
 
-    boolean deleteModule(int moduleId, String path);
+    boolean deleteModule(int moduleId);
 }
