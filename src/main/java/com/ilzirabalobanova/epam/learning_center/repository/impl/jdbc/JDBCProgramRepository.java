@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
-import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.ProgramDataExtractor;
@@ -10,14 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository
-public class JDBCProgramRepository implements IProgramRepository {
+//@Repository
+public class JDBCProgramRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCProgramRepository.class);
 
     private final JdbcTemplate jdbcTemplate;
@@ -33,13 +31,13 @@ public class JDBCProgramRepository implements IProgramRepository {
         this.keyHolder = keyHolder;
     }
 
-    @Override
+    //    @Override
     public List<Program> getAllPrograms() {
         String query = reader.readSqlQueries(Constants.GET_ALL_PROGRAMS_SQL_QUERY_PATH);
         return jdbcTemplate.query(query, extractor);
     }
 
-    @Override
+    //    @Override
     public boolean addProgram(Program program) {
         String query = reader.readSqlQueries(Constants.ADD_PROGRAM_SQL_QUERY_PATH);
         int rowCount = jdbcTemplate.update(connection -> {
@@ -51,17 +49,17 @@ public class JDBCProgramRepository implements IProgramRepository {
         return rowCount == 1;
     }
 
-    @Override
-    public boolean deleteProgram(int id) {
+    //    @Override
+    public void deleteProgram(int id) {
         String query = reader.readSqlQueries(Constants.DELETE_PROGRAM_SQL_QUERY_PATH);
-        return jdbcTemplate.update(con -> {
+        jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, id);
             return preparedStatement;
-        }) == 1;
+        });
     }
 
-    @Override
+    //    @Override
     public Program findProgramById(int id) {
         String query = reader.readSqlQueries(Constants.FIND_PROGRAM_BY_ID_SQL_QUERY_PATH);
         List<Program> programs = jdbcTemplate.query(query, extractor, id);

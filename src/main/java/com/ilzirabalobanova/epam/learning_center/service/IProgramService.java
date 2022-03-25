@@ -13,5 +13,5 @@ public interface IProgramService {
 
     boolean addProgram(Program program);
 
-    boolean deleteProgram(int id);
+    void deleteProgram(int id);
 }

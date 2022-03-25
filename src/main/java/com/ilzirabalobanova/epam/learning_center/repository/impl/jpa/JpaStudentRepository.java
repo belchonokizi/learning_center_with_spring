@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -29,21 +30,25 @@ public class JpaStudentRepository implements IStudentRepository {
 
     @Override
     public boolean addStudent(Student student) {
-        return false;
+        Session session = entityManager.unwrap(Session.class);
+        return session.save(student) != null;
     }
 
+    @Transactional
     @Override
     public boolean deleteStudent(int id) {
-        return false;
+        return entityManager.createQuery("delete from Student " +
+                "where id = :id").setParameter("id", id).executeUpdate() == 1;
     }
 
     @Override
     public Student findStudentById(int id) {
-        return null;
+        return entityManager.find(Student.class, id);
     }
 
+    @Transactional
     @Override
     public Student updateStudent(int studentId, Student student) {
-        return null;
+        return (Student) entityManager.unwrap(Session.class).merge(student);
     }
 }

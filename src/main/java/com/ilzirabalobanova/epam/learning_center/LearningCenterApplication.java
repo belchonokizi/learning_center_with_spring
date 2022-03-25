@@ -5,6 +5,8 @@ import com.ilzirabalobanova.epam.learning_center.command.Command;
 import com.ilzirabalobanova.epam.learning_center.command.CommandExecutor;
 import com.ilzirabalobanova.epam.learning_center.exception.IllegalInitialDataException;
 import com.ilzirabalobanova.epam.learning_center.operation.Operation;
+import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
+import com.ilzirabalobanova.epam.learning_center.service.impl.ProgramService;
 import com.ilzirabalobanova.epam.learning_center.util.ConsoleHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,8 @@ public class LearningCenterApplication {
         System.out.println("Оценки студента: " + studentBean.getMarksList());
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
+        IProgramService programService = context.getBean(ProgramService.class);
+        programService.deleteProgram(7);
         Operation operation;
         do {
             try {

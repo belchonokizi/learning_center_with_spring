@@ -3,15 +3,22 @@ package com.ilzirabalobanova.epam.learning_center.entity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "programs")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Program {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
-    private List<Module> modules;
+
 
     public Program(int id) {
         this.id = id;
@@ -37,24 +44,11 @@ public class Program {
         this.name = name;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
-
-    public void addModule(Module module) {
-        modules.add(module);
-    }
-
     @Override
     public String toString() {
         return "Program{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", modules=" + modules +
                 '}';
     }
 
@@ -64,12 +58,11 @@ public class Program {
         if (o == null || getClass() != o.getClass()) return false;
         Program program = (Program) o;
         return id == program.id &&
-                Objects.equals(name, program.name) &&
-                Objects.equals(modules, program.modules);
+                Objects.equals(name, program.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, modules);
+        return Objects.hash(id, name);
     }
 }

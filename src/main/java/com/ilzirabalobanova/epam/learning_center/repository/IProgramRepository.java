@@ -1,16 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface IProgramRepository {
-
-    List<Program> getAllPrograms();
-
-    boolean addProgram(Program program);
-
-    boolean deleteProgram(int id);
-
-    Program findProgramById(int id);
+public interface IProgramRepository extends JpaRepository<Program, Integer> {
 }
