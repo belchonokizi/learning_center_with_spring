@@ -8,33 +8,43 @@ import com.ilzirabalobanova.epam.learning_center.util.extractors.StudentDataExtr
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-//@Repository()
-@ConditionalOnClass(DataSource.class)
 public class JDBCStudentRepository implements IStudentRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
 
-    private final JdbcTemplate jdbcTemplate;
-    private final StudentDataExtractor extractor;
-    private final SqlQueriesReader reader;
-    private final GeneratedKeyHolder keyHolder;
+    private JdbcTemplate jdbcTemplate;
+    private StudentDataExtractor extractor;
+    private SqlQueriesReader reader;
+    private GeneratedKeyHolder keyHolder;
+
+    public JDBCStudentRepository() {
+    }
 
     @Autowired
-    public JDBCStudentRepository(JdbcTemplate jdbcTemplate, StudentDataExtractor extractor, SqlQueriesReader reader, GeneratedKeyHolder keyHolder) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Autowired
+    public void setExtractor(StudentDataExtractor extractor) {
         this.extractor = extractor;
+    }
+
+    @Autowired
+    public void setReader(SqlQueriesReader reader) {
         this.reader = reader;
+    }
+
+    @Autowired
+    public void setKeyHolder(GeneratedKeyHolder keyHolder) {
         this.keyHolder = keyHolder;
     }
 

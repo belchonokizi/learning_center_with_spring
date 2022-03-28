@@ -1,8 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.config;
 
 import com.ilzirabalobanova.epam.learning_center.command.impl.*;
-import com.ilzirabalobanova.epam.learning_center.util.parser.StudentFileParser;
-import com.ilzirabalobanova.epam.learning_center.util.parser.YamlParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,16 +11,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 @ComponentScan("com.ilzirabalobanova.epam.learning_center")
 @EnableAspectJAutoProxy
 public class LearningCenterConfig {
-
-    @Bean
-    public YamlParser yamlParser() {
-        return new YamlParser();
-    }
-
-    @Bean
-    public StudentFileParser studentFileParser() {
-        return new StudentFileParser();
-    }
 
     @Bean
     public ShowAllStudentCommand showAllStudentCommand() {
@@ -70,7 +58,7 @@ public class LearningCenterConfig {
     }
 
     @Bean
-    public GeneratedKeyHolder createBeanKeyHolder(){
+    public GeneratedKeyHolder createBeanKeyHolder() {
         return new GeneratedKeyHolder();
     }
 }

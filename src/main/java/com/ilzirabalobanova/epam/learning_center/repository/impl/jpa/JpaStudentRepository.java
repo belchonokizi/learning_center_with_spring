@@ -5,18 +5,16 @@ import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository
 public class JpaStudentRepository implements IStudentRepository {
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Autowired
-    public JpaStudentRepository(EntityManager entityManager) {
+    public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
