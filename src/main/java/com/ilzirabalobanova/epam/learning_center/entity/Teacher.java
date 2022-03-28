@@ -3,20 +3,29 @@ package com.ilzirabalobanova.epam.learning_center.entity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "teachers")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Teacher {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private String firstName;
-    private String lastName;
-    private String workLevel;
-    private List<String> programNames;
 
-    public Teacher(int id, String firstName, String lastName, String workLevel) {
-        this.id = id;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "work_level")
+    private String workLevel;
+
+    public Teacher(String firstName, String lastName, String workLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.workLevel = workLevel;
@@ -54,18 +63,6 @@ public class Teacher {
         this.workLevel = workLevel;
     }
 
-    public List<String> getProgramNames() {
-        return programNames;
-    }
-
-    public void setProgramNames(List<String> programNames) {
-        this.programNames = programNames;
-    }
-
-    public void addProgramName(String programName) {
-        programNames.add(programName);
-    }
-
     @Override
     public String toString() {
         return "Teacher{" +
@@ -73,7 +70,6 @@ public class Teacher {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", workLevel='" + workLevel + '\'' +
-                ", programNames=" + programNames +
                 '}';
     }
 
@@ -85,12 +81,11 @@ public class Teacher {
         return id == teacher.id &&
                 Objects.equals(firstName, teacher.firstName) &&
                 Objects.equals(lastName, teacher.lastName) &&
-                Objects.equals(workLevel, teacher.workLevel) &&
-                Objects.equals(programNames, teacher.programNames);
+                Objects.equals(workLevel, teacher.workLevel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, workLevel, programNames);
+        return Objects.hash(id, firstName, lastName, workLevel);
     }
 }

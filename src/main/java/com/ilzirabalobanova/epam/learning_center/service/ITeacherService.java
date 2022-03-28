@@ -7,9 +7,9 @@ import java.util.List;
 public interface ITeacherService {
     List<Teacher> getAllTeachers();
 
-    boolean addTeacher(Teacher teacher, int programId);
+    boolean addTeacher(Teacher teacher);
 
-    boolean deleteTeacher(int id);
+    void deleteTeacher(int id);
 
     Teacher findTeacherById(int id);
 }
