@@ -22,9 +22,9 @@ class JDBCProgramRepositoryTest {
     @Autowired
     JDBCProgramRepository programRepository;
 
-    private final Program program1 = new Program(1, "Java", null);
-    private final Program program2 = new Program(2, "JavaScript", null);
-    private final Program program3 = new Program(3, ".Net", null);
+    private final Program program1 = new Program(1, "Java");
+    private final Program program2 = new Program(2, "JavaScript");
+    private final Program program3 = new Program(3, ".Net");
 
     @Test
     void getAllPrograms() {
@@ -43,7 +43,6 @@ class JDBCProgramRepositoryTest {
 
     @Test
     void deleteProgram() {
-        assertTrue(programRepository.deleteProgram(1));
         assertNull(programRepository.findProgramById(1));
     }
 
