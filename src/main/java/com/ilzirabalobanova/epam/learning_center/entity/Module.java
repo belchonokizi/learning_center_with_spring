@@ -3,15 +3,33 @@ package com.ilzirabalobanova.epam.learning_center.entity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "modules")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Module {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "program_id")
     private int programId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "duration")
     private long durationInHours;
+
+    public Module(int programId, String name, long durationInHours) {
+        this.programId = programId;
+        this.name = name;
+        this.durationInHours = durationInHours;
+    }
 
     public int getId() {
         return id;
