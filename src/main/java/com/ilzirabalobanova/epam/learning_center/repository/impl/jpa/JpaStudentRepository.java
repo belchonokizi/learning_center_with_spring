@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public class JpaStudentRepository implements IStudentRepository {
-
     private final EntityManager entityManager;
 
     @Autowired
