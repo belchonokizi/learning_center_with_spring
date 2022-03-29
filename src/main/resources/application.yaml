@@ -13,17 +13,24 @@ logging:
 
 spring:
   datasource:
-      username: bestuser
-      password: bestuser
-      url: jdbc:mysql://localhost:3306/learning_center?serverTimezone=UTC
-      driver-class-name: com.mysql.cj.jdbc.Driver
-#      url: jdbc:h2:mem:mydb
-#      username: sa
-#      password: password
-#      driverClassName: org.h2.Driver
-#    jpa:
-#      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+#    db-1:
+#      username: bestuser
+#      password: bestuser
+#      url: jdbc:mysql://localhost:3306/learning_center?serverTimezone=UTC
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    db-2:
+      url: jdbc:h2:mem:mydb
+      username: sa
+      password: password
+      driverClassName: org.h2.Driver
+      jpa:
+        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
 
 resources:
-    repository: JpaStudentRepository
+    student-repository: JpaStudentRepository
+#    student-repository: JDBCStudentRepository
+#    module-repository: JpaModuleRepository
+    module-repository: JDBCModuleRepository
+#    mark-repository: JpaMarkRepository
+    mark-repository: JDBCMarkRepository

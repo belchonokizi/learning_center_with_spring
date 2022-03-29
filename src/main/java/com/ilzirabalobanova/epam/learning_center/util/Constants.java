@@ -24,6 +24,7 @@ public class Constants {
     public static final String FIND_TEACHER_BY_ID_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/find_teacher_by_id.sql";
     public static final String LINK_TEACHER_AND_PROGRAM_SQL_QUERY_PATH = "src/main/resources/queries/crud/teachers/link_teacher_and_program.sql";
     public static final String LINK_STUDENT_AND_PROGRAM_SQL_QUERY_PATH = "src/main/resources/queries/crud/mark/add-student-mark.sql";
+    public static final String FIND_MARKS_BY_STUDENT_ID = "src/main/resources/queries/crud/mark/find_marks_by_student_id.sql";
 
     private Constants() {
     }

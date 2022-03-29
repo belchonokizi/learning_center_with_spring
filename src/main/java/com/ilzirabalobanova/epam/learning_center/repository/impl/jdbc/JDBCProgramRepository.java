@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-//@Repository
 public class JDBCProgramRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCProgramRepository.class);
 

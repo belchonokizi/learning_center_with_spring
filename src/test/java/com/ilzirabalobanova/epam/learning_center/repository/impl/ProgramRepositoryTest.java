@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Sql({"/programs/programs-schema.sql", "/programs/programs-test-data.sql"})
-class JDBCProgramRepositoryTest {
+class ProgramRepositoryTest {
     @Autowired
-    JDBCProgramRepository programRepository;
+    private JDBCProgramRepository programRepository;
 
     private final Program program1 = new Program(1, "Java");
     private final Program program2 = new Program(2, "JavaScript");

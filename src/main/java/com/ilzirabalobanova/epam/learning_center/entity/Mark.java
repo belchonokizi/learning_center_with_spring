@@ -22,13 +22,13 @@ public class Mark {
     @Column(name = "module_id")
     private int moduleId;
 
-    @Column(name = "value")
-    private int value;
+    @Column(name = "mark_value")
+    private int markValue;
 
-    public Mark(int studentId, int moduleId, int value) {
+    public Mark(int studentId, int moduleId, int markValue) {
         this.studentId = studentId;
         this.moduleId = moduleId;
-        this.value = value;
+        this.markValue = markValue;
     }
 
     public int getId() {
@@ -55,12 +55,12 @@ public class Mark {
         this.moduleId = moduleId;
     }
 
-    public int getValue() {
-        return value;
+    public int getMarkValue() {
+        return markValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setMarkValue(int markValue) {
+        this.markValue = markValue;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Mark {
                 "id=" + id +
                 ", studentId=" + studentId +
                 ", moduleId=" + moduleId +
-                ", value=" + value +
+                ", value=" + markValue +
                 '}';
     }
 
@@ -81,11 +81,11 @@ public class Mark {
         return id == mark.id &&
                 studentId == mark.studentId &&
                 moduleId == mark.moduleId &&
-                value == mark.value;
+                markValue == mark.markValue;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, studentId, moduleId, value);
+        return Objects.hash(id, studentId, moduleId, markValue);
     }
 }

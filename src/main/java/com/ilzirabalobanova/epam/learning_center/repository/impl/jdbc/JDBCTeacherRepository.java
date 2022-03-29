@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
-import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.TeacherDataExtractor;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Repository
-public class JDBCTeacherRepository implements ITeacherRepository {
+public class JDBCTeacherRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCTeacherRepository.class);
 
     private final JdbcTemplate jdbcTemplate;
@@ -33,14 +32,14 @@ public class JDBCTeacherRepository implements ITeacherRepository {
         this.keyHolder = keyHolder;
     }
 
-    @Override
+
     public List<Teacher> getAllTeachers() {
         String query = reader.readSqlQueries(Constants.GET_ALL_TEACHERS_SQL_QUERY_PATH);
         return jdbcTemplate.query(query, extractor);
     }
 
-    @Override
-    public boolean addTeacher(Teacher teacher, int programId) {
+    //    @Override
+    public boolean addTeacher(Teacher teacher) {
         String query = reader.readSqlQueries(Constants.ADD_TEACHER_SQL_QUERY_PATH);
         int rowCount = jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
@@ -53,7 +52,7 @@ public class JDBCTeacherRepository implements ITeacherRepository {
         return rowCount == 1;
     }
 
-    @Override
+    //    @Override
     public boolean deleteTeacher(int id) {
         String query = reader.readSqlQueries(Constants.DELETE_TEACHER_SQL_QUERY_PATH);
         return jdbcTemplate.update(con -> {
@@ -63,7 +62,7 @@ public class JDBCTeacherRepository implements ITeacherRepository {
         }) == 1;
     }
 
-    @Override
+    //    @Override
     public Teacher findTeacherById(int id) {
         String query = reader.readSqlQueries(Constants.FIND_TEACHER_BY_ID_SQL_QUERY_PATH);
         List<Teacher> teachers = jdbcTemplate.query(query, extractor, id);
@@ -75,17 +74,4 @@ public class JDBCTeacherRepository implements ITeacherRepository {
         }
         return teacher;
     }
-
-    private boolean linkTeacherAndProgram(int teacherId, int programId) {
-        String query = reader.readSqlQueries(Constants.LINK_TEACHER_AND_PROGRAM_SQL_QUERY_PATH);
-        int rowCount = jdbcTemplate.update(connection -> {
-            PreparedStatement preparedStatement = connection.prepareStatement(query, new String[]{"id"});
-            preparedStatement.setInt(1, teacherId);
-            preparedStatement.setInt(2, programId);
-            return preparedStatement;
-        }, keyHolder);
-        return rowCount == 1;
-    }
-
-
 }

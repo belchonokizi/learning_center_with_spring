@@ -8,24 +8,34 @@ import com.ilzirabalobanova.epam.learning_center.util.extractors.ModuleDataExtra
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository
 public class JDBCModuleRepository implements IModuleRepository {
-    private final JdbcTemplate jdbcTemplate;
-    private final ModuleDataExtractor extractor;
-    private final SqlQueriesReader reader;
-    private final GeneratedKeyHolder keyHolder;
+    private JdbcTemplate jdbcTemplate;
+    private ModuleDataExtractor extractor;
+    private SqlQueriesReader reader;
+    private GeneratedKeyHolder keyHolder;
 
     @Autowired
-    public JDBCModuleRepository(JdbcTemplate jdbcTemplate, ModuleDataExtractor extractor, SqlQueriesReader reader, GeneratedKeyHolder keyHolder) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Autowired
+    public void setExtractor(ModuleDataExtractor extractor) {
         this.extractor = extractor;
+    }
+
+    @Autowired
+    public void setReader(SqlQueriesReader reader) {
         this.reader = reader;
+    }
+
+    @Autowired
+    public void setKeyHolder(GeneratedKeyHolder keyHolder) {
         this.keyHolder = keyHolder;
     }
 

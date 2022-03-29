@@ -5,7 +5,6 @@ import com.ilzirabalobanova.epam.learning_center.repository.IModuleRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -14,12 +13,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-@Repository
 public class JpaModuleRepository implements IModuleRepository {
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Autowired
-    public JpaModuleRepository(EntityManager entityManager) {
+    public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

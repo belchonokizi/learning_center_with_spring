@@ -46,6 +46,10 @@ public class JpaStudentRepository implements IStudentRepository {
     @Transactional
     @Override
     public Student updateStudent(int studentId, Student student) {
-        return (Student) entityManager.unwrap(Session.class).merge(student);
+        Session session = entityManager.unwrap(Session.class);
+        Student studentForUpdate = findStudentById(studentId);
+        studentForUpdate.setFirstName(student.getFirstName());
+        session.saveOrUpdate(studentForUpdate);
+        return student;
     }
 }
