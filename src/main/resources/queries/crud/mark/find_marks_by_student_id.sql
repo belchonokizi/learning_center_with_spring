@@ -1,0 +1,1 @@
+select id as id, student_id as student_id, module_id as module_id, mark_value as mark_value from marks where student_id = ?

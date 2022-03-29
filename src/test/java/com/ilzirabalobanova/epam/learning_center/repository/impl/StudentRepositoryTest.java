@@ -1,8 +1,8 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCStudentRepository;
+import com.ilzirabalobanova.epam.learning_center.repository.impl.jpa.JpaStudentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +21,29 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Sql({"/students/students-schema.sql", "/students/students-test-data.sql"})
-class JDBCStudentRepositoryTest {
+class StudentRepositoryTest {
     @Autowired
-    private JDBCStudentRepository studentRepository;
+    private JpaStudentRepository studentRepository;
 
     private final Student student1 = new Student(1, "Ivan", "Gorin", "89120253064", "sdfghjk", LocalDate.of(2022, 12, 3), false, 1);
     private final Student student2 = new Student(2, "Anna", "Grushina", "89240266064", "f", LocalDate.of(2022, 10, 3), false, 2);
     private final Student student3 = new Student(3, "Elena", "Sovina", "89360253048", "fff", LocalDate.of(2022, 11, 3), false, 3);
-    private final Student student4 = new Student(4, "Igor", "Balin", "89500250064", "sd", LocalDate.of(2022, 9, 3), false, 4);
-    private final Student student5 = new Student(5, "Aleksandr", "Tutin", "89990253784", "dd", LocalDate.of(2022, 8, 3), false, 5);
-    private final Student student6 = new Student("Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, 6);
+    private final Student student4 = new Student(6, "Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, 4);
 
     @Test
     void addStudent() {
-        assertTrue(studentRepository.addStudent(student6));
-        Student result = studentRepository.findStudentById(6);
-        assertEquals(student6, result);
+        assertTrue(studentRepository.addStudent(student4));
+        Student result = studentRepository.findStudentById(4);
+        assertEquals(student4, result);
     }
 
     @Test
     void getAllStudents() {
         List<Student> allStudents = studentRepository.getAllStudents();
-        assertEquals(5, allStudents.size());
+        assertEquals(3, allStudents.size());
         assertThat(allStudents, hasItem(student1));
         assertThat(allStudents, hasItem(student2));
         assertThat(allStudents, hasItem(student3));
-        assertThat(allStudents, hasItem(student4));
-        assertThat(allStudents, hasItem(student5));
     }
 
     @Test
@@ -65,7 +61,7 @@ class JDBCStudentRepositoryTest {
 
     @Test
     void updateStudent() {
-        Student newStudent = studentRepository.updateStudent(1, student6);
+        Student newStudent = studentRepository.updateStudent(1, student4);
         Student updatedStudent = studentRepository.findStudentById(1);
         assertEquals(newStudent.getFirstName(), Objects.requireNonNull(updatedStudent).getFirstName());
         assertEquals(student1.getLastName(), updatedStudent.getLastName());

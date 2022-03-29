@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest()
 @Sql({"/teachers/teachers-schema.sql", "/teachers/teachers-test-data.sql"})
-class JDBCTeacherRepositoryTest {
+class TeacherRepositoryTest {
     @Autowired
     private JDBCTeacherRepository teacherRepository;
 

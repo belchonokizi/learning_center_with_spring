@@ -7,16 +7,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RepositoryConfig {
+public class StudentRepositoryConfig {
 
     @Bean
-    @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JpaStudentRepository")
+    @ConditionalOnProperty(prefix = "resources", name = "student-repository", havingValue = "JpaStudentRepository")
     public JpaStudentRepository jpaStudentRepository() {
         return new JpaStudentRepository();
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JDBCStudentRepository")
+    @ConditionalOnProperty(prefix = "resources", name = "student-repository", havingValue = "JDBCStudentRepository")
     public JDBCStudentRepository jdbcStudentRepository() {
         return new JDBCStudentRepository();
     }

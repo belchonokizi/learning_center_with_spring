@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS marks;
+
+CREATE TABLE marks (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ student_id INT NOT NULL,
+ module_id INT NOT NULL,
+ mark_value INT NOT NULL
+)

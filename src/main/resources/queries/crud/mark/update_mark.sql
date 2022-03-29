@@ -1,1 +1,1 @@
-UPDATE marks SET value = ? WHERE student_id = ? AND module_id = ?
+UPDATE marks SET mark_value = ? WHERE student_id = ? AND module_id = ?
