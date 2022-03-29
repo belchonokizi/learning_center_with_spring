@@ -37,7 +37,7 @@ class TeacherRepositoryTest {
 
     @Test
     void addTeacher() {
-        assertTrue(teacherRepository.addTeacher(teacher3, 1));
+        assertTrue(teacherRepository.addTeacher(teacher3));
         Teacher result = teacherRepository.findTeacherById(3);
         assertEquals(teacher3, result);
     }

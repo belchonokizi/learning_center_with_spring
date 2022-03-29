@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
+import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCProgramRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -43,6 +44,7 @@ class ProgramRepositoryTest {
 
     @Test
     void deleteProgram() {
+        programRepository.deleteProgram(1);
         assertNull(programRepository.findProgramById(1));
     }
 

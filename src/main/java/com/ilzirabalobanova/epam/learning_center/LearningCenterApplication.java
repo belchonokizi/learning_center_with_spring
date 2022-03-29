@@ -23,7 +23,7 @@ public class LearningCenterApplication {
         ConsoleHelper helper = context.getBean("consoleHelper", ConsoleHelper.class);
         CommandExecutor executor = context.getBean("commandExecutor", CommandExecutor.class);
         JpaMarkRepository markRepository = context.getBean(JpaMarkRepository.class);
-        markRepository.findStudentMarks(1).forEach(System.out::println);
+        markRepository.findStudentMarks(2).forEach(System.out::println);
         Operation operation;
         do {
             try {

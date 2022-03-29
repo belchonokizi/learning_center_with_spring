@@ -1,8 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
-import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCStudentRepository;
-import com.ilzirabalobanova.epam.learning_center.repository.impl.jpa.JpaStudentRepository;
+import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql({"/students/students-schema.sql", "/students/students-test-data.sql"})
 class StudentRepositoryTest {
     @Autowired
-    private JpaStudentRepository studentRepository;
+    private IStudentRepository studentRepository;
 
     private final Student student1 = new Student(1, "Ivan", "Gorin", "89120253064", "sdfghjk", LocalDate.of(2022, 12, 3), false, 1);
     private final Student student2 = new Student(2, "Anna", "Grushina", "89240266064", "f", LocalDate.of(2022, 10, 3), false, 2);
     private final Student student3 = new Student(3, "Elena", "Sovina", "89360253048", "fff", LocalDate.of(2022, 11, 3), false, 3);
-    private final Student student4 = new Student(6, "Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, 4);
+    private final Student student4 = new Student(4, "Boris", "Sidorov", "89120183064", "boris", LocalDate.of(2021, 12, 3), false, 4);
 
     @Test
     void addStudent() {

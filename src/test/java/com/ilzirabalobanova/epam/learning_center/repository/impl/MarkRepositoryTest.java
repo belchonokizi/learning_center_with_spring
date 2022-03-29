@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Sql({"/marks/marks-schema.sql", "/marks/marks-test-data.sql"})
 class MarkRepositoryTest {
     @Autowired
-    private JDBCMarkRepository markRepository;
+    private JpaMarkRepository markRepository;
 
     private final Mark mark1 = new Mark(1, 1, 1, 80);
     private final Mark mark2 = new Mark(2, 1, 2, 70);
