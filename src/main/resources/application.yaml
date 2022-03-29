@@ -19,9 +19,5 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 resources:
-    student-repository: JpaStudentRepository
-#    student-repository: JDBCStudentRepository
-#    module-repository: JpaModuleRepository
-    module-repository: JDBCModuleRepository
-    mark-repository: JpaMarkRepository
-#    mark-repository: JDBCMarkRepository
+    repository: JPA
+#    repository: JDBC

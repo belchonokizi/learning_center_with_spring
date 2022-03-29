@@ -8,12 +8,9 @@ spring:
       jpa:
         spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   profiles:
-    active: dev
+    active: prod
+#    active: dev
 
 resources:
-  student-repository: JpaStudentRepository
-  #    student-repository: JDBCStudentRepository
-  #    module-repository: JpaModuleRepository
-  module-repository: JDBCModuleRepository
-  mark-repository: JpaMarkRepository
-#    mark-repository: JDBCMarkRepository
+    repository: JPA
+  #    repository: JDBC
