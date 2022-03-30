@@ -1,10 +1,12 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
+import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCProgramRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,11 +22,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql({"/programs/programs-schema.sql", "/programs/programs-test-data.sql"})
 class ProgramRepositoryTest {
     @Autowired
-    private JDBCProgramRepository programRepository;
+    private IProgramRepository programRepository;
 
     private final Program program1 = new Program(1, "Java");
     private final Program program2 = new Program(2, "JavaScript");
-    private final Program program3 = new Program(3, ".Net");
+    private final Program program3 = new Program( 3, ".Net");
 
     @Test
     void getAllPrograms() {

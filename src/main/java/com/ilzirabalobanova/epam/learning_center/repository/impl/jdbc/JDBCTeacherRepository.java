@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
+import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.TeacherDataExtractor;
@@ -9,36 +10,45 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
-@Repository
-public class JDBCTeacherRepository {
+public class JDBCTeacherRepository implements ITeacherRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCTeacherRepository.class);
 
-    private final JdbcTemplate jdbcTemplate;
-    private final TeacherDataExtractor extractor;
-    private final SqlQueriesReader reader;
-    private final GeneratedKeyHolder keyHolder;
+    private JdbcTemplate jdbcTemplate;
+    private TeacherDataExtractor extractor;
+    private SqlQueriesReader reader;
+    private GeneratedKeyHolder keyHolder;
 
     @Autowired
-    public JDBCTeacherRepository(JdbcTemplate jdbcTemplate, TeacherDataExtractor extractor, SqlQueriesReader reader, GeneratedKeyHolder keyHolder) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.extractor = extractor;
-        this.reader = reader;
-        this.keyHolder = keyHolder;
     }
 
+    @Autowired
+    public void setExtractor(TeacherDataExtractor extractor) {
+        this.extractor = extractor;
+    }
+
+    @Autowired
+    public void setReader(SqlQueriesReader reader) {
+        this.reader = reader;
+    }
+
+    @Autowired
+    public void setKeyHolder(GeneratedKeyHolder keyHolder) {
+        this.keyHolder = keyHolder;
+    }
 
     public List<Teacher> getAllTeachers() {
         String query = reader.readSqlQueries(Constants.GET_ALL_TEACHERS_SQL_QUERY_PATH);
         return jdbcTemplate.query(query, extractor);
     }
 
-    //    @Override
+    @Override
     public boolean addTeacher(Teacher teacher) {
         String query = reader.readSqlQueries(Constants.ADD_TEACHER_SQL_QUERY_PATH);
         int rowCount = jdbcTemplate.update(connection -> {
@@ -52,17 +62,17 @@ public class JDBCTeacherRepository {
         return rowCount == 1;
     }
 
-    //    @Override
-    public boolean deleteTeacher(int id) {
+    @Override
+    public void deleteTeacher(int id) {
         String query = reader.readSqlQueries(Constants.DELETE_TEACHER_SQL_QUERY_PATH);
-        return jdbcTemplate.update(con -> {
+        jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, id);
             return preparedStatement;
-        }) == 1;
+        });
     }
 
-    //    @Override
+    @Override
     public Teacher findTeacherById(int id) {
         String query = reader.readSqlQueries(Constants.FIND_TEACHER_BY_ID_SQL_QUERY_PATH);
         List<Teacher> teachers = jdbcTemplate.query(query, extractor, id);

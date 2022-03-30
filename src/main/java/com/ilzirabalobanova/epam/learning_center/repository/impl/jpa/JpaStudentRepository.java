@@ -26,6 +26,7 @@ public class JpaStudentRepository implements IStudentRepository {
     }
 
     @Override
+    @Transactional
     public boolean addStudent(Student student) {
         Session session = entityManager.unwrap(Session.class);
         return session.save(student) != null;

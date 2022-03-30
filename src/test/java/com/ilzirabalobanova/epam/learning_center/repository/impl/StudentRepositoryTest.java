@@ -39,6 +39,7 @@ class StudentRepositoryTest {
     @Test
     void getAllStudents() {
         List<Student> allStudents = studentRepository.getAllStudents();
+        allStudents.forEach(System.out::println);
         assertEquals(3, allStudents.size());
         assertThat(allStudents, hasItem(student1));
         assertThat(allStudents, hasItem(student2));

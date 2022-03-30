@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
+import com.ilzirabalobanova.epam.learning_center.repository.IModuleRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCModuleRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jpa.JpaModuleRepository;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Sql({"/modules/modules-schema.sql", "/modules/modules-test-data.sql"})
 class ModuleRepositoryTest {
     @Autowired
-    private JDBCModuleRepository moduleRepository;
+    private IModuleRepository moduleRepository;
 
     private final Module module1 = new Module(1, 1, "first_module_java", 48);
     private final Module module2 = new Module(2, 1, "first_module_java", 24);

@@ -18,16 +18,28 @@ import java.util.Objects;
 public class JDBCProgramRepository implements IProgramRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCProgramRepository.class);
 
-    private final JdbcTemplate jdbcTemplate;
-    private final ProgramDataExtractor extractor;
-    private final SqlQueriesReader reader;
-    private final GeneratedKeyHolder keyHolder;
+    private JdbcTemplate jdbcTemplate;
+    private ProgramDataExtractor extractor;
+    private SqlQueriesReader reader;
+    private GeneratedKeyHolder keyHolder;
 
     @Autowired
-    public JDBCProgramRepository(JdbcTemplate jdbcTemplate, ProgramDataExtractor extractor, SqlQueriesReader reader, GeneratedKeyHolder keyHolder) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Autowired
+    public void setExtractor(ProgramDataExtractor extractor) {
         this.extractor = extractor;
+    }
+
+    @Autowired
+    public void setReader(SqlQueriesReader reader) {
         this.reader = reader;
+    }
+
+    @Autowired
+    public void setKeyHolder(GeneratedKeyHolder keyHolder) {
         this.keyHolder = keyHolder;
     }
 

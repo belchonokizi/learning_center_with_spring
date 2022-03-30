@@ -5,18 +5,14 @@ import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProgramService implements IProgramService {
-    private final Logger logger = LoggerFactory.logger(ProgramService.class);
     private final IProgramRepository programRepository;
 
     @Autowired
@@ -26,19 +22,12 @@ public class ProgramService implements IProgramService {
 
     @Override
     public Program findProgramById(int id) {
-        Program resultProgram = null;
-        Optional<Program> program = programRepository.findById(id);
-        if (program.isPresent()) {
-            resultProgram = program.get();
-        } else {
-            logger.error("Программа не найдена");
-        }
-        return resultProgram;
+        return programRepository.findProgramById(id);
     }
 
     @Override
     public List<Program> getAllPrograms() {
-        return programRepository.findAll();
+        return programRepository.getAllPrograms();
     }
 
 
@@ -48,20 +37,20 @@ public class ProgramService implements IProgramService {
         List<Mark> marksList = new ArrayList<>();
         double sum = 0;
         for (Mark mark : marksList) {
-            sum += mark.getValue();
+            sum += mark.getMarkValue();
         }
         return sum / marksList.size();
     }
 
     @Override
     public boolean addProgram(Program program) {
-       programRepository.save(program);
-       return true;
+        programRepository.addProgram(program);
+        return true;
     }
 
     @Override
     public void deleteProgram(int id) {
-        programRepository.deleteById(id);
+        programRepository.deleteProgram(id);
     }
 }
 

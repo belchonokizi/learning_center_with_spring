@@ -9,19 +9,6 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class StudentRepositoryConfig {
 
-//    @Bean
-//    @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JPA")
-//    public JpaStudentRepository jpaStudentRepository() {
-//        return new JpaStudentRepository();
-//    }
-//
-//    @Bean
-//    @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JDBC")
-//    public JDBCStudentRepository jdbcStudentRepository() {
-//        return new JDBCStudentRepository();
-//    }
-
-
     @Bean
     @Profile("prod")
     public JpaStudentRepository jpaStudentRepository() {

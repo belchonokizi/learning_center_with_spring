@@ -15,7 +15,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -48,11 +48,11 @@ public class Student {
         this.programId = programId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -127,9 +127,9 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id &&
-                isFinishedProgram == student.isFinishedProgram &&
+        return isFinishedProgram == student.isFinishedProgram &&
                 programId == student.programId &&
+                Objects.equals(id, student.id) &&
                 Objects.equals(firstName, student.firstName) &&
                 Objects.equals(lastName, student.lastName) &&
                 Objects.equals(phoneNumber, student.phoneNumber) &&

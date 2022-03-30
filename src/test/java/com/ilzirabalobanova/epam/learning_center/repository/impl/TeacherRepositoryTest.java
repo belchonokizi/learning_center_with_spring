@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
+import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCTeacherRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql({"/teachers/teachers-schema.sql", "/teachers/teachers-test-data.sql"})
 class TeacherRepositoryTest {
     @Autowired
-    private JDBCTeacherRepository teacherRepository;
+    private ITeacherRepository teacherRepository;
 
     private final Teacher teacher1 = new Teacher(1, "Mikhail", "Petrov", "middle");
     private final Teacher teacher2 = new Teacher(2, "Irina", "Shubina", "senior");
@@ -44,7 +45,7 @@ class TeacherRepositoryTest {
 
     @Test
     void deleteTeacher() {
-        assertTrue(teacherRepository.deleteTeacher(1));
+        teacherRepository.deleteTeacher(1);
         Teacher result = teacherRepository.findTeacherById(1);
         assertNull(result);
     }

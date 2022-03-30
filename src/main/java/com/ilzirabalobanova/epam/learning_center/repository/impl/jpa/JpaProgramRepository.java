@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepositoryFo
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.jboss.logging.Logger;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -23,12 +24,14 @@ public class JpaProgramRepository extends SimpleJpaRepository<Program, Integer> 
     }
 
     @Override
+    @Transactional
     public boolean addProgram(Program program) {
         save(program);
         return true;
     }
 
     @Override
+    @Transactional
     public void deleteProgram(int id) {
         deleteById(id);
     }

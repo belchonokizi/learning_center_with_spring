@@ -2,6 +2,7 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Mark;
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
+import com.ilzirabalobanova.epam.learning_center.repository.IMarkRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCMarkRepository;
 import com.ilzirabalobanova.epam.learning_center.repository.impl.jpa.JpaMarkRepository;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Sql({"/marks/marks-schema.sql", "/marks/marks-test-data.sql"})
 class MarkRepositoryTest {
     @Autowired
-    private JpaMarkRepository markRepository;
+    private IMarkRepository markRepository;
 
     private final Mark mark1 = new Mark(1, 1, 1, 80);
     private final Mark mark2 = new Mark(2, 1, 2, 70);
