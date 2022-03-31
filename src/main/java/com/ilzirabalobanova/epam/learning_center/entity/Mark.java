@@ -1,11 +1,12 @@
 package com.ilzirabalobanova.epam.learning_center.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Objects;
 
+@Data
 @Entity
 @Table(name = "marks")
 @NoArgsConstructor
@@ -29,63 +30,5 @@ public class Mark {
         this.studentId = studentId;
         this.moduleId = moduleId;
         this.markValue = markValue;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getModuleId() {
-        return moduleId;
-    }
-
-    public void setModuleId(int moduleId) {
-        this.moduleId = moduleId;
-    }
-
-    public int getMarkValue() {
-        return markValue;
-    }
-
-    public void setMarkValue(int markValue) {
-        this.markValue = markValue;
-    }
-
-    @Override
-    public String toString() {
-        return "Mark{" +
-                "id=" + id +
-                ", studentId=" + studentId +
-                ", moduleId=" + moduleId +
-                ", value=" + markValue +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mark mark = (Mark) o;
-        return id == mark.id &&
-                studentId == mark.studentId &&
-                moduleId == mark.moduleId &&
-                markValue == mark.markValue;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, studentId, moduleId, markValue);
     }
 }

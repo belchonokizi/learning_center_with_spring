@@ -28,8 +28,8 @@ public class JpaTeacherRepository extends SimpleJpaRepository<Teacher, Integer> 
     @Override
     @Transactional
     public boolean addTeacher(Teacher teacher) {
-        save(teacher);
-        return true;
+        Teacher result = save(teacher);
+        return result.equals(teacher);
     }
 
     @Override
