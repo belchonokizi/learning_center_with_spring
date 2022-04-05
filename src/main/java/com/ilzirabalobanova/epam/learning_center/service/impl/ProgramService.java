@@ -1,6 +1,5 @@
 package com.ilzirabalobanova.epam.learning_center.service.impl;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Mark;
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
@@ -8,7 +7,6 @@ import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,13 +31,7 @@ public class ProgramService implements IProgramService {
 
     @Override
     public double getAvgGrade(Student student) {
-//        List<Mark> marksList = student.getMarksList();
-        List<Mark> marksList = new ArrayList<>();
-        double sum = 0;
-        for (Mark mark : marksList) {
-            sum += mark.getMarkValue();
-        }
-        return sum / marksList.size();
+        return 0;
     }
 
     @Override
