@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.ilzirabalobanova.com/spring/ws/payments"
+        targetNamespace="http://www.ilzirabalobanova.com/spring/ws/payments" elementFormDefault="qualified">
+    <xs:element name="setPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:integer"/>
+                <xs:element name="programId" type="xs:integer"/>
+                <xs:element name="paymentAmount" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setPaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="tns:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentByStudentIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentByStudentIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="tns:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="studentId" type="xs:integer"/>
+            <xs:element name="programId" type="xs:integer"/>
+            <xs:element name="paymentAmount" type="xs:long"/>
+            <xs:element name="dateOfPayment" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

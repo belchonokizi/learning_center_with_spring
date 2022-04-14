@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    username: bestuser
+    password: bestuser
+    url: jdbc:mysql://localhost:3306/learning_center?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
