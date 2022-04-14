@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class AddCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(AddCommand.class);
