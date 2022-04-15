@@ -1,6 +1,5 @@
-package com.ilzirabalobanova.epam.entity.entity;
+package com.ilzirabalobanova.epam.entity;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +17,9 @@ public class BalanceEntity {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @Column(name = "student_id")
+    private Integer studentId;
 
     @Column(name = "amount")
-    private Integer amount;
+    private Long amount;
 }

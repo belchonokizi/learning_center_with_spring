@@ -1,7 +1,5 @@
-package com.ilzirabalobanova.epam.entity.entity;
+package com.ilzirabalobanova.epam.entity;
 
-import com.ilzirabalobanova.epam.learning_center.entity.Program;
-import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,13 +17,11 @@ public class PaymentEntity {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @Column(name = "student_id")
+    private Integer studentId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "program_id")
-    private Program program;
+    @Column(name = "program_id")
+    private Integer programId;
 
     @Column(name = "payment_amount")
     private Long paymentAmount;
@@ -33,4 +29,10 @@ public class PaymentEntity {
     @Column(name = "date_of_payment")
     private String dateOfPayment;
 
+    public PaymentEntity(Integer studentId, Integer programId, Long paymentAmount, String dateOfPayment) {
+        this.studentId = studentId;
+        this.programId = programId;
+        this.paymentAmount = paymentAmount;
+        this.dateOfPayment = dateOfPayment;
+    }
 }

@@ -6,7 +6,7 @@
 //
 
 
-package com.ilzirabalobanova.epam.entity.payments;
+package com.ilzirabalobanova.epam.payments;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "payment"
 })
-@XmlRootElement(name = "setPaymentResponse")
-public class SetPaymentResponse {
+@XmlRootElement(name = "getPaymentByStudentIdResponse")
+public class GetPaymentByStudentIdResponse {
 
     @XmlElement(required = true)
     protected Payment payment;

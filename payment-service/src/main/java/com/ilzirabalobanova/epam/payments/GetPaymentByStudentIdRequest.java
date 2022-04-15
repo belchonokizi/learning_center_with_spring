@@ -6,7 +6,7 @@
 //
 
 
-package com.ilzirabalobanova.epam.entity.payments;
+package com.ilzirabalobanova.epam.payments;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,8 +27,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="studentId" type="{http://www.w3.org/2001/XMLSchema}integer"/>
- *         &lt;element name="programId" type="{http://www.w3.org/2001/XMLSchema}integer"/>
- *         &lt;element name="paymentAmount" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,18 +37,13 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "studentId",
-    "programId",
-    "paymentAmount"
+    "studentId"
 })
-@XmlRootElement(name = "setPaymentRequest")
-public class SetPaymentRequest {
+@XmlRootElement(name = "getPaymentByStudentIdRequest")
+public class GetPaymentByStudentIdRequest {
 
     @XmlElement(required = true)
     protected BigInteger studentId;
-    @XmlElement(required = true)
-    protected BigInteger programId;
-    protected long paymentAmount;
 
     /**
      * Gets the value of the studentId property.
@@ -74,46 +67,6 @@ public class SetPaymentRequest {
      */
     public void setStudentId(BigInteger value) {
         this.studentId = value;
-    }
-
-    /**
-     * Gets the value of the programId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getProgramId() {
-        return programId;
-    }
-
-    /**
-     * Sets the value of the programId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setProgramId(BigInteger value) {
-        this.programId = value;
-    }
-
-    /**
-     * Gets the value of the paymentAmount property.
-     * 
-     */
-    public long getPaymentAmount() {
-        return paymentAmount;
-    }
-
-    /**
-     * Sets the value of the paymentAmount property.
-     * 
-     */
-    public void setPaymentAmount(long value) {
-        this.paymentAmount = value;
     }
 
 }

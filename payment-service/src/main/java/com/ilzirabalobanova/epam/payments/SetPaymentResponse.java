@@ -6,9 +6,8 @@
 //
 
 
-package com.ilzirabalobanova.epam.entity.payments;
+package com.ilzirabalobanova.epam.payments;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="studentId" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="payment" type="{http://www.ilzirabalobanova.com/spring/ws/payments}payment"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "studentId"
+    "payment"
 })
-@XmlRootElement(name = "getPaymentByStudentIdRequest")
-public class GetPaymentByStudentIdRequest {
+@XmlRootElement(name = "setPaymentResponse")
+public class SetPaymentResponse {
 
     @XmlElement(required = true)
-    protected BigInteger studentId;
+    protected Payment payment;
 
     /**
-     * Gets the value of the studentId property.
+     * Gets the value of the payment property.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link Payment }
      *     
      */
-    public BigInteger getStudentId() {
-        return studentId;
+    public Payment getPayment() {
+        return payment;
     }
 
     /**
-     * Sets the value of the studentId property.
+     * Sets the value of the payment property.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link Payment }
      *     
      */
-    public void setStudentId(BigInteger value) {
-        this.studentId = value;
+    public void setPayment(Payment value) {
+        this.payment = value;
     }
 
 }

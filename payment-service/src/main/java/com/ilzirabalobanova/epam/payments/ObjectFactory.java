@@ -6,7 +6,7 @@
 //
 
 
-package com.ilzirabalobanova.epam.entity.payments;
+package com.ilzirabalobanova.epam.payments;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ilzirabalobanova.com/spring/ws/payments", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.ilzirabalobanova.epam.entity.payments;
+package com.ilzirabalobanova.epam.payments;
