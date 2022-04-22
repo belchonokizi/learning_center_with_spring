@@ -35,11 +35,10 @@ public class PaymentRepository implements IPaymentRepository {
     @Transactional
     public Optional<PaymentEntity> savePayment(PaymentEntity paymentEntity) throws NotEnoughAmountForPaymentException {
         Long paymentAmount = paymentEntity.getPaymentAmount();
-        if (paymentAmount > 0) {
-            entityManager.unwrap(Session.class).save(Objects.requireNonNull(paymentEntity));
-        } else {
+        if (paymentAmount <= 0) {
             throw new IllegalArgumentException("Некорректное значение суммы платежа");
         }
+        entityManager.unwrap(Session.class).save(Objects.requireNonNull(paymentEntity));
         updateBalance(paymentEntity.getStudentId(), paymentAmount);
         return Optional.of(paymentEntity);
     }
@@ -48,11 +47,10 @@ public class PaymentRepository implements IPaymentRepository {
         BalanceEntity currentBalance = getBalanceByStudentId(studentId).orElseThrow();
         if (currentBalance.getAmount() < amount) {
             throw new NotEnoughAmountForPaymentException("Недостаточно средств на балансе для совершения платежа");
-        } else {
-            long newAmount = currentBalance.getAmount() - amount;
-            entityManager.createNativeQuery("update balances set amount = ? where student_id = ?")
-                    .setParameter(1, newAmount).setParameter(2, studentId).executeUpdate();
         }
+        long newAmount = currentBalance.getAmount() - amount;
+        entityManager.createNativeQuery("update balances set amount = ? where student_id = ?")
+                .setParameter(1, newAmount).setParameter(2, studentId).executeUpdate();
     }
 
     @Override

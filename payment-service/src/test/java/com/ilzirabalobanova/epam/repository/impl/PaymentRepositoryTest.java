@@ -21,7 +21,7 @@ class PaymentRepositoryTest {
     @ParameterizedTest
     @MethodSource("paymentEntitiesMethodSource")
     void savePayment(PaymentEntity paymentEntity) {
-        long oldBalance = paymentRepository.getBalanceByStudentId(1).orElseThrow().getAmount();
+        long oldBalance = paymentRepository.getBalanceByStudentId(1).get().getAmount();
         assertThrows(Exception.class, () -> {
             paymentRepository.savePayment(paymentEntity);
         });
