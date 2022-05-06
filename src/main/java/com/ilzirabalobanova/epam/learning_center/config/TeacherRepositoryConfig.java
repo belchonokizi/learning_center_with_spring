@@ -23,7 +23,6 @@ public class TeacherRepositoryConfig {
     public JpaTeacherRepository jpaTeacherRepository() {
         return new JpaTeacherRepository(Teacher.class, entityManager);
     }
-
     @Bean
     @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JDBC")
     public JDBCTeacherRepository jdbcTeacherRepository() {

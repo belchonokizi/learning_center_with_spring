@@ -15,14 +15,17 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "program_id")
-    private int programId;
+    private Integer programId;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "duration")
-    private long durationInHours;
+    private Long durationInHours;
+    public Module(Integer id) {
+        this.id = id;
+    }
 }

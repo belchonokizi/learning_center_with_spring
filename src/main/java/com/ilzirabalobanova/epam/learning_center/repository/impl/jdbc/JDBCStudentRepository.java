@@ -5,6 +5,7 @@ import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
 import com.ilzirabalobanova.epam.learning_center.util.SqlQueriesReader;
 import com.ilzirabalobanova.epam.learning_center.util.extractors.StudentDataExtractor;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.lang.Nullable;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
 
+@NoArgsConstructor
 public class JDBCStudentRepository implements IStudentRepository {
     private final Logger logger = LoggerFactory.getLogger(JDBCStudentRepository.class);
 
@@ -24,9 +25,6 @@ public class JDBCStudentRepository implements IStudentRepository {
     private StudentDataExtractor extractor;
     private SqlQueriesReader reader;
     private GeneratedKeyHolder keyHolder;
-
-    public JDBCStudentRepository() {
-    }
 
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -63,8 +61,7 @@ public class JDBCStudentRepository implements IStudentRepository {
             preparedStatement.setString(2, student.getLastName());
             preparedStatement.setString(3, student.getPhoneNumber());
             preparedStatement.setString(4, student.getEmail());
-            preparedStatement.setDate(5, Date.valueOf(student.getStartDate()));
-            preparedStatement.setInt(6, student.getProgramId());
+//            preparedStatement.setInt(6, student.getProgramId());
             preparedStatement.setInt(7, 0);
             return preparedStatement;
         }, keyHolder);
@@ -101,5 +98,10 @@ public class JDBCStudentRepository implements IStudentRepository {
         String query = reader.readSqlQueries(Constants.UPDATE_STUDENT_SQL_QUERY_PATH);
         int rowCount = jdbcTemplate.update(query, student.getFirstName(), studentId);
         return rowCount == 1 ? student : null;
+    }
+
+    @Override
+    public void joinTheProgram(int studentId, int programId) {
+
     }
 }

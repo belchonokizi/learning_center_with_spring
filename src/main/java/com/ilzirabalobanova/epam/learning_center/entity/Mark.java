@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 @Data
 @Entity
 @Table(name = "marks")
@@ -20,15 +19,16 @@ public class Mark {
     @Column(name = "student_id")
     private int studentId;
 
-    @Column(name = "module_id")
-    private int moduleId;
+    @OneToOne
+    @JoinColumn(name = "module_id")
+    private Module module;
 
     @Column(name = "mark_value")
     private int markValue;
 
-    public Mark(int studentId, int moduleId, int markValue) {
+    public Mark(int studentId, Module module, int markValue) {
         this.studentId = studentId;
-        this.moduleId = moduleId;
+        this.module = module;
         this.markValue = markValue;
     }
 }

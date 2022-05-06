@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.ilzirabalobanova.com/spring/ws/payments"
+        targetNamespace="http://www.ilzirabalobanova.com/spring/ws/payments" elementFormDefault="qualified">
+    <xs:element name="setPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:integer"/>
+                <xs:element name="programId" type="xs:integer"/>
+                <xs:element name="paymentAmount" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setPaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="tns:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentByStudentIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentByStudentIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="paymentList" type="tns:paymentList"/>
+                <xs:element name="balance" type="tns:balance"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="studentId" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="programId" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="paymentAmount" type="xs:long" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="dateOfPayment" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="balance">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="studentId" type="xs:integer"/>
+            <xs:element name="amount" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="paymentList">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="payment" type="tns:payment"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

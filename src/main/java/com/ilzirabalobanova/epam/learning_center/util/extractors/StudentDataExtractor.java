@@ -1,5 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.util.extractors;
 
+import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +29,7 @@ public class StudentDataExtractor implements ResultSetExtractor<List<Student>> {
                 student.setLastName(rs.getString("last_name"));
                 student.setPhoneNumber(rs.getString("phone_number"));
                 student.setEmail(rs.getString("email"));
-                student.setStartDate(LocalDate.parse(rs.getString("start_date")));
-                student.setFinishedProgram((rs.getInt("is_finished_program") == 1));
-                student.setProgramId(rs.getInt("program_id"));
+                student.setPrograms(List.of(new Program(rs.getInt("program_id"))));
             }
             studentsMap.put(studentId, student);
         }

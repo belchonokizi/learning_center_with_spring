@@ -1,6 +1,7 @@
 package com.ilzirabalobanova.epam.learning_center.util.extractors;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Mark;
+import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class MarkDataExtractor implements ResultSetExtractor<List<Mark>> {
                 mark = new Mark();
                 mark.setId(markId);
                 mark.setStudentId(rs.getInt("student_id"));
-                mark.setModuleId(rs.getInt("module_id"));
+                mark.setModule(new Module(rs.getInt("module_id")));
                 mark.setMarkValue(rs.getInt("mark_value"));
                 markMap.put(markId, mark);
             }

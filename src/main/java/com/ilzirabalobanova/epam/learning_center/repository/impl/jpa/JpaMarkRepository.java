@@ -1,7 +1,9 @@
 package com.ilzirabalobanova.epam.learning_center.repository.impl.jpa;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Mark;
+import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.repository.IMarkRepository;
+import com.ilzirabalobanova.epam.learning_center.service.IModuleService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +17,16 @@ import java.util.List;
 
 public class JpaMarkRepository implements IMarkRepository {
     private EntityManager entityManager;
+    private IModuleService moduleService;
 
     @Autowired
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @Autowired
+    public void setModuleService(IModuleService moduleService) {
+        this.moduleService = moduleService;
     }
 
     public List<Mark> findStudentMarks(int studentId) {
@@ -30,6 +38,14 @@ public class JpaMarkRepository implements IMarkRepository {
 
         org.hibernate.query.Query<Mark> query = session.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    @Transactional
+    @Override
+    public void putNewMark(int studentId, int moduleId, int value) {
+        Module module = moduleService.findModuleById(moduleId);
+        Mark mark = new Mark(studentId, module, value);
+        entityManager.unwrap(Session.class).save(mark);
     }
 
     @Transactional

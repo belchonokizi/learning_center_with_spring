@@ -26,9 +26,9 @@ class ModuleRepositoryTest {
     @Autowired
     private IModuleRepository moduleRepository;
 
-    private final Module module1 = new Module(1, 1, "first_module_java", 48);
-    private final Module module2 = new Module(2, 1, "first_module_java", 24);
-    private final Module module3 = new Module(3, 2, "first_module_javascript", 24);
+    private final Module module1 = new Module(1, 1, "first_module_java", 48L);
+    private final Module module2 = new Module(2, 1, "first_module_java", 24L);
+    private final Module module3 = new Module(3, 2, "first_module_javascript", 24L);
 
     @Test
     void findAllModulesByProgramId() {

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ModuleRepositoryConfig {
-
     @Bean
     @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JPA")
     public JpaModuleRepository jpaModuleRepository() {

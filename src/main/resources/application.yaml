@@ -20,15 +20,15 @@ logging:
 
 spring:
   datasource:
-      username: bestuser
-      password: bestuser
+      username: root
+      password: springcourse
       url: jdbc:mysql://localhost:3306/learning_center?serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
 
   profiles:
-#    active: prod
-    active: dev
+    active: prod
+#    active: dev
 
 resources:
-#    repository: JPA
-    repository: JDBC
+    repository: JPA
+#    repository: JDBC

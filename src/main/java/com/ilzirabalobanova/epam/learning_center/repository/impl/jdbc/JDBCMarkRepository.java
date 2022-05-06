@@ -42,4 +42,10 @@ public class JDBCMarkRepository implements IMarkRepository {
         int rowCount = jdbcTemplate.update(query, value, studentId, moduleId);
         return rowCount == 1;
     }
+
+    @Override
+    public void putNewMark(int studentId, int moduleId, int value) {
+    }
+
+
 }

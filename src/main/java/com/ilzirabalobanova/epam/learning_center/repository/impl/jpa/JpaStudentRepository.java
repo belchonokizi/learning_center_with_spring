@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
 public class JpaStudentRepository implements IStudentRepository {
     private EntityManager entityManager;
 
@@ -50,7 +49,20 @@ public class JpaStudentRepository implements IStudentRepository {
         Session session = entityManager.unwrap(Session.class);
         Student studentForUpdate = findStudentById(studentId);
         studentForUpdate.setFirstName(student.getFirstName());
+        studentForUpdate.setLastName(student.getLastName());
+        studentForUpdate.setPhoneNumber(student.getPhoneNumber());
+        studentForUpdate.setEmail(student.getEmail());
+        studentForUpdate.setPrograms(student.getPrograms());
         session.saveOrUpdate(studentForUpdate);
-        return student;
+        return studentForUpdate;
+    }
+
+    @Transactional
+    @Override
+    public void joinTheProgram(int studentId, int programId) {
+        entityManager.createNativeQuery("INSERT INTO students_programs VALUES (?, ?)")
+                .setParameter(1, studentId)
+                .setParameter(2, programId)
+                .executeUpdate();
     }
 }

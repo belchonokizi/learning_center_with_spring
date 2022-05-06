@@ -5,9 +5,8 @@ import com.ilzirabalobanova.epam.learning_center.repository.IStudentRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
 import com.ilzirabalobanova.epam.learning_center.util.Constants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,16 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class StudentService implements IStudentService {
-    private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
     private final IStudentRepository studentRepository;
     private final IProgramService programService;
-
-    @Autowired
-    public StudentService(IStudentRepository studentRepository, IProgramService programService) {
-        this.studentRepository = studentRepository;
-        this.programService = programService;
-    }
 
     @Override
     public List<Student> getAllStudents() {
@@ -72,13 +66,16 @@ public class StudentService implements IStudentService {
         students.forEach(System.out::println);
         return students;
     }
-
     @Override
     public void createReport(String path, List<Student> list) {
         try {
             new WriteReportService().writeInFile(path, list);
         } catch (IOException e) {
-            logger.error("Ошибка записи отчета в файла {}", e.getMessage());
+            log.error("Ошибка записи отчета в файла {}", e.getMessage());
         }
+    }
+    @Override
+    public void joinTheProgram(int studentId, int programId) {
+        studentRepository.joinTheProgram(studentId, programId);
     }
 }

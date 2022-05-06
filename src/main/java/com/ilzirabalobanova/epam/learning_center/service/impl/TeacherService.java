@@ -3,20 +3,15 @@ package com.ilzirabalobanova.epam.learning_center.service.impl;
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
 import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
 import com.ilzirabalobanova.epam.learning_center.service.ITeacherService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TeacherService implements ITeacherService {
     private final ITeacherRepository teacherRepository;
-
-    @Autowired
-    public TeacherService(ITeacherRepository teacherRepository) {
-        this.teacherRepository = teacherRepository;
-    }
-
     @Override
     public List<Teacher> getAllTeachers() {
         return teacherRepository.getAllTeachers();

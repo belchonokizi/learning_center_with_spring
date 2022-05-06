@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MarkRepositoryConfig {
-
     @Bean
     @ConditionalOnProperty(prefix = "resources", name = "repository", havingValue = "JPA")
     public JpaMarkRepository jpaMarkRepository() {

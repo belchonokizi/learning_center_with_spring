@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class AddCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(AddCommand.class);
@@ -68,7 +68,7 @@ public class AddCommand implements Command {
             programId = helper.readInt();
         } while (!validator.isIntValid(programId));
 
-        Student student = new Student(name, lastName, phoneNumber, email, LocalDate.now(), false, 1);
+        Student student = new Student(name, lastName, phoneNumber, email, List.of(new Program(1)));
         if (studentService.addStudent(student)) {
             logger.info("Студент {} {} добавлен", student.getFirstName(), student.getLastName());
         } else {

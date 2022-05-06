@@ -4,19 +4,14 @@ import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepository;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class ProgramService implements IProgramService {
     private final IProgramRepository programRepository;
-
-    @Autowired
-    public ProgramService(IProgramRepository programRepository) {
-        this.programRepository = programRepository;
-    }
 
     @Override
     public Program findProgramById(int id) {
@@ -27,7 +22,6 @@ public class ProgramService implements IProgramService {
     public List<Program> getAllPrograms() {
         return programRepository.getAllPrograms();
     }
-
 
     @Override
     public double getAvgGrade(Student student) {

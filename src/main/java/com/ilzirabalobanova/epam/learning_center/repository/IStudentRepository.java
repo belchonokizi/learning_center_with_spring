@@ -16,4 +16,6 @@ public interface IStudentRepository {
 
     Student updateStudent(int studentId, Student student);
 
+    void joinTheProgram(int studentId, int programId);
+
 }

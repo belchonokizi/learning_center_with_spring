@@ -15,7 +15,6 @@ import java.util.List;
 
 public class JpaModuleRepository implements IModuleRepository {
     private EntityManager entityManager;
-
     @Autowired
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -44,5 +43,10 @@ public class JpaModuleRepository implements IModuleRepository {
     public boolean deleteModule(int moduleId) {
         return entityManager.createQuery("delete from Module " +
                 "where id = :id").setParameter("id", moduleId).executeUpdate() == 1;
+    }
+
+    @Override
+    public Module findModuleById(int moduleId) {
+        return entityManager.find(Module.class, moduleId);
     }
 }

@@ -1,7 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.command.impl;
 
 import com.ilzirabalobanova.epam.learning_center.command.Command;
-import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IProgramService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
@@ -28,8 +27,8 @@ public class CountDaysCommand implements Command {
         int studentId = helper.askStudentId();
         Student student = studentService.findStudentById(studentId);
         if (student != null) {
-            Program program = programService.findProgramById(student.getProgramId());
-            if (program != null) {
+//            List<Program> programs = programService.findProgramById(student.getPrograms());
+//            if (!programs.isEmpty()) {
 //                long wholeDuration = program.getModules().stream().map(Module::getDurationInHours).mapToLong(m -> m).sum();
 //                long currentDuration = 0;
 
@@ -44,7 +43,7 @@ public class CountDaysCommand implements Command {
 //                    System.out.printf("%d - количество дней до окончания программы", countDays);
             }
         }
-    }
+//    }
 
 
     @Override

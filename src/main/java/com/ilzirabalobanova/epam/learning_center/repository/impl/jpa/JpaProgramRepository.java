@@ -2,8 +2,7 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl.jpa;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Program;
 import com.ilzirabalobanova.epam.learning_center.repository.IProgramRepositoryForJpa;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
-import org.jboss.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +10,8 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 public class JpaProgramRepository extends SimpleJpaRepository<Program, Integer> implements IProgramRepositoryForJpa {
-    private final Logger logger = LoggerFactory.logger(JpaProgramRepository.class);
-
     public JpaProgramRepository(Class<Program> domainClass, EntityManager em) {
         super(domainClass, em);
     }
@@ -43,8 +41,9 @@ public class JpaProgramRepository extends SimpleJpaRepository<Program, Integer> 
         if (program.isPresent()) {
             resultProgram = program.get();
         } else {
-            logger.error("Программа не найдена");
+            log.error("Программа не найдена");
         }
         return resultProgram;
     }
+
 }

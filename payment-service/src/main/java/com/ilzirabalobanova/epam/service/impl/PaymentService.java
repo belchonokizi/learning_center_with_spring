@@ -2,7 +2,6 @@ package com.ilzirabalobanova.epam.service.impl;
 
 import com.ilzirabalobanova.epam.entity.BalanceEntity;
 import com.ilzirabalobanova.epam.entity.PaymentEntity;
-import com.ilzirabalobanova.epam.exception.NotEnoughAmountForPaymentException;
 import com.ilzirabalobanova.epam.payments.Balance;
 import com.ilzirabalobanova.epam.payments.Payment;
 import com.ilzirabalobanova.epam.repository.IPaymentRepository;
@@ -44,7 +43,6 @@ public class PaymentService implements IPaymentService {
     public PaymentService(IPaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
-
     @Override
     public Payment saveNewPayment(PaymentEntity paymentEntity) {
         return paymentRepository.savePayment(paymentEntity).map(FUNCTION_PAYMENT_ENTITY_TO_SOAP).orElseThrow();

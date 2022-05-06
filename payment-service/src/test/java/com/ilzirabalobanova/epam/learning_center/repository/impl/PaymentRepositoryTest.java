@@ -1,4 +1,4 @@
-package com.ilzirabalobanova.epam.repository.impl;
+package com.ilzirabalobanova.epam.learning_center.repository.impl;
 
 import com.ilzirabalobanova.epam.entity.PaymentEntity;
 import com.ilzirabalobanova.epam.repository.IPaymentRepository;

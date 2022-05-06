@@ -68,4 +68,9 @@ public class JDBCModuleRepository implements IModuleRepository {
             return preparedStatement;
         }) == 1;
     }
+
+    @Override
+    public Module findModuleById(int moduleId) {
+        return null;
+    }
 }

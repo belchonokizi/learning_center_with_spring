@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,23 +30,17 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "start_date")
-    private LocalDate startDate;
-
-    @Column(name = "is_finished_program")
-    private boolean isFinishedProgram;
-
-    @Column(name = "program_id")
-    private int programId;
-
-    public Student(String firstName, String lastName, String phoneNumber, String email, LocalDate startDay, boolean isFinishedProgram, int programId) {
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "students_programs",
+    joinColumns = @JoinColumn(name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name = "program_id"))
+    private List<Program> programs;
+    public Student(String firstName, String lastName, String phoneNumber, String email, List<Program> programs) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.startDate = startDay;
-        this.isFinishedProgram = isFinishedProgram;
-        this.programId = programId;
+        this.programs = programs;
     }
 }
 

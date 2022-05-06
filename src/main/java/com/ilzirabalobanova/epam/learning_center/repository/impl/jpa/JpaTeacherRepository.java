@@ -2,6 +2,7 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl.jpa;
 
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
 import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.jboss.logging.Logger;
 import org.springframework.data.domain.Sort;
@@ -12,8 +13,8 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 public class JpaTeacherRepository extends SimpleJpaRepository<Teacher, Integer> implements ITeacherRepository {
-    private final Logger logger = LoggerFactory.logger(JpaTeacherRepository.class);
 
     public JpaTeacherRepository(Class<Teacher> domainClass, EntityManager em) {
         super(domainClass, em);
@@ -45,7 +46,7 @@ public class JpaTeacherRepository extends SimpleJpaRepository<Teacher, Integer> 
         if (optionalTeacher.isPresent()) {
             teacher = optionalTeacher.get();
         } else {
-            logger.error("Учитель не найден");
+            log.error("Учитель не найден");
         }
         return teacher;
     }

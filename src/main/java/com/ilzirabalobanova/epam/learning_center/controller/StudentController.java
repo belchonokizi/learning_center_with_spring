@@ -4,22 +4,17 @@ import com.ilzirabalobanova.epam.learning_center.entity.Mark;
 import com.ilzirabalobanova.epam.learning_center.entity.Student;
 import com.ilzirabalobanova.epam.learning_center.service.IMarkService;
 import com.ilzirabalobanova.epam.learning_center.service.IStudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/students")
+@RequiredArgsConstructor
 public class StudentController {
     private final IStudentService studentService;
     private final IMarkService markService;
-
-    @Autowired
-    public StudentController(IStudentService studentService, IMarkService markService) {
-        this.studentService = studentService;
-        this.markService = markService;
-    }
 
     @GetMapping
     public List<Student> getAllStudents() {
@@ -38,8 +33,11 @@ public class StudentController {
     }
 
     @DeleteMapping("/{studentId}")
-    public void deleteStudentById(@PathVariable Integer studentId) {
-        studentService.deleteStudent(studentId);
+    public String deleteStudentById(@PathVariable Integer studentId) {
+        if (!studentService.deleteStudent(studentId)) {
+            return "Ошибка в удалении студента";
+        }
+        return "Студент удален";
     }
 
     @PutMapping("/{studentId}")
@@ -60,5 +58,10 @@ public class StudentController {
     @PostMapping("/score/{studentId}/{moduleId}/{value}")
     public void putNewScore(@PathVariable Integer studentId, @PathVariable Integer moduleId, @PathVariable Integer value) {
         markService.putNewMark(studentId, moduleId, value);
+    }
+
+    @PostMapping("/programs/join/{studentId}/{programId}")
+    public void joinTheProgram(@PathVariable Integer studentId, @PathVariable Integer programId) {
+        studentService.joinTheProgram(studentId, programId);
     }
 }

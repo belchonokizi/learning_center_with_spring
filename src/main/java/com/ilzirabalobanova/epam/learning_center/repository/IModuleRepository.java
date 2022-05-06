@@ -11,4 +11,6 @@ public interface IModuleRepository {
     boolean addModule(Module module);
 
     boolean deleteModule(int moduleId);
+
+    Module findModuleById(int moduleId);
 }

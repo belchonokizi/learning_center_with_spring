@@ -25,7 +25,6 @@ public interface IStudentService {
     List<Student> filterAndShowStudents(List<Student> studentList);
 
     void createReport(String path, List<Student> list);
-
-
+    void joinTheProgram(int studentId, int programId);
 }
 
