@@ -3,7 +3,7 @@ package com.ilzirabalobanova.epam.endpoint;
 import com.ilzirabalobanova.epam.entity.PaymentEntity;
 import com.ilzirabalobanova.epam.payments.*;
 import com.ilzirabalobanova.epam.service.IPaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -12,17 +12,12 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import java.time.LocalDate;
 
 @Endpoint
+@RequiredArgsConstructor
 public class PaymentEndpoint {
     private static final String NAMESPACE_URI = "http://www.ilzirabalobanova.com/spring/ws/payments";
     private static final String LOCAL_PART_SET_PAYMENT_REQUEST = "setPaymentRequest";
     private static final String LOCAL_PART_GET_PAYMENT_BY_STUDENT_ID_REQUEST = "getPaymentByStudentIdRequest";
-
     private final IPaymentService paymentService;
-
-    @Autowired
-    public PaymentEndpoint(IPaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = LOCAL_PART_SET_PAYMENT_REQUEST)
     @ResponsePayload

@@ -1,18 +1,20 @@
 package com.ilzirabalobanova.epam.config;
 
-import com.ilzirabalobanova.epam.entity.PaymentEntity;
+import com.ilzirabalobanova.epam.endpoint.PaymentEndpoint;
 import com.ilzirabalobanova.epam.payments.ObjectFactory;
 import com.ilzirabalobanova.epam.repository.impl.PaymentRepository;
 import com.ilzirabalobanova.epam.service.impl.PaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Configuration
+@RequiredArgsConstructor
 public class PaymentServiceAutoConfiguration {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Bean
@@ -31,7 +33,7 @@ public class PaymentServiceAutoConfiguration {
     }
 
     @Bean
-    public PaymentEntity paymentEntity() {
-        return new PaymentEntity();
+    public PaymentEndpoint paymentEndpoint() {
+        return new PaymentEndpoint(paymentService());
     }
 }
