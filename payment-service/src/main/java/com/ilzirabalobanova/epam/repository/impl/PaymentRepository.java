@@ -7,7 +7,6 @@ import com.ilzirabalobanova.epam.repository.IPaymentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -16,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
-@Repository
 public class PaymentRepository implements IPaymentRepository {
     private final EntityManager entityManager;
 

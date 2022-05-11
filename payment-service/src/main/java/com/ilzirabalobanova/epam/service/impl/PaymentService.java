@@ -8,7 +8,6 @@ import com.ilzirabalobanova.epam.repository.IPaymentRepository;
 import com.ilzirabalobanova.epam.service.IPaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.Collections;
@@ -17,7 +16,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
 public class PaymentService implements IPaymentService {
     private static final Function<PaymentEntity, Payment> FUNCTION_PAYMENT_ENTITY_TO_SOAP = paymentEntity -> {
         Payment payment = new Payment();

@@ -6,8 +6,6 @@ import com.ilzirabalobanova.epam.learning_center.report.MultithreadingReportGene
 import com.ilzirabalobanova.epam.learning_center.report.ReportGeneratorAllStudents;
 import com.ilzirabalobanova.epam.learning_center.service.IWriteReportService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;

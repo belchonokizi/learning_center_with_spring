@@ -1,6 +1,5 @@
 package com.ilzirabalobanova.epam.config;
 
-import com.ilzirabalobanova.epam.endpoint.PaymentEndpoint;
 import com.ilzirabalobanova.epam.payments.ObjectFactory;
 import com.ilzirabalobanova.epam.repository.impl.PaymentRepository;
 import com.ilzirabalobanova.epam.service.impl.PaymentService;
@@ -30,10 +29,5 @@ public class PaymentServiceAutoConfiguration {
     @Bean
     public PaymentService paymentService() {
         return new PaymentService(paymentRepository());
-    }
-
-    @Bean
-    public PaymentEndpoint paymentEndpoint() {
-        return new PaymentEndpoint(paymentService());
     }
 }

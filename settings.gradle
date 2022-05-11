@@ -1,5 +1,5 @@
 rootProject.name = 'learning-center'
 include 'spring-boot-starter-logging'
 include 'payment-service'
-include 'payment-serv'
+include 'study-center'
 

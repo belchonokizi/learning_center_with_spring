@@ -3,8 +3,6 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl.jpa;
 import com.ilzirabalobanova.epam.learning_center.entity.Teacher;
 import com.ilzirabalobanova.epam.learning_center.repository.ITeacherRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
-import org.jboss.logging.Logger;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;

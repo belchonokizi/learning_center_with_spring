@@ -3,8 +3,6 @@ package com.ilzirabalobanova.epam.learning_center.repository.impl;
 import com.ilzirabalobanova.epam.learning_center.entity.Mark;
 import com.ilzirabalobanova.epam.learning_center.entity.Module;
 import com.ilzirabalobanova.epam.learning_center.repository.IMarkRepository;
-import com.ilzirabalobanova.epam.learning_center.repository.impl.jdbc.JDBCMarkRepository;
-import com.ilzirabalobanova.epam.learning_center.repository.impl.jpa.JpaMarkRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
