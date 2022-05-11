@@ -1,6 +1,6 @@
 package com.ilzirabalobanova.epam.learning_center.service.impl;
 
-import com.ilzirabalobanova.epam.learning_center.gateway.client.PaymentClient;
+import com.ilzirabalobanova.epam.learning_center.gateway.PaymentClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

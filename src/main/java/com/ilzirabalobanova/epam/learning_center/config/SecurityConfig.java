@@ -45,4 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().permitAll().and().sessionManagement().maximumSessions(1)
                 .maxSessionsPreventsLogin(false);
     }
+
+
 }

@@ -14,7 +14,6 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ModuleService implements IModuleService {
-    private final Logger logger = LoggerFactory.getLogger(ModuleService.class);
     private final IModuleRepository moduleRepository;
 
     @Override

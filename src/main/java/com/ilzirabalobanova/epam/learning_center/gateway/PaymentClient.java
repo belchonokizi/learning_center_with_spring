@@ -1,4 +1,4 @@
-package com.ilzirabalobanova.epam.learning_center.gateway.client;
+package com.ilzirabalobanova.epam.learning_center.gateway;
 
 import com.ilzirabalobanova.epam.endpoint.PaymentEndpoint;
 import com.ilzirabalobanova.epam.payments.ObjectFactory;
