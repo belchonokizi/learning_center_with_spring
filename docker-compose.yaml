@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mysql-db:
+    image: mysql
+    container_name: mysql-db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - .sql:/docker-entrypoint-initdb.d/
+#      - .sql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: learning_center
+      MYSQL_ROOT_PASSWORD: springcourse
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-db

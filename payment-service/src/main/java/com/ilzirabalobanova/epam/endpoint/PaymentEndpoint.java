@@ -4,6 +4,7 @@ import com.ilzirabalobanova.epam.entity.PaymentEntity;
 import com.ilzirabalobanova.epam.payments.*;
 import com.ilzirabalobanova.epam.service.IPaymentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -11,6 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.time.LocalDate;
 @Endpoint
+@Slf4j
 @RequiredArgsConstructor
 public class PaymentEndpoint {
     private static final String NAMESPACE_URI = "http://www.ilzirabalobanova.com/spring/ws/payments";
@@ -21,11 +23,13 @@ public class PaymentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = LOCAL_PART_SET_PAYMENT_REQUEST)
     @ResponsePayload
     public SetPaymentResponse setNewPayment(@RequestPayload SetPaymentRequest request) {
+        log.info("Hi");
         PaymentEntity paymentEntity = new PaymentEntity(request.getStudentId().intValue(), request.getProgramId().intValue(),
                 request.getPaymentAmount(), LocalDate.now().toString());
         SetPaymentResponse response = new SetPaymentResponse();
         Payment payment = paymentService.saveNewPayment(paymentEntity);
         response.setPayment(payment);
+
         return response;
     }
 
