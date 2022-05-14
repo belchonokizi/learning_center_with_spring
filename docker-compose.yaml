@@ -11,7 +11,7 @@ services:
       - .sql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: learning_center
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: sprincourse
 
   adminer:
     image: adminer
@@ -29,7 +29,7 @@ services:
     depends_on:
       - mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: springcourse
     restart: always
 
   logging-service:
@@ -47,6 +47,6 @@ services:
       - payment-service
       - logging-service
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: springcourse
       SOAP_URL: http://localhost:8081/api/soap
     restart: on-failure
