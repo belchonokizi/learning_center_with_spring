@@ -6,3 +6,7 @@ plugins {
 
 group 'com.ilzirabalobanova.epam'
 version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
