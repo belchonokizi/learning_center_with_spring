@@ -32,20 +32,14 @@ services:
       MYSQL_ROOT_PASSWORD: springcourse
     restart: always
 
-  logging-service:
-    build: spring-boot-starter-logging/
-    container_name: logging-service
-    restart: on-failure
-
   study-center:
     build: study-center/
     container_name: study-center
-    ports:
-      - "8080:8080"
+#    ports:
+#      - "8080:8080"
     depends_on:
       - mysql-db
       - payment-service
-      - logging-service
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
       SOAP_URL: http://localhost:8081/api/soap
