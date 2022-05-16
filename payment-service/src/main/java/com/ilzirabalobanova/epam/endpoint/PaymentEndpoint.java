@@ -23,13 +23,12 @@ public class PaymentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = LOCAL_PART_SET_PAYMENT_REQUEST)
     @ResponsePayload
     public SetPaymentResponse setNewPayment(@RequestPayload SetPaymentRequest request) {
-        log.info("Hi");
         PaymentEntity paymentEntity = new PaymentEntity(request.getStudentId().intValue(), request.getProgramId().intValue(),
                 request.getPaymentAmount(), LocalDate.now().toString());
         SetPaymentResponse response = new SetPaymentResponse();
         Payment payment = paymentService.saveNewPayment(paymentEntity);
         response.setPayment(payment);
-
+        log.info("Платеж совершен");
         return response;
     }
 

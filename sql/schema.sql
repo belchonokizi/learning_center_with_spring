@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS students;
 CREATE TABLE `students` (
   `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
@@ -8,6 +8,38 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
+);
+
+CREATE TABLE `programs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+);
+
+CREATE TABLE `modules` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `program_id` int NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `duration` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `pri_idx` (`program_id`),
+  CONSTRAINT `pri` FOREIGN KEY (`program_id`) REFERENCES `programs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE `marks` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `module_id` int NOT NULL,
+  `mark_value` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `st_idx` (`student_id`),
+  KEY `mod_idx` (`module_id`),
+  CONSTRAINT `mod` FOREIGN KEY (`module_id`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `st` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `students_programs` (
@@ -45,30 +77,6 @@ CREATE TABLE `balances` (
   CONSTRAINT `stud_id` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE `marks` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `student_id` int NOT NULL,
-  `module_id` int NOT NULL,
-  `mark_value` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `st_idx` (`student_id`),
-  KEY `mod_idx` (`module_id`),
-  CONSTRAINT `mod` FOREIGN KEY (`module_id`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `st` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE `modules` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `program_id` int NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `duration` bigint NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `pri_idx` (`program_id`),
-  CONSTRAINT `pri` FOREIGN KEY (`program_id`) REFERENCES `programs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE `payments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
@@ -83,13 +91,6 @@ CREATE TABLE `payments` (
   CONSTRAINT `st_id` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE `programs` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
-);
 
 
 

@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: springcourse
-    url: jdbc:mysql://localhost:3306/learning_center?serverTimezone=UTC
+    url: jdbc:mysql://${DB}:3306/learning_center?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:

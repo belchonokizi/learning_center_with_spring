@@ -5,7 +5,9 @@ services:
     image: mysql
     container_name: mysql-db
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: on-failure
+    ports:
+      - "3306:3306"
     volumes:
 #      - .sql:/docker-entrypoint-initdb.d/
       - .sql:/var/lib/mysql
@@ -30,17 +32,19 @@ services:
       - mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
-    restart: always
+      DB: mysql-db
+    restart: on-failure
 
   study-center:
     build: study-center/
     container_name: study-center
-#    ports:
-#      - "8080:8080"
+    ports:
+      - "8082:8080"
     depends_on:
       - mysql-db
       - payment-service
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
-      SOAP_URL: http://localhost:8081/api/soap
-    restart: on-failure
+      SOAP_URL: http://payment-service:8081/api/soap
+      DB: mysql-db
+    restart: always
