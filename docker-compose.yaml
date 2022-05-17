@@ -9,7 +9,6 @@ services:
     ports:
       - "3306:3306"
     volumes:
-#      - .sql:/docker-entrypoint-initdb.d/
       - .sql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: learning_center
@@ -43,6 +42,8 @@ services:
     depends_on:
       - mysql-db
       - payment-service
+    volumes:
+      - ./log:/logs
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
       SOAP_URL: http://payment-service:8081/api/soap
