@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  cloud-config:
+    build: spring-cloud-config-server/
+    container_name: cloud-config
+    ports:
+      - "8888:8888"
+    restart: always
+
   mysql-db:
     image: mysql
     container_name: mysql-db
@@ -42,10 +49,12 @@ services:
     depends_on:
       - mysql-db
       - payment-service
+      - cloud-config
     volumes:
       - ./log:/logs
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
       SOAP_URL: http://payment-service:8081/api/soap
       DB: mysql-db
+      CONFIG_URL: http://cloud-config:8888
     restart: always

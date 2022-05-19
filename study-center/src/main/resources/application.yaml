@@ -1,37 +1,6 @@
-logging:
-  enable: true
-  loggable:
-    packages:
-      - com.ilzirabalobanova.epam.learning_center.service.impl
-    methods:
-      - deleteStudent
-      - addStudent
-      - sortAndShowStudents
-      - updateStudent
-      - updateStudent
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
 
 spring:
-  datasource:
-      username: root
-      password: springcourse
-      url: jdbc:mysql://${DB:localhost}:3306/learning_center?serverTimezone=UTC
-      driver-class-name: com.mysql.cj.jdbc.Driver
-
-  profiles:
-    active: prod
-#    active: dev
-
-resources:
-    repository: JPA
-#    repository: JDBC
-
-soap:
-  payment-url: ${SOAP_URL}
+  application:
+    name: study-center
+    config:
+      import: optional:configserver:${CONFIG_URL:http://localhost:8888}
