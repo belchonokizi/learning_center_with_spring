@@ -52,10 +52,10 @@ dependencies {
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.6.6'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config:3.1.2'
 
-
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     implementation 'wsdl4j:wsdl4j'
     implementation 'javax.xml.bind:jaxb-api'

@@ -40,6 +40,7 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.6'
     implementation group: 'org.springframework.ws', name: 'spring-ws-core'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config:3.1.2'
 
     implementation project(':payment-service')
     implementation project(':spring-boot-starter-logging')

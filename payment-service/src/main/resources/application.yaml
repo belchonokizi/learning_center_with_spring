@@ -1,9 +1,5 @@
 spring:
-  datasource:
-    username: root
-    password: springcourse
-    url: jdbc:mysql://${DB}:3306/learning_center?serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-server:
-  port: 8081
+  application:
+    name: payment-service
+  config:
+    import: optional:configserver:http://${CONFIG_URL:localhost}:8888

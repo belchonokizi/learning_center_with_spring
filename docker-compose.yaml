@@ -39,6 +39,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: springcourse
       DB: mysql-db
+      CONFIG_URL: cloud-config
     restart: on-failure
 
   study-center:
@@ -56,5 +57,5 @@ services:
       MYSQL_ROOT_PASSWORD: springcourse
       SOAP_URL: http://payment-service:8081/api/soap
       DB: mysql-db
-      CONFIG_URL: http://cloud-config:8888
+      CONFIG_URL: cloud-config
     restart: always

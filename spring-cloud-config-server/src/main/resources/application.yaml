@@ -9,3 +9,5 @@ spring:
       server:
         git:
           uri: https://github.com/belchonokizi/spring-cloud-config.git
+  profiles:
+    active: git
