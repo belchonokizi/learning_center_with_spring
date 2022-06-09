@@ -3,4 +3,5 @@ include 'spring-boot-starter-logging'
 include 'payment-service'
 include 'study-center'
 include 'spring-cloud-config-server'
+include 'discovery-service'
 
